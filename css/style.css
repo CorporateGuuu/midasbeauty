@@ -45,16 +45,17 @@ ul {
 header {
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px 0;
+    padding: 15px 0;
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
-header .container {
+.header-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 15px;
 }
 
 .logo h1 {
@@ -62,12 +63,64 @@ header .container {
     color: #f8c291;
 }
 
+/* Search styles */
+.search-container {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 20px;
+}
+
+#search-form {
+    display: flex;
+    position: relative;
+}
+
+#search-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+#search-input:focus {
+    border-color: #f8c291;
+    outline: none;
+    box-shadow: 0 0 5px rgba(248, 194, 145, 0.3);
+}
+
+#search-button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 8px;
+    transition: color 0.3s ease;
+}
+
+#search-button:hover {
+    color: #f8c291;
+}
+
+/* Header icons */
+.header-icons {
+    display: flex;
+    align-items: center;
+}
+
+/* Navigation */
 nav ul {
     display: flex;
+    justify-content: center;
 }
 
 nav ul li {
-    margin-left: 20px;
+    margin: 0 15px;
 }
 
 nav ul li a {
@@ -292,6 +345,84 @@ footer {
     color: #fff;
     text-align: center;
     padding: 60px 0;
+}
+
+/* Search Results Styles */
+.search-results-section {
+    padding: 60px 0;
+}
+
+.search-header {
+    margin-bottom: 30px;
+}
+
+.search-header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#search-query-display {
+    color: #f8c291;
+}
+
+#search-count {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.search-filters {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.filter-group {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.filter-group label {
+    margin-right: 10px;
+    font-weight: 600;
+    color: #666;
+}
+
+.filter-group select {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.filter-group select:focus {
+    border-color: #f8c291;
+    outline: none;
+}
+
+.no-results {
+    text-align: center;
+    padding: 50px 0;
+    color: #666;
+}
+
+.no-results p {
+    margin-bottom: 15px;
+}
+
+.no-results a {
+    color: #f8c291;
+    text-decoration: underline;
+}
+
+.highlight {
+    background-color: rgba(248, 194, 145, 0.2);
+    padding: 0 2px;
 }
 
 .page-header h2 {
@@ -621,13 +752,40 @@ footer {
 }
 
 /* Responsive styles */
+@media (max-width: 992px) {
+    .header-top {
+        flex-wrap: wrap;
+    }
+
+    .search-container {
+        order: 3;
+        max-width: 100%;
+        margin: 15px 0 0;
+        width: 100%;
+    }
+}
+
 @media (max-width: 768px) {
     header .container {
         flex-direction: column;
     }
 
+    .header-top {
+        width: 100%;
+    }
+
+    .header-icons {
+        margin-left: auto;
+    }
+
     nav ul {
-        margin-top: 20px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 5px 10px;
     }
 
     .hero h2 {
@@ -645,5 +803,19 @@ footer {
     .cart-sidebar {
         width: 100%;
         right: -100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    #search-input {
+        padding: 8px 15px;
+    }
+
+    .header-icons {
+        margin-left: 10px;
     }
 }

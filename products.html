@@ -11,8 +11,31 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">
-                <h1>Midas Beauty</h1>
+            <div class="header-top">
+                <div class="logo">
+                    <h1>Midas Beauty</h1>
+                </div>
+                <div class="search-container">
+                    <form id="search-form" action="search-results.html" method="get">
+                        <input type="text" id="search-input" name="query" placeholder="Search products...">
+                        <button type="submit" id="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="header-icons">
+                    <div class="user-account">
+                        <a href="login.html" id="account-link" title="Login / Register">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                    <div class="cart-icon">
+                        <a href="#" id="cart-toggle">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count">0</span>
+                        </a>
+                    </div>
+                </div>
             </div>
             <nav>
                 <ul>
@@ -20,12 +43,6 @@
                     <li><a href="products.html">Products</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li class="cart-icon">
-                        <a href="#" id="cart-toggle">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span id="cart-count">0</span>
-                        </a>
-                    </li>
                 </ul>
             </nav>
         </div>
@@ -106,34 +123,54 @@
 
                 <!-- Makeup Products -->
                 <div class="product-card" data-category="makeup">
-                    <img src="images/products/liquid-foundation.jpg" alt="Liquid Foundation">
-                    <h3>Liquid Foundation</h3>
+                    <a href="product-details/liquid-foundation.html" class="product-link">
+                        <img src="images/products/liquid-foundation.jpg" alt="Liquid Foundation">
+                    </a>
+                    <h3><a href="product-details/liquid-foundation.html">Liquid Foundation</a></h3>
                     <p class="price">$45.99</p>
                     <p class="description">This buildable, medium-to-full coverage foundation features a revolutionary formula that adapts to your skin tone and texture. Infused with hyaluronic acid and vitamin E, it provides 24-hour hydration while minimizing the appearance of pores and imperfections. Available in 40 inclusive shades with a natural, skin-like finish that resists creasing and transfer.</p>
-                    <a href="#" class="btn">Add to Cart</a>
+                    <div class="product-buttons">
+                        <a href="#" class="btn add-to-cart-btn">Add to Cart</a>
+                        <a href="product-details/liquid-foundation.html" class="btn view-details-btn">View Details</a>
+                    </div>
                 </div>
                 <div class="product-card" data-category="makeup">
-                    <img src="images/products/volumizing-mascara.jpg" alt="Volumizing Mascara">
-                    <h3>Volumizing Mascara</h3>
+                    <a href="product-details/volumizing-mascara.html" class="product-link">
+                        <img src="images/products/volumizing-mascara.jpg" alt="Volumizing Mascara">
+                    </a>
+                    <h3><a href="product-details/volumizing-mascara.html">Volumizing Mascara</a></h3>
                     <p class="price">$24.99</p>
                     <p class="description">Our innovative mascara features a unique hourglass brush that coats each lash from root to tip, adding dramatic volume and length without clumping. The smudge-proof, flake-resistant formula contains lash-conditioning peptides and biotin to strengthen and nourish lashes over time. Ophthalmologist-tested and suitable for sensitive eyes and contact lens wearers.</p>
-                    <a href="#" class="btn">Add to Cart</a>
+                    <div class="product-buttons">
+                        <a href="#" class="btn add-to-cart-btn">Add to Cart</a>
+                        <a href="product-details/volumizing-mascara.html" class="btn view-details-btn">View Details</a>
+                    </div>
                 </div>
 
                 <!-- Haircare Products -->
                 <div class="product-card" data-category="haircare">
-                    <img src="images/products/repair-shampoo.jpg" alt="Repair Shampoo">
-                    <h3>Repair Shampoo</h3>
+                    <a href="product-details/repair-shampoo.html" class="product-link">
+                        <img src="images/products/repair-shampoo.jpg" alt="Repair Shampoo">
+                    </a>
+                    <h3><a href="product-details/repair-shampoo.html">Repair Shampoo</a></h3>
                     <p class="price">$32.99</p>
                     <p class="description">This professional-grade repair shampoo is formulated with keratin, argan oil, and our exclusive bond-building complex to restore damaged hair from within. It gently cleanses while strengthening hair fibers, preventing breakage, and protecting against future damage. The sulfate-free formula is color-safe and ideal for chemically treated, heat-styled, or naturally dry hair.</p>
-                    <a href="#" class="btn">Add to Cart</a>
+                    <div class="product-buttons">
+                        <a href="#" class="btn add-to-cart-btn">Add to Cart</a>
+                        <a href="product-details/repair-shampoo.html" class="btn view-details-btn">View Details</a>
+                    </div>
                 </div>
                 <div class="product-card" data-category="haircare">
-                    <img src="images/products/hydrating-conditioner.jpg" alt="Hydrating Conditioner">
-                    <h3>Hydrating Conditioner</h3>
+                    <a href="product-details/hydrating-conditioner.html" class="product-link">
+                        <img src="images/products/hydrating-conditioner.jpg" alt="Hydrating Conditioner">
+                    </a>
+                    <h3><a href="product-details/hydrating-conditioner.html">Hydrating Conditioner</a></h3>
                     <p class="price">$32.99</p>
                     <p class="description">Our intensive hydrating conditioner combines shea butter, coconut oil, and silk proteins to transform dry, damaged hair into silky, manageable locks. The deep-penetrating formula repairs the hair cuticle, eliminates frizz, and enhances shine without weighing hair down. Use weekly as a 10-minute treatment mask for extra hydration and repair.</p>
-                    <a href="#" class="btn">Add to Cart</a>
+                    <div class="product-buttons">
+                        <a href="#" class="btn add-to-cart-btn">Add to Cart</a>
+                        <a href="product-details/hydrating-conditioner.html" class="btn view-details-btn">View Details</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -169,5 +206,6 @@
 
     <script src="js/main.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/search.js"></script>
 </body>
 </html>
