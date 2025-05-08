@@ -24,20 +24,38 @@ class ShoppingCart {
         // Add event listeners
         document.addEventListener('DOMContentLoaded', () => {
             // Add to cart buttons
-            const addToCartButtons = document.querySelectorAll('.btn');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn, .btn');
             addToCartButtons.forEach(button => {
-                if (button.textContent === 'Add to Cart') {
+                if (button.textContent === 'Add to Cart' || button.classList.contains('add-to-cart-btn')) {
                     button.addEventListener('click', (e) => {
                         e.preventDefault();
                         const productCard = button.closest('.product-card');
-                        const product = {
-                            id: Date.now().toString(), // Simple unique ID
-                            name: productCard.querySelector('h3').textContent,
-                            price: parseFloat(productCard.querySelector('.price').textContent.replace('$', '')),
-                            image: productCard.querySelector('img').src,
-                            quantity: 1
-                        };
-                        this.addItem(product);
+                        if (productCard) {
+                            let productName, productPrice, productImage;
+
+                            // Handle product name which might be inside an <a> tag
+                            const nameElement = productCard.querySelector('h3');
+                            if (nameElement.querySelector('a')) {
+                                productName = nameElement.querySelector('a').textContent;
+                            } else {
+                                productName = nameElement.textContent;
+                            }
+
+                            productPrice = parseFloat(productCard.querySelector('.price').textContent.replace('$', ''));
+
+                            // Handle image which might be inside an <a> tag
+                            const imgElement = productCard.querySelector('img');
+                            productImage = imgElement.src;
+
+                            const product = {
+                                id: Date.now().toString(), // Simple unique ID
+                                name: productName,
+                                price: productPrice,
+                                image: productImage,
+                                quantity: 1
+                            };
+                            this.addItem(product);
+                        }
                     });
                 }
             });
@@ -76,7 +94,7 @@ class ShoppingCart {
     addItem(product) {
         // Check if product already exists in cart
         const existingItemIndex = this.items.findIndex(item => item.name === product.name);
-        
+
         if (existingItemIndex > -1) {
             // Increment quantity if product already in cart
             this.items[existingItemIndex].quantity += 1;
@@ -87,13 +105,13 @@ class ShoppingCart {
 
         // Update cart totals
         this.updateTotals();
-        
+
         // Save to localStorage
         this.saveCart();
-        
+
         // Update UI
         this.updateCartUI();
-        
+
         // Show confirmation
         this.showNotification(`${product.name} added to cart!`);
     }
@@ -101,13 +119,13 @@ class ShoppingCart {
     removeItem(productId) {
         // Find and remove the item
         this.items = this.items.filter(item => item.id !== productId);
-        
+
         // Update cart totals
         this.updateTotals();
-        
+
         // Save to localStorage
         this.saveCart();
-        
+
         // Update UI
         this.updateCartUI();
     }
@@ -115,23 +133,23 @@ class ShoppingCart {
     updateQuantity(productId, newQuantity) {
         // Find the item
         const itemIndex = this.items.findIndex(item => item.id === productId);
-        
+
         if (itemIndex > -1) {
             // Update quantity
             this.items[itemIndex].quantity = parseInt(newQuantity);
-            
+
             // Remove item if quantity is 0
             if (this.items[itemIndex].quantity <= 0) {
                 this.removeItem(productId);
                 return;
             }
-            
+
             // Update cart totals
             this.updateTotals();
-            
+
             // Save to localStorage
             this.saveCart();
-            
+
             // Update UI
             this.updateCartUI();
         }
@@ -157,10 +175,10 @@ class ShoppingCart {
         this.items = [];
         this.total = 0;
         this.count = 0;
-        
+
         // Save to localStorage
         this.saveCart();
-        
+
         // Update UI
         this.updateCartUI();
     }
@@ -171,12 +189,12 @@ class ShoppingCart {
         if (cartCount) {
             cartCount.textContent = this.count;
         }
-        
+
         // Update cart items list
         const cartItemsList = document.getElementById('cart-items');
         if (cartItemsList) {
             cartItemsList.innerHTML = '';
-            
+
             if (this.items.length === 0) {
                 cartItemsList.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
             } else {
@@ -198,7 +216,7 @@ class ShoppingCart {
                     `;
                     cartItemsList.appendChild(itemElement);
                 });
-                
+
                 // Add event listeners to quantity buttons and remove buttons
                 document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
                     btn.addEventListener('click', () => {
@@ -209,7 +227,7 @@ class ShoppingCart {
                         }
                     });
                 });
-                
+
                 document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
                     btn.addEventListener('click', () => {
                         const id = btn.getAttribute('data-id');
@@ -219,7 +237,7 @@ class ShoppingCart {
                         }
                     });
                 });
-                
+
                 document.querySelectorAll('.remove-item').forEach(btn => {
                     btn.addEventListener('click', () => {
                         const id = btn.getAttribute('data-id');
@@ -228,7 +246,7 @@ class ShoppingCart {
                 });
             }
         }
-        
+
         // Update cart total
         const cartTotal = document.getElementById('cart-total');
         if (cartTotal) {
@@ -241,15 +259,15 @@ class ShoppingCart {
         const notification = document.createElement('div');
         notification.className = 'cart-notification';
         notification.textContent = message;
-        
+
         // Add to DOM
         document.body.appendChild(notification);
-        
+
         // Show notification
         setTimeout(() => {
             notification.classList.add('show');
         }, 10);
-        
+
         // Remove notification after delay
         setTimeout(() => {
             notification.classList.remove('show');

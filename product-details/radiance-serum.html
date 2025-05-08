@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radiance Serum - Midas Beauty</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Midas Beauty</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../products.html">Products</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                    <li class="cart-icon">
+                        <a href="#" id="cart-toggle">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button id="close-cart">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button id="checkout-btn" class="btn">Checkout</button>
+        </div>
+    </div>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../products.html">Products</a></li>
+                <li><a href="../products.html#skincare">Skincare</a></li>
+                <li>Radiance Serum</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="product-detail">
+        <div class="container">
+            <div class="product-detail-grid">
+                <div class="product-images">
+                    <div class="main-image">
+                        <img src="../images/products/radiance-serum.jpg" alt="Radiance Serum" id="main-product-image">
+                    </div>
+                    <div class="thumbnail-images">
+                        <img src="../images/products/radiance-serum.jpg" alt="Radiance Serum - Front" class="thumbnail active" onclick="changeImage(this.src)">
+                        <img src="../images/products/radiance-serum.jpg" alt="Radiance Serum - Side" class="thumbnail" onclick="changeImage(this.src)">
+                        <img src="../images/products/radiance-serum.jpg" alt="Radiance Serum - Back" class="thumbnail" onclick="changeImage(this.src)">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h1>Radiance Serum</h1>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </span>
+                        <span class="rating-count">(42 reviews)</span>
+                    </div>
+                    <p class="product-price">$49.99</p>
+                    <div class="product-description">
+                        <p>Our premium brightening serum combines 20% Vitamin C with hyaluronic acid to boost collagen production, reduce fine lines, and deliver intense hydration. This powerful formula helps fade dark spots and evens skin tone for a radiant, youthful complexion.</p>
+                        <h3>Key Benefits:</h3>
+                        <ul>
+                            <li>Brightens and evens skin tone</li>
+                            <li>Reduces appearance of fine lines and wrinkles</li>
+                            <li>Boosts collagen production</li>
+                            <li>Provides deep hydration</li>
+                            <li>Protects against environmental damage</li>
+                        </ul>
+                        <h3>How to Use:</h3>
+                        <p>Apply 3-4 drops to clean, dry skin in the morning and evening. Follow with moisturizer. For sensitive skin, start with once-daily application.</p>
+                        <h3>Ingredients:</h3>
+                        <p>Water, Ascorbic Acid (Vitamin C), Sodium Hyaluronate (Hyaluronic Acid), Ferulic Acid, Tocopherol (Vitamin E), Glycerin, Propylene Glycol, Panthenol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin.</p>
+                    </div>
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus" onclick="decrementQuantity()">-</button>
+                            <input type="number" id="product-quantity" value="1" min="1" max="10">
+                            <button class="quantity-btn plus" onclick="incrementQuantity()">+</button>
+                        </div>
+                        <button class="btn add-to-cart-btn" id="add-to-cart-detail">Add to Cart</button>
+                    </div>
+                    <div class="product-meta">
+                        <p><i class="fas fa-check"></i> In Stock</p>
+                        <p><i class="fas fa-truck"></i> Free Shipping on orders over $50</p>
+                        <p><i class="fas fa-undo"></i> 30-Day Money Back Guarantee</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-tabs">
+        <div class="container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="details">Details</button>
+                <button class="tab-btn" data-tab="ingredients">Ingredients</button>
+                <button class="tab-btn" data-tab="how-to-use">How to Use</button>
+                <button class="tab-btn" data-tab="reviews">Reviews</button>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="details">
+                    <h3>Product Details</h3>
+                    <p>Our Radiance Serum is a powerful skincare treatment designed to brighten, hydrate, and rejuvenate your skin. Formulated with 20% Vitamin C, this serum helps to fade dark spots, even skin tone, and protect against environmental damage.</p>
+                    <p>The addition of hyaluronic acid provides deep hydration, plumping the skin and reducing the appearance of fine lines and wrinkles. This lightweight, fast-absorbing formula is suitable for all skin types and can be used both morning and night.</p>
+                    <p>Each bottle contains 30ml (1 fl oz) of product and is packaged in a dark glass bottle with a dropper applicator to protect the formula from light and air exposure, ensuring maximum potency.</p>
+                </div>
+                <div class="tab-pane" id="ingredients">
+                    <h3>Full Ingredients List</h3>
+                    <p>Water, Ascorbic Acid (Vitamin C), Sodium Hyaluronate (Hyaluronic Acid), Ferulic Acid, Tocopherol (Vitamin E), Glycerin, Propylene Glycol, Panthenol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin.</p>
+                    <h4>Key Ingredients:</h4>
+                    <ul>
+                        <li><strong>Vitamin C (20%):</strong> A powerful antioxidant that brightens skin, boosts collagen production, and protects against environmental damage.</li>
+                        <li><strong>Hyaluronic Acid:</strong> Attracts and retains moisture, providing deep hydration and plumping the skin.</li>
+                        <li><strong>Ferulic Acid:</strong> Enhances the stability and effectiveness of Vitamin C and E, providing additional antioxidant protection.</li>
+                        <li><strong>Vitamin E:</strong> Nourishes and protects the skin, working synergistically with Vitamin C.</li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="how-to-use">
+                    <h3>How to Use</h3>
+                    <ol>
+                        <li>Cleanse your face thoroughly and pat dry.</li>
+                        <li>If using a toner, apply it before the serum.</li>
+                        <li>Dispense 3-4 drops of the Radiance Serum onto your fingertips.</li>
+                        <li>Gently pat and press the serum into your skin, avoiding the eye area.</li>
+                        <li>Allow the serum to fully absorb (approximately 1-2 minutes).</li>
+                        <li>Follow with your favorite moisturizer.</li>
+                        <li>For daytime use, always finish with a broad-spectrum sunscreen.</li>
+                    </ol>
+                    <p><strong>Recommended use:</strong> Apply morning and evening for best results. If you have sensitive skin, start with once-daily application and gradually increase frequency as tolerated.</p>
+                    <p><strong>Note:</strong> A slight tingling sensation is normal when first using this product due to the active Vitamin C. If irritation persists, discontinue use and consult a dermatologist.</p>
+                </div>
+                <div class="tab-pane" id="reviews">
+                    <h3>Customer Reviews</h3>
+                    <div class="review-summary">
+                        <div class="average-rating">
+                            <span class="rating">4.5</span>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="total-reviews">Based on 42 reviews</span>
+                        </div>
+                        <div class="rating-breakdown">
+                            <div class="rating-bar">
+                                <span class="rating-level">5 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 70%"></div>
+                                </div>
+                                <span class="rating-percent">70%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">4 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 20%"></div>
+                                </div>
+                                <span class="rating-percent">20%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">3 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 5%"></div>
+                                </div>
+                                <span class="rating-percent">5%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">2 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 3%"></div>
+                                </div>
+                                <span class="rating-percent">3%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">1 Star</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 2%"></div>
+                                </div>
+                                <span class="rating-percent">2%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="customer-reviews">
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Sarah J.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">May 2, 2023</span>
+                            </div>
+                            <p class="review-text">I've been using this serum for 3 months and my skin has never looked better! Dark spots from sun damage have faded significantly, and my skin looks brighter overall. Highly recommend!</p>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Michael T.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">April 15, 2023</span>
+                            </div>
+                            <p class="review-text">Great product! I noticed a difference in my skin's texture and brightness after just two weeks. The only downside is the slight stickiness after application, but it goes away once you apply moisturizer.</p>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Emily R.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">March 28, 2023</span>
+                            </div>
+                            <p class="review-text">This serum has become a staple in my skincare routine. It absorbs quickly and doesn't irritate my sensitive skin. I've noticed a significant improvement in my hyperpigmentation and overall skin tone.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-products">
+        <div class="container">
+            <h2>You May Also Like</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="../images/products/hydrating-moisturizer.jpg" alt="Hydrating Moisturizer">
+                    <h3>Hydrating Moisturizer</h3>
+                    <p class="price">$39.99</p>
+                    <p class="description">Luxurious moisturizer with ceramides and natural oils.</p>
+                    <a href="hydrating-moisturizer.html" class="btn">View Product</a>
+                </div>
+                <div class="product-card">
+                    <img src="../images/products/gentle-cleanser.jpg" alt="Gentle Cleanser">
+                    <h3>Gentle Cleanser</h3>
+                    <p class="price">$29.99</p>
+                    <p class="description">Sulfate-free cleanser that removes impurities without stripping skin.</p>
+                    <a href="gentle-cleanser.html" class="btn">View Product</a>
+                </div>
+                <div class="product-card">
+                    <img src="../images/products/repair-shampoo.jpg" alt="Repair Shampoo">
+                    <h3>Repair Shampoo</h3>
+                    <p class="price">$32.99</p>
+                    <p class="description">Professional-grade repair shampoo for damaged hair.</p>
+                    <a href="repair-shampoo.html" class="btn">View Product</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Midas Beauty</h3>
+                    <p>Premium beauty products for the modern individual.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../products.html">Products</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@midasbeauty.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Midas Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/product-detail.js"></script>
+</body>
+</html>
