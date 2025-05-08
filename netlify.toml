@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+  command = ""
+
+# Redirect rule for SPA (Single Page Application)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

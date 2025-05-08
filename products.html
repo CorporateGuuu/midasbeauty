@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Midas Beauty</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Midas Beauty</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="cart-icon">
+                        <a href="#" id="cart-toggle">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button id="close-cart">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button id="checkout-btn" class="btn">Checkout</button>
+        </div>
+    </div>
+
+    <section class="page-header">
+        <div class="container">
+            <h2>Our Products</h2>
+        </div>
+    </section>
+
+    <section class="products-content">
+        <div class="container">
+            <div class="product-categories">
+                <button class="category-btn active" data-category="all">All Products</button>
+                <button class="category-btn" data-category="skincare">Skincare</button>
+                <button class="category-btn" data-category="makeup">Makeup</button>
+                <button class="category-btn" data-category="haircare">Haircare</button>
+            </div>
+
+            <div class="product-grid">
+                <!-- Skincare Products -->
+                <div class="product-card" data-category="skincare">
+                    <img src="images/products/radiance-serum.jpg" alt="Radiance Serum">
+                    <h3>Radiance Serum</h3>
+                    <p class="price">$49.99</p>
+                    <p class="description">Our premium brightening serum combines 20% Vitamin C with hyaluronic acid to boost collagen production, reduce fine lines, and deliver intense hydration. This powerful formula helps fade dark spots and evens skin tone for a radiant, youthful complexion. Suitable for all skin types and dermatologist tested.</p>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+                <div class="product-card" data-category="skincare">
+                    <img src="images/products/hydrating-moisturizer.jpg" alt="Hydrating Moisturizer">
+                    <h3>Hydrating Moisturizer</h3>
+                    <p class="price">$39.99</p>
+                    <p class="description">This luxurious moisturizer features a blend of ceramides, peptides, and natural oils that lock in moisture for up to 72 hours. The non-greasy formula absorbs quickly, strengthens the skin barrier, and provides antioxidant protection against environmental stressors. Perfect for dry, normal, and combination skin types.</p>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+                <div class="product-card" data-category="skincare">
+                    <img src="images/products/gentle-cleanser.jpg" alt="Gentle Cleanser">
+                    <h3>Gentle Cleanser</h3>
+                    <p class="price">$29.99</p>
+                    <p class="description">Our sulfate-free cleanser effectively removes makeup, dirt, and impurities without disrupting your skin's natural pH balance. Enriched with aloe vera, chamomile, and cucumber extract, this gentle formula soothes and calms sensitive skin while maintaining essential moisture. Fragrance-free and allergy-tested for even the most sensitive skin types.</p>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+
+                <!-- Makeup Products -->
+                <div class="product-card" data-category="makeup">
+                    <img src="images/products/liquid-foundation.jpg" alt="Liquid Foundation">
+                    <h3>Liquid Foundation</h3>
+                    <p class="price">$45.99</p>
+                    <p class="description">This buildable, medium-to-full coverage foundation features a revolutionary formula that adapts to your skin tone and texture. Infused with hyaluronic acid and vitamin E, it provides 24-hour hydration while minimizing the appearance of pores and imperfections. Available in 40 inclusive shades with a natural, skin-like finish that resists creasing and transfer.</p>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+                <div class="product-card" data-category="makeup">
+                    <img src="images/products/volumizing-mascara.jpg" alt="Volumizing Mascara">
+                    <h3>Volumizing Mascara</h3>
+                    <p class="price">$24.99</p>
+                    <p class="description">Our innovative mascara features a unique hourglass brush that coats each lash from root to tip, adding dramatic volume and length without clumping. The smudge-proof, flake-resistant formula contains lash-conditioning peptides and biotin to strengthen and nourish lashes over time. Ophthalmologist-tested and suitable for sensitive eyes and contact lens wearers.</p>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+
+                <!-- Haircare Products -->
+                <div class="product-card" data-category="haircare">
+                    <img src="images/products/repair-shampoo.jpg" alt="Repair Shampoo">
+                    <h3>Repair Shampoo</h3>
+                    <p class="price">$32.99</p>
+                    <p class="description">This professional-grade repair shampoo is formulated with keratin, argan oil, and our exclusive bond-building complex to restore damaged hair from within. It gently cleanses while strengthening hair fibers, preventing breakage, and protecting against future damage. The sulfate-free formula is color-safe and ideal for chemically treated, heat-styled, or naturally dry hair.</p>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+                <div class="product-card" data-category="haircare">
+                    <img src="images/products/hydrating-conditioner.jpg" alt="Hydrating Conditioner">
+                    <h3>Hydrating Conditioner</h3>
+                    <p class="price">$32.99</p>
+                    <p class="description">Our intensive hydrating conditioner combines shea butter, coconut oil, and silk proteins to transform dry, damaged hair into silky, manageable locks. The deep-penetrating formula repairs the hair cuticle, eliminates frizz, and enhances shine without weighing hair down. Use weekly as a 10-minute treatment mask for extra hydration and repair.</p>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Midas Beauty</h3>
+                    <p>Premium beauty products for the modern individual.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@midasbeauty.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Midas Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>
