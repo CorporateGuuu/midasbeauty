@@ -9,6 +9,7 @@ A modern, responsive website for a fictional beauty brand called Midas Beauty.
 - Contact form
 - About page
 - Clean, modern UI with smooth animations
+- Shopping cart functionality
 
 ## Pages
 
@@ -23,6 +24,7 @@ A modern, responsive website for a fictional beauty brand called Midas Beauty.
 - CSS3
 - JavaScript (Vanilla)
 - Netlify for hosting
+- LocalStorage for cart persistence
 
 ## Deployment
 
@@ -31,7 +33,3 @@ This site is configured to be deployed on Netlify. The `netlify.toml` file conta
 ## Local Development
 
 To run this site locally, simply open the `index.html` file in your browser.
-
-## License
-
-This project is for demonstration purposes only.
