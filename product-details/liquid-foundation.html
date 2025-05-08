@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Foundation - Midas Beauty</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>Midas Beauty</h1>
+                </div>
+                <div class="search-container">
+                    <form id="search-form" action="../search-results.html" method="get">
+                        <input type="text" id="search-input" name="query" placeholder="Search products...">
+                        <button type="submit" id="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="header-icons">
+                    <div class="user-account">
+                        <a href="../login.html" id="account-link" title="Login / Register">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                    <div class="cart-icon">
+                        <a href="#" id="cart-toggle">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../products.html">Products</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button id="close-cart">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button id="checkout-btn" class="btn">Checkout</button>
+        </div>
+    </div>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../products.html">Products</a></li>
+                <li><a href="../products.html#makeup">Makeup</a></li>
+                <li>Liquid Foundation</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="product-detail">
+        <div class="container">
+            <div class="product-detail-grid">
+                <div class="product-images">
+                    <div class="main-image">
+                        <img src="../images/products/liquid-foundation.jpg" alt="Liquid Foundation" id="main-product-image">
+                    </div>
+                    <div class="thumbnail-images">
+                        <img src="../images/products/liquid-foundation.jpg" alt="Liquid Foundation - Front" class="thumbnail active" onclick="changeImage(this.src)">
+                        <img src="../images/products/liquid-foundation.jpg" alt="Liquid Foundation - Side" class="thumbnail" onclick="changeImage(this.src)">
+                        <img src="../images/products/liquid-foundation.jpg" alt="Liquid Foundation - Back" class="thumbnail" onclick="changeImage(this.src)">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h1>Liquid Foundation</h1>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </span>
+                        <span class="rating-count">(48 reviews)</span>
+                    </div>
+                    <p class="product-price">$45.99</p>
+                    <div class="product-description">
+                        <p>This buildable, medium-to-full coverage foundation features a revolutionary formula that adapts to your skin tone and texture. Infused with hyaluronic acid and vitamin E, it provides 24-hour hydration while minimizing the appearance of pores and imperfections.</p>
+                        <h3>Key Benefits:</h3>
+                        <ul>
+                            <li>Medium to full coverage with a natural finish</li>
+                            <li>24-hour hydration with hyaluronic acid</li>
+                            <li>Minimizes pores and imperfections</li>
+                            <li>Available in 40 inclusive shades</li>
+                            <li>Transfer-resistant and long-wearing</li>
+                        </ul>
+                        <h3>How to Use:</h3>
+                        <p>Apply a small amount to clean, moisturized skin using a foundation brush, sponge, or fingertips. Blend outward from the center of the face. Build coverage as desired.</p>
+                        <h3>Ingredients:</h3>
+                        <p>Water, Cyclopentasiloxane, Dimethicone, Glycerin, PEG-10 Dimethicone, Butylene Glycol, Phenyl Trimethicone, Sodium Chloride, Tocopheryl Acetate, Sodium Hyaluronate, Dimethicone/PEG-10/15 Crosspolymer, Nylon-12, Phenoxyethanol, Caprylyl Glycol, Ethylhexylglycerin, Hexylene Glycol.</p>
+                    </div>
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus" onclick="decrementQuantity()">-</button>
+                            <input type="number" id="product-quantity" value="1" min="1" max="10">
+                            <button class="quantity-btn plus" onclick="incrementQuantity()">+</button>
+                        </div>
+                        <button class="btn add-to-cart-btn" id="add-to-cart-detail">Add to Cart</button>
+                    </div>
+                    <div class="product-meta">
+                        <p><i class="fas fa-check"></i> In Stock</p>
+                        <p><i class="fas fa-truck"></i> Free Shipping on orders over $50</p>
+                        <p><i class="fas fa-undo"></i> 30-Day Money Back Guarantee</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-tabs">
+        <div class="container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="details">Details</button>
+                <button class="tab-btn" data-tab="ingredients">Ingredients</button>
+                <button class="tab-btn" data-tab="how-to-use">How to Use</button>
+                <button class="tab-btn" data-tab="reviews">Reviews</button>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="details">
+                    <h3>Product Details</h3>
+                    <p>Our Liquid Foundation is a premium makeup product designed to provide flawless coverage while caring for your skin. The revolutionary formula adapts to your skin tone and texture, creating a natural-looking finish that lasts all day.</p>
+                    <p>Available in 40 inclusive shades, this foundation is suitable for all skin tones and undertones. The buildable formula allows you to customize your coverage from medium to full, depending on your preference and needs.</p>
+                    <p>Each bottle contains 30ml (1 fl oz) of product and features a convenient pump dispenser for easy, mess-free application. The formula is dermatologist-tested, non-comedogenic, and suitable for all skin types, including sensitive skin.</p>
+                </div>
+                <div class="tab-pane" id="ingredients">
+                    <h3>Full Ingredients List</h3>
+                    <p>Water, Cyclopentasiloxane, Dimethicone, Glycerin, PEG-10 Dimethicone, Butylene Glycol, Phenyl Trimethicone, Sodium Chloride, Tocopheryl Acetate, Sodium Hyaluronate, Dimethicone/PEG-10/15 Crosspolymer, Nylon-12, Phenoxyethanol, Caprylyl Glycol, Ethylhexylglycerin, Hexylene Glycol.</p>
+                    <h4>Key Ingredients:</h4>
+                    <ul>
+                        <li><strong>Hyaluronic Acid (Sodium Hyaluronate):</strong> Provides deep hydration and helps plump the skin, reducing the appearance of fine lines.</li>
+                        <li><strong>Vitamin E (Tocopheryl Acetate):</strong> A powerful antioxidant that protects the skin from environmental damage and nourishes the skin.</li>
+                        <li><strong>Glycerin:</strong> A humectant that attracts and retains moisture in the skin, keeping it hydrated throughout the day.</li>
+                        <li><strong>Dimethicone:</strong> Creates a smooth, silky texture and helps the foundation glide effortlessly over the skin.</li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="how-to-use">
+                    <h3>How to Use</h3>
+                    <ol>
+                        <li>Start with clean, moisturized skin. Allow your moisturizer to fully absorb before applying foundation.</li>
+                        <li>If using a primer, apply it now and allow it to set for 30 seconds.</li>
+                        <li>Dispense 1-2 pumps of foundation onto the back of your hand.</li>
+                        <li>Using a foundation brush, makeup sponge, or fingertips, apply the foundation to the center of your face.</li>
+                        <li>Blend outward using gentle, sweeping or stippling motions.</li>
+                        <li>For additional coverage, apply a second layer to areas that need more coverage.</li>
+                        <li>Set with powder if desired for a longer-lasting finish.</li>
+                    </ol>
+                    <p><strong>Pro tip:</strong> For a more natural look, use less product and focus on areas that need coverage. For a more full-coverage look, apply a second layer all over the face.</p>
+                    <p><strong>Shade selection:</strong> If you're between shades, we recommend choosing the lighter shade for a more natural look.</p>
+                </div>
+                <div class="tab-pane" id="reviews">
+                    <h3>Customer Reviews</h3>
+                    <div class="review-summary">
+                        <div class="average-rating">
+                            <span class="rating">4.5</span>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="total-reviews">Based on 48 reviews</span>
+                        </div>
+                        <div class="rating-breakdown">
+                            <div class="rating-bar">
+                                <span class="rating-level">5 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 65%"></div>
+                                </div>
+                                <span class="rating-percent">65%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">4 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 25%"></div>
+                                </div>
+                                <span class="rating-percent">25%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">3 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 7%"></div>
+                                </div>
+                                <span class="rating-percent">7%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">2 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 2%"></div>
+                                </div>
+                                <span class="rating-percent">2%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">1 Star</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 1%"></div>
+                                </div>
+                                <span class="rating-percent">1%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="customer-reviews">
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Olivia P.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">April 15, 2023</span>
+                            </div>
+                            <p class="review-text">This foundation is amazing! It matches my skin tone perfectly and feels so lightweight. I have combination skin and it doesn't make my T-zone oily or cling to dry patches. The coverage is buildable and looks natural even when I apply a second layer for more coverage. Definitely my new go-to foundation!</p>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Marcus T.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">March 28, 2023</span>
+                            </div>
+                            <p class="review-text">As a guy who occasionally wears foundation for special events, I was looking for something that looks natural and doesn't feel heavy. This foundation is perfect - it covers what I need it to cover without looking like I'm wearing makeup. The only reason for 4 stars instead of 5 is that it transfers a bit more than I'd like.</p>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Jasmine K.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">February 12, 2023</span>
+                            </div>
+                            <p class="review-text">I have very sensitive skin and most foundations cause breakouts, but this one doesn't irritate my skin at all. The coverage is excellent and it really does last all day. I love that it has skincare ingredients like hyaluronic acid - my skin actually looks better when I remove it at the end of the day than when I put it on!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-products">
+        <div class="container">
+            <h2>You May Also Like</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="../images/products/volumizing-mascara.jpg" alt="Volumizing Mascara">
+                    <h3>Volumizing Mascara</h3>
+                    <p class="price">$24.99</p>
+                    <p class="description">Our innovative mascara features a unique hourglass brush that coats each lash from root to tip.</p>
+                    <a href="volumizing-mascara.html" class="btn">View Product</a>
+                </div>
+                <div class="product-card">
+                    <img src="../images/products/radiance-serum.jpg" alt="Radiance Serum">
+                    <h3>Radiance Serum</h3>
+                    <p class="price">$49.99</p>
+                    <p class="description">Our premium brightening serum with Vitamin C and hyaluronic acid.</p>
+                    <a href="radiance-serum.html" class="btn">View Product</a>
+                </div>
+                <div class="product-card">
+                    <img src="../images/products/hydrating-moisturizer.jpg" alt="Hydrating Moisturizer">
+                    <h3>Hydrating Moisturizer</h3>
+                    <p class="price">$39.99</p>
+                    <p class="description">Luxurious moisturizer with ceramides and natural oils.</p>
+                    <a href="hydrating-moisturizer.html" class="btn">View Product</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Midas Beauty</h3>
+                    <p>Premium beauty products for the modern individual.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../products.html">Products</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@midasbeauty.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Midas Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/product-detail.js"></script>
+</body>
+</html>

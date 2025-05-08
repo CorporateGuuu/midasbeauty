@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repair Shampoo - Midas Beauty</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>Midas Beauty</h1>
+                </div>
+                <div class="search-container">
+                    <form id="search-form" action="../search-results.html" method="get">
+                        <input type="text" id="search-input" name="query" placeholder="Search products...">
+                        <button type="submit" id="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="header-icons">
+                    <div class="user-account">
+                        <a href="../login.html" id="account-link" title="Login / Register">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                    <div class="cart-icon">
+                        <a href="#" id="cart-toggle">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../products.html">Products</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button id="close-cart">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button id="checkout-btn" class="btn">Checkout</button>
+        </div>
+    </div>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../products.html">Products</a></li>
+                <li><a href="../products.html#haircare">Haircare</a></li>
+                <li>Repair Shampoo</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="product-detail">
+        <div class="container">
+            <div class="product-detail-grid">
+                <div class="product-images">
+                    <div class="main-image">
+                        <img src="../images/products/repair-shampoo.jpg" alt="Repair Shampoo" id="main-product-image">
+                    </div>
+                    <div class="thumbnail-images">
+                        <img src="../images/products/repair-shampoo.jpg" alt="Repair Shampoo - Front" class="thumbnail active" onclick="changeImage(this.src)">
+                        <img src="../images/products/repair-shampoo.jpg" alt="Repair Shampoo - Side" class="thumbnail" onclick="changeImage(this.src)">
+                        <img src="../images/products/repair-shampoo.jpg" alt="Repair Shampoo - Back" class="thumbnail" onclick="changeImage(this.src)">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h1>Repair Shampoo</h1>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                        <span class="rating-count">(45 reviews)</span>
+                    </div>
+                    <p class="product-price">$32.99</p>
+                    <div class="product-description">
+                        <p>This professional-grade repair shampoo is formulated with keratin, argan oil, and our exclusive bond-building complex to restore damaged hair from within. It gently cleanses while strengthening hair fibers, preventing breakage, and protecting against future damage.</p>
+                        <h3>Key Benefits:</h3>
+                        <ul>
+                            <li>Repairs damaged hair and split ends</li>
+                            <li>Strengthens hair fibers to prevent breakage</li>
+                            <li>Protects against heat and environmental damage</li>
+                            <li>Sulfate-free and color-safe formula</li>
+                            <li>Ideal for chemically treated, heat-styled, or naturally dry hair</li>
+                        </ul>
+                        <h3>How to Use:</h3>
+                        <p>Apply to wet hair, massage into scalp and through to ends. Leave on for 1-2 minutes, then rinse thoroughly. For best results, follow with Hydrating Conditioner.</p>
+                        <h3>Ingredients:</h3>
+                        <p>Water, Sodium Cocoyl Isethionate, Cocamidopropyl Betaine, Sodium Lauroamphoacetate, Sodium Methyl Cocoyl Taurate, Sodium Chloride, Hydrolyzed Keratin, Argania Spinosa Kernel Oil, Panthenol, Guar Hydroxypropyltrimonium Chloride, Polyquaternium-7, Glycerin, Citric Acid, Tetrasodium EDTA, Phenoxyethanol, Ethylhexylglycerin, Fragrance.</p>
+                    </div>
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus" onclick="decrementQuantity()">-</button>
+                            <input type="number" id="product-quantity" value="1" min="1" max="10">
+                            <button class="quantity-btn plus" onclick="incrementQuantity()">+</button>
+                        </div>
+                        <button class="btn add-to-cart-btn" id="add-to-cart-detail">Add to Cart</button>
+                    </div>
+                    <div class="product-meta">
+                        <p><i class="fas fa-check"></i> In Stock</p>
+                        <p><i class="fas fa-truck"></i> Free Shipping on orders over $50</p>
+                        <p><i class="fas fa-undo"></i> 30-Day Money Back Guarantee</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-tabs">
+        <div class="container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="details">Details</button>
+                <button class="tab-btn" data-tab="ingredients">Ingredients</button>
+                <button class="tab-btn" data-tab="how-to-use">How to Use</button>
+                <button class="tab-btn" data-tab="reviews">Reviews</button>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="details">
+                    <h3>Product Details</h3>
+                    <p>Our Repair Shampoo is a professional-grade haircare product designed to restore and revitalize damaged hair. Formulated with our exclusive bond-building complex, this shampoo works at the molecular level to repair broken bonds in the hair structure, resulting in stronger, healthier-looking hair.</p>
+                    <p>The sulfate-free formula gently cleanses without stripping color or natural oils, making it ideal for color-treated, chemically processed, heat-styled, or naturally dry hair. Regular use helps prevent breakage, split ends, and frizz while protecting against future damage from heat styling and environmental stressors.</p>
+                    <p>Each bottle contains 250ml (8.4 fl oz) of product and features a convenient pump dispenser for easy application. The formula is pH-balanced and free from parabens, sulfates, and silicones, making it suitable for all hair types, including sensitive scalps.</p>
+                </div>
+                <div class="tab-pane" id="ingredients">
+                    <h3>Full Ingredients List</h3>
+                    <p>Water, Sodium Cocoyl Isethionate, Cocamidopropyl Betaine, Sodium Lauroamphoacetate, Sodium Methyl Cocoyl Taurate, Sodium Chloride, Hydrolyzed Keratin, Argania Spinosa Kernel Oil, Panthenol, Guar Hydroxypropyltrimonium Chloride, Polyquaternium-7, Glycerin, Citric Acid, Tetrasodium EDTA, Phenoxyethanol, Ethylhexylglycerin, Fragrance.</p>
+                    <h4>Key Ingredients:</h4>
+                    <ul>
+                        <li><strong>Hydrolyzed Keratin:</strong> A protein that helps repair damaged hair by filling in gaps in the hair cuticle, strengthening the hair shaft, and improving elasticity.</li>
+                        <li><strong>Argan Oil (Argania Spinosa Kernel Oil):</strong> Rich in antioxidants, essential fatty acids, and vitamin E, argan oil helps nourish, moisturize, and protect hair from damage.</li>
+                        <li><strong>Panthenol (Pro-Vitamin B5):</strong> Penetrates the hair shaft to moisturize from within, adding volume and shine while reducing frizz and split ends.</li>
+                        <li><strong>Polyquaternium-7:</strong> A conditioning agent that helps detangle hair, reduce static, and improve manageability without weighing hair down.</li>
+                        <li><strong>Glycerin:</strong> A humectant that attracts and retains moisture in the hair, helping to prevent dryness and brittleness.</li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="how-to-use">
+                    <h3>How to Use</h3>
+                    <ol>
+                        <li>Thoroughly wet hair with warm water.</li>
+                        <li>Dispense a quarter-sized amount of shampoo into your palm (use more for longer or thicker hair).</li>
+                        <li>Rub palms together to distribute the product.</li>
+                        <li>Apply to scalp and massage gently in circular motions to create a light lather.</li>
+                        <li>Work the shampoo down through the lengths of your hair.</li>
+                        <li>Leave on for 1-2 minutes to allow the repairing ingredients to penetrate the hair shaft.</li>
+                        <li>Rinse thoroughly with warm water.</li>
+                        <li>For best results, follow with Hydrating Conditioner.</li>
+                    </ol>
+                    <p><strong>Recommended use:</strong> 2-3 times per week, alternating with a gentle cleansing shampoo if needed.</p>
+                    <p><strong>Pro tip:</strong> For extremely damaged hair, use as a treatment by applying to dry hair, covering with a shower cap, and leaving on for 15-20 minutes before rinsing. Follow with conditioner for maximum repair benefits.</p>
+                </div>
+                <div class="tab-pane" id="reviews">
+                    <h3>Customer Reviews</h3>
+                    <div class="review-summary">
+                        <div class="average-rating">
+                            <span class="rating">5.0</span>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="total-reviews">Based on 45 reviews</span>
+                        </div>
+                        <div class="rating-breakdown">
+                            <div class="rating-bar">
+                                <span class="rating-level">5 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 80%"></div>
+                                </div>
+                                <span class="rating-percent">80%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">4 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 15%"></div>
+                                </div>
+                                <span class="rating-percent">15%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">3 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 3%"></div>
+                                </div>
+                                <span class="rating-percent">3%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">2 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 1%"></div>
+                                </div>
+                                <span class="rating-percent">1%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">1 Star</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 1%"></div>
+                                </div>
+                                <span class="rating-percent">1%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="customer-reviews">
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Jordan L.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">April 28, 2023</span>
+                            </div>
+                            <p class="review-text">I've been bleaching my hair for years and it was so damaged that I was considering cutting it all off. After just one use of this shampoo, I noticed a huge difference - less breakage, softer texture, and my split ends looked visibly better. After a month of use, my hair feels like it did before I started coloring it. This is truly a miracle product!</p>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Morgan H.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">March 15, 2023</span>
+                            </div>
+                            <p class="review-text">I'm a hairstylist and I've been recommending this shampoo to all my clients with damaged hair. The results are comparable to much more expensive salon brands. It doesn't strip color, leaves hair feeling clean but not squeaky, and the repair benefits are noticeable after just a few uses. The fact that it's sulfate-free makes it perfect for keratin treatments too.</p>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Casey T.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">February 22, 2023</span>
+                            </div>
+                            <p class="review-text">I have naturally curly hair that I heat style frequently, and it was becoming dry and frizzy with lots of breakage. This shampoo has completely transformed my hair. My curls are more defined, I have way less frizz, and my hair feels so much stronger. I also love that a little goes a long way - the bottle lasts forever even with my long hair!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-products">
+        <div class="container">
+            <h2>You May Also Like</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="../images/products/hydrating-conditioner.jpg" alt="Hydrating Conditioner">
+                    <h3>Hydrating Conditioner</h3>
+                    <p class="price">$32.99</p>
+                    <p class="description">Our intensive hydrating conditioner for dry, damaged hair.</p>
+                    <a href="hydrating-conditioner.html" class="btn">View Product</a>
+                </div>
+                <div class="product-card">
+                    <img src="../images/products/radiance-serum.jpg" alt="Radiance Serum">
+                    <h3>Radiance Serum</h3>
+                    <p class="price">$49.99</p>
+                    <p class="description">Our premium brightening serum with Vitamin C and hyaluronic acid.</p>
+                    <a href="radiance-serum.html" class="btn">View Product</a>
+                </div>
+                <div class="product-card">
+                    <img src="../images/products/hydrating-moisturizer.jpg" alt="Hydrating Moisturizer">
+                    <h3>Hydrating Moisturizer</h3>
+                    <p class="price">$39.99</p>
+                    <p class="description">Luxurious moisturizer with ceramides and natural oils.</p>
+                    <a href="hydrating-moisturizer.html" class="btn">View Product</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Midas Beauty</h3>
+                    <p>Premium beauty products for the modern individual.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../products.html">Products</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@midasbeauty.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Midas Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/product-detail.js"></script>
+</body>
+</html>

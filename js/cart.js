@@ -82,7 +82,12 @@ class ShoppingCart {
                 checkoutBtn.addEventListener('click', () => {
                     if (this.items.length > 0) {
                         // Redirect to checkout page
-                        window.location.href = 'checkout.html';
+                        // Check if we're in a product detail page (URL contains product-details)
+                        if (window.location.href.includes('product-details')) {
+                            window.location.href = '../checkout.html';
+                        } else {
+                            window.location.href = 'checkout.html';
+                        }
                     } else {
                         this.showNotification('Your cart is empty. Add some products before checking out.', 'error');
                     }

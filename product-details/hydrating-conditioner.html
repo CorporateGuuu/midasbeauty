@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydrating Conditioner - Midas Beauty</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>Midas Beauty</h1>
+                </div>
+                <div class="search-container">
+                    <form id="search-form" action="../search-results.html" method="get">
+                        <input type="text" id="search-input" name="query" placeholder="Search products...">
+                        <button type="submit" id="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="header-icons">
+                    <div class="user-account">
+                        <a href="../login.html" id="account-link" title="Login / Register">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                    <div class="cart-icon">
+                        <a href="#" id="cart-toggle">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../products.html">Products</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button id="close-cart">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button id="checkout-btn" class="btn">Checkout</button>
+        </div>
+    </div>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../products.html">Products</a></li>
+                <li><a href="../products.html#haircare">Haircare</a></li>
+                <li>Hydrating Conditioner</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="product-detail">
+        <div class="container">
+            <div class="product-detail-grid">
+                <div class="product-images">
+                    <div class="main-image">
+                        <img src="../images/products/hydrating-conditioner.jpg" alt="Hydrating Conditioner" id="main-product-image">
+                    </div>
+                    <div class="thumbnail-images">
+                        <img src="../images/products/hydrating-conditioner.jpg" alt="Hydrating Conditioner - Front" class="thumbnail active" onclick="changeImage(this.src)">
+                        <img src="../images/products/hydrating-conditioner.jpg" alt="Hydrating Conditioner - Side" class="thumbnail" onclick="changeImage(this.src)">
+                        <img src="../images/products/hydrating-conditioner.jpg" alt="Hydrating Conditioner - Back" class="thumbnail" onclick="changeImage(this.src)">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h1>Hydrating Conditioner</h1>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </span>
+                        <span class="rating-count">(39 reviews)</span>
+                    </div>
+                    <p class="product-price">$32.99</p>
+                    <div class="product-description">
+                        <p>Our intensive hydrating conditioner combines shea butter, coconut oil, and silk proteins to transform dry, damaged hair into silky, manageable locks. The deep-penetrating formula repairs the hair cuticle, eliminates frizz, and enhances shine without weighing hair down.</p>
+                        <h3>Key Benefits:</h3>
+                        <ul>
+                            <li>Deeply hydrates dry, damaged hair</li>
+                            <li>Repairs and seals the hair cuticle</li>
+                            <li>Eliminates frizz and enhances shine</li>
+                            <li>Detangles and improves manageability</li>
+                            <li>Can be used as a weekly deep treatment mask</li>
+                        </ul>
+                        <h3>How to Use:</h3>
+                        <p>After shampooing, apply to mid-lengths and ends of hair. Leave on for 2-3 minutes, then rinse thoroughly. For deeper conditioning, leave on for 10-15 minutes under a shower cap.</p>
+                        <h3>Ingredients:</h3>
+                        <p>Water, Cetearyl Alcohol, Behentrimonium Chloride, Butyrospermum Parkii (Shea) Butter, Cocos Nucifera (Coconut) Oil, Hydrolyzed Silk Protein, Panthenol, Glycerin, Argania Spinosa Kernel Oil, Aloe Barbadensis Leaf Juice, Citric Acid, Tetrasodium EDTA, Phenoxyethanol, Ethylhexylglycerin, Fragrance.</p>
+                    </div>
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus" onclick="decrementQuantity()">-</button>
+                            <input type="number" id="product-quantity" value="1" min="1" max="10">
+                            <button class="quantity-btn plus" onclick="incrementQuantity()">+</button>
+                        </div>
+                        <button class="btn add-to-cart-btn" id="add-to-cart-detail">Add to Cart</button>
+                    </div>
+                    <div class="product-meta">
+                        <p><i class="fas fa-check"></i> In Stock</p>
+                        <p><i class="fas fa-truck"></i> Free Shipping on orders over $50</p>
+                        <p><i class="fas fa-undo"></i> 30-Day Money Back Guarantee</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-tabs">
+        <div class="container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="details">Details</button>
+                <button class="tab-btn" data-tab="ingredients">Ingredients</button>
+                <button class="tab-btn" data-tab="how-to-use">How to Use</button>
+                <button class="tab-btn" data-tab="reviews">Reviews</button>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="details">
+                    <h3>Product Details</h3>
+                    <p>Our Hydrating Conditioner is a premium haircare product designed to provide intense moisture and repair to dry, damaged hair. The rich, creamy formula penetrates deep into the hair shaft to restore moisture from within, while also coating the hair cuticle to seal in hydration and prevent future damage.</p>
+                    <p>This versatile conditioner can be used as a daily conditioner or as a weekly intensive treatment mask for extra hydration and repair. Despite its rich formula, it rinses clean without leaving residue or weighing hair down, making it suitable for all hair types from fine to coarse.</p>
+                    <p>Each bottle contains 250ml (8.4 fl oz) of product and features a convenient flip-top cap for easy dispensing. The formula is color-safe and free from sulfates, parabens, and silicones, making it ideal for color-treated, chemically processed, or naturally dry hair.</p>
+                </div>
+                <div class="tab-pane" id="ingredients">
+                    <h3>Full Ingredients List</h3>
+                    <p>Water, Cetearyl Alcohol, Behentrimonium Chloride, Butyrospermum Parkii (Shea) Butter, Cocos Nucifera (Coconut) Oil, Hydrolyzed Silk Protein, Panthenol, Glycerin, Argania Spinosa Kernel Oil, Aloe Barbadensis Leaf Juice, Citric Acid, Tetrasodium EDTA, Phenoxyethanol, Ethylhexylglycerin, Fragrance.</p>
+                    <h4>Key Ingredients:</h4>
+                    <ul>
+                        <li><strong>Shea Butter (Butyrospermum Parkii Butter):</strong> Rich in vitamins A, E, and F, shea butter provides deep moisture and helps repair the hair cuticle, reducing frizz and adding shine.</li>
+                        <li><strong>Coconut Oil (Cocos Nucifera Oil):</strong> Penetrates the hair shaft to provide deep hydration, prevent protein loss, and strengthen hair from within.</li>
+                        <li><strong>Hydrolyzed Silk Protein:</strong> Forms a protective barrier around the hair shaft, improving elasticity, adding shine, and enhancing manageability.</li>
+                        <li><strong>Argan Oil (Argania Spinosa Kernel Oil):</strong> Rich in antioxidants and essential fatty acids, argan oil helps nourish, moisturize, and protect hair from damage.</li>
+                        <li><strong>Aloe Vera (Aloe Barbadensis Leaf Juice):</strong> Soothes the scalp, balances pH levels, and adds lightweight moisture to hair.</li>
+                        <li><strong>Panthenol (Pro-Vitamin B5):</strong> Penetrates the hair shaft to moisturize from within, adding volume and shine while reducing frizz and split ends.</li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="how-to-use">
+                    <h3>How to Use</h3>
+                    <h4>As a Daily Conditioner:</h4>
+                    <ol>
+                        <li>After shampooing, squeeze excess water from hair.</li>
+                        <li>Apply a quarter-sized amount to mid-lengths and ends (use more for longer or thicker hair).</li>
+                        <li>Gently comb through with fingers or a wide-tooth comb to distribute evenly.</li>
+                        <li>Leave on for 2-3 minutes.</li>
+                        <li>Rinse thoroughly with cool water to seal the cuticle and enhance shine.</li>
+                    </ol>
+                    
+                    <h4>As a Deep Treatment Mask:</h4>
+                    <ol>
+                        <li>After shampooing, towel-dry hair to remove excess water.</li>
+                        <li>Apply a generous amount throughout hair, focusing on mid-lengths and ends.</li>
+                        <li>Comb through to ensure even distribution.</li>
+                        <li>Cover hair with a shower cap or warm towel to enhance penetration.</li>
+                        <li>Leave on for 10-15 minutes.</li>
+                        <li>Rinse thoroughly with cool water.</li>
+                    </ol>
+                    
+                    <p><strong>Pro tip:</strong> For extremely dry or damaged hair, apply to dry hair before shampooing, leave on for 30 minutes, then shampoo and condition as usual for an extra boost of hydration.</p>
+                </div>
+                <div class="tab-pane" id="reviews">
+                    <h3>Customer Reviews</h3>
+                    <div class="review-summary">
+                        <div class="average-rating">
+                            <span class="rating">4.5</span>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="total-reviews">Based on 39 reviews</span>
+                        </div>
+                        <div class="rating-breakdown">
+                            <div class="rating-bar">
+                                <span class="rating-level">5 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 70%"></div>
+                                </div>
+                                <span class="rating-percent">70%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">4 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 20%"></div>
+                                </div>
+                                <span class="rating-percent">20%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">3 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 5%"></div>
+                                </div>
+                                <span class="rating-percent">5%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">2 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 3%"></div>
+                                </div>
+                                <span class="rating-percent">3%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">1 Star</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 2%"></div>
+                                </div>
+                                <span class="rating-percent">2%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="customer-reviews">
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Riley S.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">May 5, 2023</span>
+                            </div>
+                            <p class="review-text">I have thick, curly hair that gets very dry, especially in winter. This conditioner is a game-changer! I use it as a weekly mask and my curls are so much more defined and bouncy. The frizz is gone and my hair feels incredibly soft. It's rich but rinses clean without leaving any residue. Worth every penny!</p>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Jamie W.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">April 12, 2023</span>
+                            </div>
+                            <p class="review-text">I bleach my hair regularly and it was like straw before I found this conditioner. After just one use as a deep treatment, my hair felt so much healthier. I've been using it for a month now and the difference is incredible - my hair is soft, shiny, and so much easier to style. I also love that it doesn't weigh my fine hair down like other deep conditioners.</p>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Dana M.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">March 20, 2023</span>
+                            </div>
+                            <p class="review-text">This conditioner works wonders on my dry, color-treated hair. It detangles easily and leaves my hair feeling silky smooth. The only reason I'm giving 4 stars instead of 5 is that I wish the scent was a bit stronger - it's very subtle and doesn't last in the hair. But the performance is excellent, and I'll definitely repurchase!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-products">
+        <div class="container">
+            <h2>You May Also Like</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="../images/products/repair-shampoo.jpg" alt="Repair Shampoo">
+                    <h3>Repair Shampoo</h3>
+                    <p class="price">$32.99</p>
+                    <p class="description">Professional-grade repair shampoo for damaged hair.</p>
+                    <a href="repair-shampoo.html" class="btn">View Product</a>
+                </div>
+                <div class="product-card">
+                    <img src="../images/products/radiance-serum.jpg" alt="Radiance Serum">
+                    <h3>Radiance Serum</h3>
+                    <p class="price">$49.99</p>
+                    <p class="description">Our premium brightening serum with Vitamin C and hyaluronic acid.</p>
+                    <a href="radiance-serum.html" class="btn">View Product</a>
+                </div>
+                <div class="product-card">
+                    <img src="../images/products/hydrating-moisturizer.jpg" alt="Hydrating Moisturizer">
+                    <h3>Hydrating Moisturizer</h3>
+                    <p class="price">$39.99</p>
+                    <p class="description">Luxurious moisturizer with ceramides and natural oils.</p>
+                    <a href="hydrating-moisturizer.html" class="btn">View Product</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Midas Beauty</h3>
+                    <p>Premium beauty products for the modern individual.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../products.html">Products</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@midasbeauty.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Midas Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/product-detail.js"></script>
+</body>
+</html>
