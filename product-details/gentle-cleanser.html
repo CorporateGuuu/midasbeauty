@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gentle Cleanser - Midas Beauty</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Midas Beauty</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../products.html">Products</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                    <li class="cart-icon">
+                        <a href="#" id="cart-toggle">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button id="close-cart">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button id="checkout-btn" class="btn">Checkout</button>
+        </div>
+    </div>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../products.html">Products</a></li>
+                <li><a href="../products.html#skincare">Skincare</a></li>
+                <li>Gentle Cleanser</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="product-detail">
+        <div class="container">
+            <div class="product-detail-grid">
+                <div class="product-images">
+                    <div class="main-image">
+                        <img src="../images/products/gentle-cleanser.jpg" alt="Gentle Cleanser" id="main-product-image">
+                    </div>
+                    <div class="thumbnail-images">
+                        <img src="../images/products/gentle-cleanser.jpg" alt="Gentle Cleanser - Front" class="thumbnail active" onclick="changeImage(this.src)">
+                        <img src="../images/products/gentle-cleanser.jpg" alt="Gentle Cleanser - Side" class="thumbnail" onclick="changeImage(this.src)">
+                        <img src="../images/products/gentle-cleanser.jpg" alt="Gentle Cleanser - Back" class="thumbnail" onclick="changeImage(this.src)">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h1>Gentle Cleanser</h1>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </span>
+                        <span class="rating-count">(38 reviews)</span>
+                    </div>
+                    <p class="product-price">$29.99</p>
+                    <div class="product-description">
+                        <p>Our sulfate-free cleanser effectively removes makeup, dirt, and impurities without disrupting your skin's natural pH balance. Enriched with aloe vera, chamomile, and cucumber extract, this gentle formula soothes and calms sensitive skin while maintaining essential moisture.</p>
+                        <h3>Key Benefits:</h3>
+                        <ul>
+                            <li>Removes makeup and impurities without stripping skin</li>
+                            <li>Maintains skin's natural pH balance</li>
+                            <li>Soothes and calms with botanical extracts</li>
+                            <li>Fragrance-free and suitable for sensitive skin</li>
+                            <li>Dermatologist tested and hypoallergenic</li>
+                        </ul>
+                        <h3>How to Use:</h3>
+                        <p>Apply a small amount to damp skin and massage gently in circular motions. Rinse thoroughly with lukewarm water. Use morning and evening as the first step in your skincare routine.</p>
+                        <h3>Ingredients:</h3>
+                        <p>Water, Glycerin, Cocamidopropyl Betaine, Sodium Cocoyl Isethionate, Sodium Lauroamphoacetate, Aloe Barbadensis Leaf Juice, Chamomilla Recutita (Matricaria) Flower Extract, Cucumis Sativus (Cucumber) Fruit Extract, Panthenol, Allantoin, Sodium Hyaluronate, Citric Acid, Disodium EDTA, Phenoxyethanol, Ethylhexylglycerin.</p>
+                    </div>
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus" onclick="decrementQuantity()">-</button>
+                            <input type="number" id="product-quantity" value="1" min="1" max="10">
+                            <button class="quantity-btn plus" onclick="incrementQuantity()">+</button>
+                        </div>
+                        <button class="btn add-to-cart-btn" id="add-to-cart-detail">Add to Cart</button>
+                    </div>
+                    <div class="product-meta">
+                        <p><i class="fas fa-check"></i> In Stock</p>
+                        <p><i class="fas fa-truck"></i> Free Shipping on orders over $50</p>
+                        <p><i class="fas fa-undo"></i> 30-Day Money Back Guarantee</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-tabs">
+        <div class="container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="details">Details</button>
+                <button class="tab-btn" data-tab="ingredients">Ingredients</button>
+                <button class="tab-btn" data-tab="how-to-use">How to Use</button>
+                <button class="tab-btn" data-tab="reviews">Reviews</button>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="details">
+                    <h3>Product Details</h3>
+                    <p>Our Gentle Cleanser is a sulfate-free facial cleanser designed to effectively remove makeup, dirt, and impurities without disrupting your skin's natural pH balance or stripping away essential moisture.</p>
+                    <p>This gentle formula is enriched with soothing botanical extracts including aloe vera, chamomile, and cucumber to calm and nourish the skin while cleansing. The non-foaming, creamy texture provides a luxurious cleansing experience that leaves skin feeling soft, clean, and comfortable - never tight or dry.</p>
+                    <p>Each bottle contains 200ml (6.7 fl oz) of product and features a convenient pump dispenser for easy application. The formula is fragrance-free, making it ideal for sensitive skin types and those with sensitivities to fragranced products.</p>
+                </div>
+                <div class="tab-pane" id="ingredients">
+                    <h3>Full Ingredients List</h3>
+                    <p>Water, Glycerin, Cocamidopropyl Betaine, Sodium Cocoyl Isethionate, Sodium Lauroamphoacetate, Aloe Barbadensis Leaf Juice, Chamomilla Recutita (Matricaria) Flower Extract, Cucumis Sativus (Cucumber) Fruit Extract, Panthenol, Allantoin, Sodium Hyaluronate, Citric Acid, Disodium EDTA, Phenoxyethanol, Ethylhexylglycerin.</p>
+                    <h4>Key Ingredients:</h4>
+                    <ul>
+                        <li><strong>Sodium Cocoyl Isethionate & Sodium Lauroamphoacetate:</strong> Mild, sulfate-free cleansing agents that effectively remove impurities without stripping the skin.</li>
+                        <li><strong>Aloe Vera:</strong> Soothes and calms irritated skin while providing light hydration.</li>
+                        <li><strong>Chamomile Extract:</strong> Contains anti-inflammatory properties that help reduce redness and irritation.</li>
+                        <li><strong>Cucumber Extract:</strong> Refreshes and cools the skin while providing antioxidant benefits.</li>
+                        <li><strong>Hyaluronic Acid:</strong> Helps maintain skin hydration during the cleansing process.</li>
+                        <li><strong>Panthenol (Pro-Vitamin B5):</strong> Moisturizes and promotes skin healing.</li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="how-to-use">
+                    <h3>How to Use</h3>
+                    <ol>
+                        <li>Dispense 1-2 pumps of cleanser into your palm.</li>
+                        <li>Add a small amount of lukewarm water and work into a light lather between your hands.</li>
+                        <li>Gently massage onto damp face and neck using circular motions, avoiding the eye area.</li>
+                        <li>Rinse thoroughly with lukewarm water.</li>
+                        <li>Pat skin dry with a clean towel.</li>
+                        <li>Follow with your favorite toner, serum, and moisturizer.</li>
+                    </ol>
+                    <p><strong>Recommended use:</strong> Morning and evening as the first step in your skincare routine.</p>
+                    <p><strong>For makeup removal:</strong> For heavy makeup, consider double cleansing. First use an oil-based cleanser or micellar water to remove makeup, then follow with the Gentle Cleanser for a thorough cleanse.</p>
+                </div>
+                <div class="tab-pane" id="reviews">
+                    <h3>Customer Reviews</h3>
+                    <div class="review-summary">
+                        <div class="average-rating">
+                            <span class="rating">4.5</span>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="total-reviews">Based on 38 reviews</span>
+                        </div>
+                        <div class="rating-breakdown">
+                            <div class="rating-bar">
+                                <span class="rating-level">5 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 65%"></div>
+                                </div>
+                                <span class="rating-percent">65%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">4 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 25%"></div>
+                                </div>
+                                <span class="rating-percent">25%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">3 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 7%"></div>
+                                </div>
+                                <span class="rating-percent">7%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">2 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 2%"></div>
+                                </div>
+                                <span class="rating-percent">2%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">1 Star</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 1%"></div>
+                                </div>
+                                <span class="rating-percent">1%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="customer-reviews">
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Rachel W.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">April 10, 2023</span>
+                            </div>
+                            <p class="review-text">I have extremely sensitive, rosacea-prone skin and this is the only cleanser that doesn't cause flare-ups. It removes all my makeup without stripping my skin, and my face feels soft and comfortable after using it. Highly recommend for sensitive skin types!</p>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>James B.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">March 22, 2023</span>
+                            </div>
+                            <p class="review-text">Great cleanser that doesn't dry out my skin. I use it after workouts and it removes sweat and oil without that tight feeling. The only reason for 4 stars instead of 5 is that I wish it had a light scent, but I understand why it's fragrance-free for sensitive skin.</p>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Aisha K.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">February 15, 2023</span>
+                            </div>
+                            <p class="review-text">This cleanser has transformed my skincare routine. I have combination skin that tends to get dehydrated, and this cleanser manages to remove all impurities without disrupting my skin's moisture balance. My skin feels clean but not stripped, and I've noticed fewer breakouts since I started using it.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-products">
+        <div class="container">
+            <h2>You May Also Like</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="../images/products/radiance-serum.jpg" alt="Radiance Serum">
+                    <h3>Radiance Serum</h3>
+                    <p class="price">$49.99</p>
+                    <p class="description">Our premium brightening serum with Vitamin C and hyaluronic acid.</p>
+                    <a href="radiance-serum.html" class="btn">View Product</a>
+                </div>
+                <div class="product-card">
+                    <img src="../images/products/hydrating-moisturizer.jpg" alt="Hydrating Moisturizer">
+                    <h3>Hydrating Moisturizer</h3>
+                    <p class="price">$39.99</p>
+                    <p class="description">Luxurious moisturizer with ceramides and natural oils.</p>
+                    <a href="hydrating-moisturizer.html" class="btn">View Product</a>
+                </div>
+                <div class="product-card">
+                    <img src="../images/products/volumizing-mascara.jpg" alt="Volumizing Mascara">
+                    <h3>Volumizing Mascara</h3>
+                    <p class="price">$24.99</p>
+                    <p class="description">Adds volume and length without clumping.</p>
+                    <a href="volumizing-mascara.html" class="btn">View Product</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Midas Beauty</h3>
+                    <p>Premium beauty products for the modern individual.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../products.html">Products</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@midasbeauty.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Midas Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/product-detail.js"></script>
+</body>
+</html>

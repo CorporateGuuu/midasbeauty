@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Midas Beauty</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/account.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Midas Beauty</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="cart-icon">
+                        <a href="#" id="cart-toggle">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button id="close-cart">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button id="checkout-btn" class="btn">Checkout</button>
+        </div>
+    </div>
+
+    <section class="account-section">
+        <div class="container">
+            <div class="dashboard-container">
+                <div class="dashboard-sidebar">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3 class="user-name" id="user-name">John Doe</h3>
+                        <p class="user-email" id="user-email">john.doe@example.com</p>
+                    </div>
+                    <div class="dashboard-menu">
+                        <ul>
+                            <li><a href="#" class="active" data-tab="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                            <li><a href="#" data-tab="orders"><i class="fas fa-shopping-bag"></i> Orders</a></li>
+                            <li><a href="#" data-tab="addresses"><i class="fas fa-map-marker-alt"></i> Addresses</a></li>
+                            <li><a href="#" data-tab="account-details"><i class="fas fa-user-edit"></i> Account Details</a></li>
+                            <li><a href="#" data-tab="wishlist"><i class="fas fa-heart"></i> Wishlist</a></li>
+                            <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="dashboard-content">
+                    <div class="tab-pane active" id="dashboard">
+                        <h2>Dashboard</h2>
+                        <p>Hello <span id="greeting-name">John</span> (not <span id="greeting-name2">John</span>? <a href="#" id="logout-link">Log out</a>)</p>
+                        <p>From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.</p>
+                        
+                        <div class="dashboard-boxes">
+                            <div class="dashboard-box">
+                                <h3><i class="fas fa-shopping-bag"></i> Recent Orders</h3>
+                                <div id="recent-orders">
+                                    <p>You haven't placed any orders yet.</p>
+                                </div>
+                                <a href="#" class="btn" data-tab="orders">View All Orders</a>
+                            </div>
+                            
+                            <div class="dashboard-box">
+                                <h3><i class="fas fa-heart"></i> Wishlist</h3>
+                                <div id="wishlist-preview">
+                                    <p>You don't have any products in your wishlist yet.</p>
+                                </div>
+                                <a href="#" class="btn" data-tab="wishlist">View Wishlist</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="orders">
+                        <h2>Orders</h2>
+                        <div id="orders-list">
+                            <p>You haven't placed any orders yet.</p>
+                            <a href="products.html" class="btn">Browse Products</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="addresses">
+                        <h2>Addresses</h2>
+                        <div class="addresses-container">
+                            <div class="address-box">
+                                <h3>Shipping Address</h3>
+                                <div id="shipping-address">
+                                    <p>You haven't set up a shipping address yet.</p>
+                                </div>
+                                <button class="btn" id="edit-shipping">Add Address</button>
+                            </div>
+                            
+                            <div class="address-box">
+                                <h3>Billing Address</h3>
+                                <div id="billing-address">
+                                    <p>You haven't set up a billing address yet.</p>
+                                </div>
+                                <button class="btn" id="edit-billing">Add Address</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="account-details">
+                        <h2>Account Details</h2>
+                        <form id="account-form" class="account-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="account-first-name">First Name</label>
+                                    <input type="text" id="account-first-name" name="first-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="account-last-name">Last Name</label>
+                                    <input type="text" id="account-last-name" name="last-name" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="account-email">Email Address</label>
+                                <input type="email" id="account-email" name="email" required>
+                            </div>
+                            
+                            <h3>Password Change</h3>
+                            <div class="form-group">
+                                <label for="current-password">Current Password (leave blank to leave unchanged)</label>
+                                <input type="password" id="current-password" name="current-password">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">New Password (leave blank to leave unchanged)</label>
+                                <input type="password" id="new-password" name="new-password">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-new-password">Confirm New Password</label>
+                                <input type="password" id="confirm-new-password" name="confirm-new-password">
+                            </div>
+                            
+                            <button type="submit" class="btn">Save Changes</button>
+                        </form>
+                    </div>
+                    
+                    <div class="tab-pane" id="wishlist">
+                        <h2>Wishlist</h2>
+                        <div id="wishlist-items">
+                            <p>You don't have any products in your wishlist yet.</p>
+                            <a href="products.html" class="btn">Browse Products</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Midas Beauty</h3>
+                    <p>Premium beauty products for the modern individual.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@midasbeauty.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Midas Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydrating Moisturizer - Midas Beauty</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Midas Beauty</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../products.html">Products</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                    <li class="cart-icon">
+                        <a href="#" id="cart-toggle">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button id="close-cart">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button id="checkout-btn" class="btn">Checkout</button>
+        </div>
+    </div>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../products.html">Products</a></li>
+                <li><a href="../products.html#skincare">Skincare</a></li>
+                <li>Hydrating Moisturizer</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="product-detail">
+        <div class="container">
+            <div class="product-detail-grid">
+                <div class="product-images">
+                    <div class="main-image">
+                        <img src="../images/products/hydrating-moisturizer.jpg" alt="Hydrating Moisturizer" id="main-product-image">
+                    </div>
+                    <div class="thumbnail-images">
+                        <img src="../images/products/hydrating-moisturizer.jpg" alt="Hydrating Moisturizer - Front" class="thumbnail active" onclick="changeImage(this.src)">
+                        <img src="../images/products/hydrating-moisturizer.jpg" alt="Hydrating Moisturizer - Side" class="thumbnail" onclick="changeImage(this.src)">
+                        <img src="../images/products/hydrating-moisturizer.jpg" alt="Hydrating Moisturizer - Back" class="thumbnail" onclick="changeImage(this.src)">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h1>Hydrating Moisturizer</h1>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                        <span class="rating-count">(56 reviews)</span>
+                    </div>
+                    <p class="product-price">$39.99</p>
+                    <div class="product-description">
+                        <p>This luxurious moisturizer features a blend of ceramides, peptides, and natural oils that lock in moisture for up to 72 hours. The non-greasy formula absorbs quickly, strengthens the skin barrier, and provides antioxidant protection against environmental stressors.</p>
+                        <h3>Key Benefits:</h3>
+                        <ul>
+                            <li>Provides 72-hour hydration</li>
+                            <li>Strengthens skin barrier function</li>
+                            <li>Reduces appearance of fine lines</li>
+                            <li>Protects against environmental damage</li>
+                            <li>Non-greasy, fast-absorbing formula</li>
+                        </ul>
+                        <h3>How to Use:</h3>
+                        <p>Apply a small amount to clean, dry skin morning and evening. Gently massage in circular motions until fully absorbed. Can be used on face, neck, and décolletage.</p>
+                        <h3>Ingredients:</h3>
+                        <p>Water, Glycerin, Cetearyl Alcohol, Caprylic/Capric Triglyceride, Ceramide NP, Ceramide AP, Ceramide EOP, Phytosphingosine, Cholesterol, Sodium Hyaluronate, Niacinamide, Tocopherol, Panthenol, Sodium Lauroyl Lactylate, Xanthan Gum, Carbomer, Phenoxyethanol, Ethylhexylglycerin.</p>
+                    </div>
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus" onclick="decrementQuantity()">-</button>
+                            <input type="number" id="product-quantity" value="1" min="1" max="10">
+                            <button class="quantity-btn plus" onclick="incrementQuantity()">+</button>
+                        </div>
+                        <button class="btn add-to-cart-btn" id="add-to-cart-detail">Add to Cart</button>
+                    </div>
+                    <div class="product-meta">
+                        <p><i class="fas fa-check"></i> In Stock</p>
+                        <p><i class="fas fa-truck"></i> Free Shipping on orders over $50</p>
+                        <p><i class="fas fa-undo"></i> 30-Day Money Back Guarantee</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-tabs">
+        <div class="container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="details">Details</button>
+                <button class="tab-btn" data-tab="ingredients">Ingredients</button>
+                <button class="tab-btn" data-tab="how-to-use">How to Use</button>
+                <button class="tab-btn" data-tab="reviews">Reviews</button>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="details">
+                    <h3>Product Details</h3>
+                    <p>Our Hydrating Moisturizer is a premium skincare treatment designed to provide intense, long-lasting hydration while strengthening your skin's natural barrier. This luxurious formula combines ceramides, peptides, and natural oils to lock in moisture for up to 72 hours.</p>
+                    <p>The non-greasy, fast-absorbing texture makes it perfect for all skin types, including sensitive and combination skin. It can be used both morning and night as part of your daily skincare routine.</p>
+                    <p>Each jar contains 50ml (1.7 fl oz) of product and is packaged in a premium glass jar with an airless pump design to preserve the formula's potency and prevent contamination.</p>
+                </div>
+                <div class="tab-pane" id="ingredients">
+                    <h3>Full Ingredients List</h3>
+                    <p>Water, Glycerin, Cetearyl Alcohol, Caprylic/Capric Triglyceride, Ceramide NP, Ceramide AP, Ceramide EOP, Phytosphingosine, Cholesterol, Sodium Hyaluronate, Niacinamide, Tocopherol, Panthenol, Sodium Lauroyl Lactylate, Xanthan Gum, Carbomer, Phenoxyethanol, Ethylhexylglycerin.</p>
+                    <h4>Key Ingredients:</h4>
+                    <ul>
+                        <li><strong>Ceramides:</strong> Essential lipids that help restore and maintain the skin's barrier, preventing moisture loss.</li>
+                        <li><strong>Hyaluronic Acid:</strong> Attracts and retains up to 1000 times its weight in water, providing deep hydration.</li>
+                        <li><strong>Niacinamide:</strong> Improves skin texture, reduces pore size, and enhances barrier function.</li>
+                        <li><strong>Vitamin E (Tocopherol):</strong> A powerful antioxidant that protects against environmental damage.</li>
+                        <li><strong>Panthenol:</strong> Provides soothing hydration and promotes skin healing.</li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="how-to-use">
+                    <h3>How to Use</h3>
+                    <ol>
+                        <li>Cleanse your face thoroughly and pat dry.</li>
+                        <li>If using serums or treatments, apply those first.</li>
+                        <li>Take a small amount (about the size of a pea) of the Hydrating Moisturizer.</li>
+                        <li>Warm the product between your fingertips.</li>
+                        <li>Gently massage into your face and neck using upward, circular motions.</li>
+                        <li>Allow the moisturizer to fully absorb (approximately 1-2 minutes).</li>
+                        <li>For daytime use, follow with a broad-spectrum sunscreen.</li>
+                    </ol>
+                    <p><strong>Recommended use:</strong> Apply morning and evening for best results.</p>
+                    <p><strong>Pro tip:</strong> For extra hydration, apply to slightly damp skin to lock in additional moisture.</p>
+                </div>
+                <div class="tab-pane" id="reviews">
+                    <h3>Customer Reviews</h3>
+                    <div class="review-summary">
+                        <div class="average-rating">
+                            <span class="rating">5.0</span>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="total-reviews">Based on 56 reviews</span>
+                        </div>
+                        <div class="rating-breakdown">
+                            <div class="rating-bar">
+                                <span class="rating-level">5 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%"></div>
+                                </div>
+                                <span class="rating-percent">85%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">4 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 10%"></div>
+                                </div>
+                                <span class="rating-percent">10%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">3 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 3%"></div>
+                                </div>
+                                <span class="rating-percent">3%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">2 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 1%"></div>
+                                </div>
+                                <span class="rating-percent">1%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-level">1 Star</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 1%"></div>
+                                </div>
+                                <span class="rating-percent">1%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="customer-reviews">
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Jessica M.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">April 18, 2023</span>
+                            </div>
+                            <p class="review-text">This moisturizer is a game-changer! I have extremely dry skin, especially in winter, and this is the only product that keeps my skin hydrated all day. No more flaky patches or tightness. Worth every penny!</p>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>David L.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">March 5, 2023</span>
+                            </div>
+                            <p class="review-text">As someone with sensitive skin, I'm always cautious about trying new products. This moisturizer is perfect - no irritation, no breakouts, just perfectly hydrated skin. The texture is luxurious but not heavy.</p>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Sophia K.</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">February 22, 2023</span>
+                            </div>
+                            <p class="review-text">I've been using this moisturizer for 6 months now and my skin has never looked better. It absorbs quickly, doesn't leave a greasy residue, and has significantly improved my skin's texture. I also love that it works well under makeup!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-products">
+        <div class="container">
+            <h2>You May Also Like</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="../images/products/radiance-serum.jpg" alt="Radiance Serum">
+                    <h3>Radiance Serum</h3>
+                    <p class="price">$49.99</p>
+                    <p class="description">Our premium brightening serum with Vitamin C and hyaluronic acid.</p>
+                    <a href="radiance-serum.html" class="btn">View Product</a>
+                </div>
+                <div class="product-card">
+                    <img src="../images/products/gentle-cleanser.jpg" alt="Gentle Cleanser">
+                    <h3>Gentle Cleanser</h3>
+                    <p class="price">$29.99</p>
+                    <p class="description">Sulfate-free cleanser that removes impurities without stripping skin.</p>
+                    <a href="gentle-cleanser.html" class="btn">View Product</a>
+                </div>
+                <div class="product-card">
+                    <img src="../images/products/liquid-foundation.jpg" alt="Liquid Foundation">
+                    <h3>Liquid Foundation</h3>
+                    <p class="price">$45.99</p>
+                    <p class="description">Medium to full coverage foundation with a natural finish.</p>
+                    <a href="liquid-foundation.html" class="btn">View Product</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Midas Beauty</h3>
+                    <p>Premium beauty products for the modern individual.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../products.html">Products</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@midasbeauty.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Midas Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/product-detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Midas Beauty</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/checkout.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .confirmation-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .confirmation-icon {
+            font-size: 5rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .confirmation-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .confirmation-message {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #666;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .order-details {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            text-align: left;
+        }
+        
+        .order-details h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #333;
+            text-align: center;
+        }
+        
+        .order-info {
+            margin-bottom: 30px;
+        }
+        
+        .order-info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .order-info-label {
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .action-buttons .btn {
+            min-width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Midas Beauty</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="confirmation-section">
+        <div class="container">
+            <div class="confirmation-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1 class="confirmation-title">Order Confirmed!</h1>
+            <p class="confirmation-message">
+                Thank you for your purchase. Your order has been received and is being processed. 
+                You will receive a confirmation email shortly with your order details.
+            </p>
+            
+            <div class="order-details">
+                <h2>Order Details</h2>
+                <div class="order-info">
+                    <div class="order-info-row">
+                        <span class="order-info-label">Order Number:</span>
+                        <span id="order-number">MB-12345678</span>
+                    </div>
+                    <div class="order-info-row">
+                        <span class="order-info-label">Order Date:</span>
+                        <span id="order-date">May 15, 2023</span>
+                    </div>
+                    <div class="order-info-row">
+                        <span class="order-info-label">Payment Method:</span>
+                        <span id="payment-method">Credit Card</span>
+                    </div>
+                    <div class="order-info-row">
+                        <span class="order-info-label">Shipping Method:</span>
+                        <span id="shipping-method">Standard Shipping (3-5 business days)</span>
+                    </div>
+                    <div class="order-info-row">
+                        <span class="order-info-label">Order Total:</span>
+                        <span id="order-total">$129.97</span>
+                    </div>
+                </div>
+                
+                <p>A detailed receipt has been sent to your email address.</p>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="products.html" class="btn">Continue Shopping</a>
+                <a href="#" class="btn" id="track-order-btn">Track Order</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Midas Beauty</h3>
+                    <p>Premium beauty products for the modern individual.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@midasbeauty.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Midas Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current date
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('order-date').textContent = today.toLocaleDateString('en-US', options);
+            
+            // Generate random order number
+            const orderNum = 'MB-' + Math.floor(10000000 + Math.random() * 90000000);
+            document.getElementById('order-number').textContent = orderNum;
+            
+            // Track order button
+            const trackOrderBtn = document.getElementById('track-order-btn');
+            if (trackOrderBtn) {
+                trackOrderBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Order tracking will be available in 24 hours. Please check your email for updates.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -81,10 +81,10 @@ class ShoppingCart {
             if (checkoutBtn) {
                 checkoutBtn.addEventListener('click', () => {
                     if (this.items.length > 0) {
-                        alert('Thank you for your purchase! In a real application, you would be redirected to a payment gateway.');
-                        this.clearCart();
+                        // Redirect to checkout page
+                        window.location.href = 'checkout.html';
                     } else {
-                        alert('Your cart is empty. Add some products before checking out.');
+                        this.showNotification('Your cart is empty. Add some products before checking out.', 'error');
                     }
                 });
             }
@@ -254,10 +254,10 @@ class ShoppingCart {
         }
     }
 
-    showNotification(message) {
+    showNotification(message, type = 'success') {
         // Create notification element
         const notification = document.createElement('div');
-        notification.className = 'cart-notification';
+        notification.className = `cart-notification ${type}`;
         notification.textContent = message;
 
         // Add to DOM

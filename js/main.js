@@ -1,6 +1,9 @@
 // Main JavaScript file for Midas Beauty website
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if user is logged in
+    checkUserLoginStatus();
+
     // Mobile menu toggle functionality
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const nav = document.querySelector('nav');
@@ -89,3 +92,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Function to check if user is logged in and update UI accordingly
+function checkUserLoginStatus() {
+    const accountLink = document.getElementById('account-link');
+    if (accountLink) {
+        const currentUser = JSON.parse(localStorage.getItem('midasBeautyCurrentUser'));
+
+        if (currentUser) {
+            // User is logged in, update account link to go to dashboard
+            accountLink.href = 'dashboard.html';
+            accountLink.innerHTML = `<i class="fas fa-user"></i>`;
+
+            // Add tooltip with user name
+            accountLink.setAttribute('title', `${currentUser.firstName} ${currentUser.lastName}`);
+        } else {
+            // User is not logged in, keep default link to login page
+            accountLink.href = 'login.html';
+            accountLink.innerHTML = `<i class="fas fa-user"></i>`;
+            accountLink.setAttribute('title', 'Login / Register');
+        }
+    }
+}
