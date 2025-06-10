@@ -212,6 +212,10 @@
     <link rel="preload" href="css/navigation-footer-fixes.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="css/navigation-footer-fixes.css"></noscript>
 
+    <!-- Luxury Homepage Redesign CSS -->
+    <link rel="preload" href="css/luxury-homepage-redesign.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/luxury-homepage-redesign.css"></noscript>
+
 
 
     <!-- Open Graph Meta Tags -->
@@ -391,26 +395,83 @@
         <div class="container">
             <div class="hero-content" data-aos="fade-up">
                 <h2>Transform Your Beauty Routine</h2>
-                <p>Discover premium beauty products from 10 luxury brands that bring out your natural glow</p>
+                <p>Discover premium beauty products from 10 luxury brands that bring out your natural glow with our curated collection of sophisticated skincare, makeup, and wellness essentials</p>
                 <div class="hero-actions">
-                    <a href="products.html" class="btn btn-primary">Shop Now</a>
-                    <a href="brands.html" class="btn btn-secondary">Explore Brands</a>
+                    <a href="products.html" class="btn btn-primary">
+                        <i class="fas fa-shopping-bag"></i>
+                        Shop Collection
+                    </a>
+                    <a href="brands.html" class="btn btn-secondary">
+                        <i class="fas fa-crown"></i>
+                        Explore Brands
+                    </a>
+                </div>
+
+                <!-- Hero Stats -->
+                <div class="hero-stats" data-aos="fade-up" data-aos-delay="600">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Premium Products</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Luxury Brands</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Customer Satisfaction</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Beauty Support</div>
+                    </div>
                 </div>
 
                 <!-- Hero Products Preview -->
-                <div class="hero-products" id="hero-products">
+                <div class="hero-products" id="hero-products" data-aos="fade-up" data-aos-delay="800">
                     <!-- Dynamic hero products will be loaded here -->
                 </div>
             </div>
 
-
+            <!-- Floating Elements -->
+            <div class="hero-floating-elements">
+                <div class="floating-element floating-element-1"></div>
+                <div class="floating-element floating-element-2"></div>
+                <div class="floating-element floating-element-3"></div>
+            </div>
         </div>
     </section>
 
-    <!-- Dynamic Featured Products Section -->
-    <div id="featured-products">
-        <!-- Featured products carousel will be dynamically loaded here -->
-    </div>
+    <!-- Enhanced Featured Products Section -->
+    <section class="featured-products" id="featured-products">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Featured Products</h2>
+                <p>Discover our most loved luxury beauty essentials, carefully curated for the sophisticated woman</p>
+            </div>
+
+            <!-- Product Categories Filter -->
+            <div class="category-filter" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn active" data-category="all">All Products</button>
+                <button class="filter-btn" data-category="skincare">Skincare</button>
+                <button class="filter-btn" data-category="makeup">Makeup</button>
+                <button class="filter-btn" data-category="haircare">Haircare</button>
+                <button class="filter-btn" data-category="fragrance">Fragrance</button>
+            </div>
+
+            <div class="products-grid" id="featured-products-grid" data-aos="fade-up" data-aos-delay="200">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+
+            <!-- View All Products Button -->
+            <div class="section-footer" data-aos="fade-up" data-aos-delay="400">
+                <a href="products.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-right"></i>
+                    View All Products
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Brand Showcase Section -->
     <section class="brand-showcase" data-aos="fade-up">
@@ -855,6 +916,9 @@
 
     <!-- Complete Shopping System -->
     <script src="js/complete-shopping-system.js" defer></script>
+
+    <!-- Luxury Homepage Functionality -->
+    <script src="js/luxury-homepage-functionality.js" defer></script>
 
     <!-- Font Awesome for icons (loaded asynchronously) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" defer></script>
