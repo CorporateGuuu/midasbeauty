@@ -1,0 +1,546 @@
+/* Navigation and Footer Fixes for MidasBeauty */
+/* Addresses glitching animations and improves user appeal */
+
+/* ===== NAVIGATION FIXES ===== */
+.main-navigation {
+    position: relative;
+    z-index: 100;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(44, 44, 44, 0.95));
+    border-radius: 50px;
+    padding: 0.75rem 1.5rem;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    overflow: hidden;
+    position: relative;
+}
+
+.nav-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+    animation: navShimmer 4s infinite;
+    pointer-events: none;
+}
+
+@keyframes navShimmer {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: -100%; }
+}
+
+.nav-item {
+    position: relative;
+    margin: 0;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-radius: 25px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(244, 228, 166, 0.2));
+    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 25px;
+    z-index: -1;
+}
+
+.nav-link:hover::before,
+.nav-link:focus::before {
+    width: 100%;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: #d4af37;
+    transform: translateY(-2px);
+    text-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+}
+
+.nav-link i {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover .nav-link i {
+    transform: rotate(180deg);
+}
+
+/* Dropdown Menu Enhancements */
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.98), rgba(44, 44, 44, 0.98));
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 1.5rem;
+    min-width: 320px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(-20px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 1000;
+}
+
+.nav-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.dropdown-section {
+    margin-bottom: 1.5rem;
+}
+
+.dropdown-section:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-section h4 {
+    color: #d4af37;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.dropdown-section h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, #d4af37, transparent);
+}
+
+.dropdown-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    margin-bottom: 0.25rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.dropdown-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.dropdown-link:hover::before {
+    left: 100%;
+}
+
+.dropdown-link:hover {
+    background: rgba(212, 175, 55, 0.15);
+    color: #d4af37;
+    transform: translateX(8px);
+    border-left: 3px solid #d4af37;
+    padding-left: 1.25rem;
+}
+
+.dropdown-link i {
+    width: 16px;
+    text-align: center;
+    color: #d4af37;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-link:hover i {
+    transform: scale(1.2);
+}
+
+/* Featured Product in Dropdown */
+.dropdown-section.featured {
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.featured-product {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.featured-product:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.02);
+}
+
+.featured-product img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.featured-info h5 {
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin: 0 0 0.25rem 0;
+}
+
+.featured-info .price {
+    color: #d4af37;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* ===== FOOTER NEWSLETTER SECTION FIXES ===== */
+.newsletter-section {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 228, 166, 0.05));
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    position: relative;
+    overflow: hidden;
+    min-width: 350px;
+    max-width: 400px;
+}
+
+.newsletter-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    animation: newsletterGlow 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes newsletterGlow {
+    0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.3; }
+    50% { transform: rotate(180deg) scale(1.1); opacity: 0.6; }
+}
+
+.newsletter-section h3 {
+    color: #d4af37;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.newsletter-section p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.newsletter-form {
+    position: relative;
+    z-index: 2;
+}
+
+.input-group {
+    display: flex;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 4px;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+}
+
+.input-group:focus-within {
+    border-color: #d4af37;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.newsletter-form input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 14px 20px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    outline: none;
+    border-radius: 50px;
+}
+
+.newsletter-form input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+}
+
+.newsletter-btn {
+    background: linear-gradient(135deg, #d4af37, #f4e4a6);
+    border: none;
+    border-radius: 50px;
+    padding: 14px 20px;
+    color: #1a1a1a;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+}
+
+.newsletter-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.newsletter-btn i {
+    font-size: 1rem;
+}
+
+.newsletter-benefits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.benefit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.benefit:hover {
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateY(-3px);
+}
+
+.benefit i {
+    color: #d4af37;
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+}
+
+.benefit span {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.contact-info {
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    padding-top: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-info h4 {
+    color: #d4af37;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateX(5px);
+}
+
+.contact-item i {
+    color: #d4af37;
+    width: 16px;
+    text-align: center;
+}
+
+.contact-item a,
+.contact-item span {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: #d4af37;
+}
+
+/* ===== MOBILE RESPONSIVE FIXES ===== */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column;
+        position: fixed;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(135deg, rgba(26, 26, 26, 0.98), rgba(44, 44, 44, 0.98));
+        backdrop-filter: blur(20px);
+        border-radius: 0;
+        padding: 2rem 1rem;
+        transform: translateY(-100%);
+        transition: transform 0.4s ease;
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        transform: translateY(-100%);
+    }
+
+    .nav-item {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .nav-link {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .dropdown-menu {
+        position: static;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        margin-top: 0.5rem;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .newsletter-section {
+        min-width: auto;
+        max-width: none;
+        margin: 0 -1rem;
+    }
+
+    .newsletter-benefits {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .benefit {
+        flex-direction: row;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 0.75rem;
+    }
+}
+
+/* ===== ANIMATION PERFORMANCE FIXES ===== */
+.nav-menu,
+.nav-link,
+.dropdown-menu,
+.newsletter-section {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .nav-menu::before,
+    .newsletter-section::before {
+        animation: none;
+    }
+    
+    .nav-link,
+    .dropdown-link,
+    .benefit,
+    .contact-item {
+        transition: none;
+    }
+}
+
+/* High contrast mode */
+.high-contrast .nav-menu {
+    background: #000000;
+    border: 3px solid #ffff00;
+}
+
+.high-contrast .nav-link {
+    color: #ffffff;
+}
+
+.high-contrast .nav-link:hover {
+    background: #ffff00;
+    color: #000000;
+}
+
+.high-contrast .newsletter-section {
+    background: #000000;
+    border: 3px solid #ffff00;
+}
+
+.high-contrast .newsletter-btn {
+    background: #ffff00;
+    color: #000000;
+}
