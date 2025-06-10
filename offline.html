@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Midas Beauty</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        .offline-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .offline-icon {
+            font-size: 6rem;
+            color: #d4af37;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+        
+        .offline-title {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .offline-message {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        
+        .offline-actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .offline-btn {
+            background: linear-gradient(135deg, #d4af37, #f4e4bc);
+            color: #1a1a1a;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .offline-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+        
+        .cached-content {
+            margin-top: 50px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            max-width: 800px;
+        }
+        
+        .cached-content h3 {
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .cached-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .cached-link {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .cached-link:hover {
+            background: #d4af37;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .connection-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 1000;
+        }
+        
+        .connection-status.offline {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .connection-status.online {
+            background: #27ae60;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .offline-title {
+                font-size: 2rem;
+            }
+            
+            .offline-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cached-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>Midas Beauty</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="connection-status offline" id="connection-status">
+        <i class="fas fa-wifi"></i> Offline
+    </div>
+
+    <main class="offline-container">
+        <div class="offline-icon">
+            <i class="fas fa-cloud-download-alt"></i>
+        </div>
+        
+        <h1 class="offline-title">You're Currently Offline</h1>
+        
+        <p class="offline-message">
+            Don't worry! You can still browse our cached content and your shopping cart data is safely stored. 
+            We'll sync everything once you're back online.
+        </p>
+        
+        <div class="offline-actions">
+            <button class="offline-btn" onclick="window.location.reload()">
+                <i class="fas fa-sync-alt"></i>
+                Try Again
+            </button>
+            
+            <a href="/" class="offline-btn">
+                <i class="fas fa-home"></i>
+                Go Home
+            </a>
+        </div>
+        
+        <div class="cached-content">
+            <h3><i class="fas fa-download"></i> Available Offline Content</h3>
+            <p>These pages are available to browse while offline:</p>
+            
+            <div class="cached-links">
+                <a href="/" class="cached-link">
+                    <i class="fas fa-home"></i> Home Page
+                </a>
+                <a href="/products.html" class="cached-link">
+                    <i class="fas fa-shopping-bag"></i> Products
+                </a>
+                <a href="/search-results.html" class="cached-link">
+                    <i class="fas fa-search"></i> Search
+                </a>
+                <a href="/about.html" class="cached-link">
+                    <i class="fas fa-info-circle"></i> About Us
+                </a>
+                <a href="/contact.html" class="cached-link">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Midas Beauty</h3>
+                    <p>Premium beauty products for the modern individual.</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Midas Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Monitor connection status
+        function updateConnectionStatus() {
+            const statusElement = document.getElementById('connection-status');
+            
+            if (navigator.onLine) {
+                statusElement.className = 'connection-status online';
+                statusElement.innerHTML = '<i class="fas fa-wifi"></i> Online';
+                
+                // Auto-reload when back online
+                setTimeout(() => {
+                    if (window.location.pathname === '/offline.html') {
+                        window.location.href = '/';
+                    }
+                }, 2000);
+            } else {
+                statusElement.className = 'connection-status offline';
+                statusElement.innerHTML = '<i class="fas fa-wifi"></i> Offline';
+            }
+        }
+
+        // Listen for connection changes
+        window.addEventListener('online', updateConnectionStatus);
+        window.addEventListener('offline', updateConnectionStatus);
+        
+        // Initial status check
+        updateConnectionStatus();
+        
+        // Periodic connection check
+        setInterval(updateConnectionStatus, 5000);
+    </script>
+</body>
+</html>

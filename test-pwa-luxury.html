@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>PWA & Luxury Design Test - Midas Beauty</title>
+    <meta name="description" content="Test page for PWA functionality and luxury design implementation.">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#d4af37">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icons/icon-192x192.png">
+    
+    <!-- Stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        .test-section {
+            padding: var(--spacing-xxl) 0;
+            background: var(--pearl-white);
+        }
+        
+        .test-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+        
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+        
+        .test-card {
+            background: var(--rich-white);
+            padding: var(--spacing-xl);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px var(--shadow-color);
+            border: 1px solid var(--light-gray);
+            transition: var(--transition-elegant);
+        }
+        
+        .test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px var(--shadow-color);
+        }
+        
+        .test-card h3 {
+            font-family: var(--font-primary);
+            color: var(--primary-gold);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.5rem;
+        }
+        
+        .test-button {
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
+            color: var(--deep-black);
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: var(--spacing-xs);
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 15px var(--gold-shadow);
+        }
+        
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--gold-shadow);
+        }
+        
+        .test-results {
+            margin-top: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: var(--pearl-white);
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            border-left: 4px solid var(--primary-gold);
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: var(--spacing-xs);
+        }
+        
+        .status-indicator.success {
+            background: #27ae60;
+        }
+        
+        .status-indicator.error {
+            background: #e74c3c;
+        }
+        
+        .status-indicator.warning {
+            background: #f39c12;
+        }
+        
+        .luxury-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+        
+        .luxury-element {
+            text-align: center;
+            padding: var(--spacing-lg);
+            background: var(--rich-white);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            transition: var(--transition-elegant);
+        }
+        
+        .luxury-element:hover {
+            transform: translateY(-3px);
+        }
+        
+        .luxury-element i {
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: var(--spacing-sm);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>Midas Beauty</h1>
+                </div>
+                <div class="search-container">
+                    <form id="search-form" action="search-results.html" method="get">
+                        <input type="text" id="search-input" name="query" placeholder="Test luxury search...">
+                        <button type="submit" id="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="header-icons">
+                    <div class="user-account">
+                        <a href="login.html" id="account-link" title="Login / Register">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                    <div class="cart-icon">
+                        <a href="#" id="cart-toggle">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="test-section">
+        <div class="test-container">
+            <h1 style="font-family: var(--font-primary); text-align: center; font-size: 3rem; color: var(--deep-black); margin-bottom: var(--spacing-lg);">
+                PWA & Luxury Design Test Suite
+            </h1>
+            
+            <div class="test-grid">
+                <!-- PWA Tests -->
+                <div class="test-card">
+                    <h3><i class="fas fa-mobile-alt"></i> PWA Functionality</h3>
+                    <p>Test Progressive Web App features and installation.</p>
+                    <button class="test-button" onclick="testServiceWorker()">Test Service Worker</button>
+                    <button class="test-button" onclick="testManifest()">Test Manifest</button>
+                    <button class="test-button" onclick="testInstallPrompt()">Test Install</button>
+                    <button class="test-button" onclick="testOfflineMode()">Test Offline</button>
+                    <div id="pwa-results" class="test-results" style="display: none;"></div>
+                </div>
+
+                <!-- Search Tests -->
+                <div class="test-card">
+                    <h3><i class="fas fa-search"></i> Enhanced Search</h3>
+                    <p>Test the advanced search functionality with luxury UI.</p>
+                    <button class="test-button" onclick="testSearchSuggestions()">Test Suggestions</button>
+                    <button class="test-button" onclick="testFuzzySearch()">Test Fuzzy Search</button>
+                    <button class="test-button" onclick="testSearchHistory()">Test History</button>
+                    <div id="search-results" class="test-results" style="display: none;"></div>
+                </div>
+
+                <!-- Design Tests -->
+                <div class="test-card">
+                    <h3><i class="fas fa-palette"></i> Luxury Design</h3>
+                    <p>Test luxury design elements and animations.</p>
+                    <button class="test-button" onclick="testAnimations()">Test Animations</button>
+                    <button class="test-button" onclick="testTypography()">Test Typography</button>
+                    <button class="test-button" onclick="testColorScheme()">Test Colors</button>
+                    <div id="design-results" class="test-results" style="display: none;"></div>
+                </div>
+
+                <!-- Performance Tests -->
+                <div class="test-card">
+                    <h3><i class="fas fa-tachometer-alt"></i> Performance</h3>
+                    <p>Test website performance and optimization.</p>
+                    <button class="test-button" onclick="testLoadTime()">Test Load Time</button>
+                    <button class="test-button" onclick="testCaching()">Test Caching</button>
+                    <button class="test-button" onclick="testResponsive()">Test Responsive</button>
+                    <div id="performance-results" class="test-results" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Luxury Design Showcase -->
+            <h2 style="font-family: var(--font-primary); text-align: center; margin-top: var(--spacing-xxl); margin-bottom: var(--spacing-lg); color: var(--deep-black);">
+                Luxury Design Elements
+            </h2>
+            
+            <div class="luxury-showcase">
+                <div class="luxury-element">
+                    <i class="fas fa-gem"></i>
+                    <h4>Premium Typography</h4>
+                    <p>Playfair Display & Inter fonts</p>
+                </div>
+                <div class="luxury-element">
+                    <i class="fas fa-palette"></i>
+                    <h4>Gold Color Palette</h4>
+                    <p>Sophisticated gold gradients</p>
+                </div>
+                <div class="luxury-element">
+                    <i class="fas fa-magic"></i>
+                    <h4>Smooth Animations</h4>
+                    <p>Elegant transitions & effects</p>
+                </div>
+                <div class="luxury-element">
+                    <i class="fas fa-layer-group"></i>
+                    <h4>Depth & Shadows</h4>
+                    <p>Sophisticated layering</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: var(--deep-black); color: var(--rich-white); padding: var(--spacing-xl) 0;">
+        <div class="container">
+            <div style="text-align: center;">
+                <h3 style="font-family: var(--font-primary); color: var(--primary-gold); margin-bottom: var(--spacing-md);">Midas Beauty</h3>
+                <p>Premium beauty products for the modern individual.</p>
+                <p style="margin-top: var(--spacing-md); opacity: 0.7;">&copy; 2023 Midas Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/pwa.js"></script>
+    
+    <script>
+        // Test functions
+        function testServiceWorker() {
+            const resultDiv = document.getElementById('pwa-results');
+            resultDiv.style.display = 'block';
+            
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistration().then(registration => {
+                    if (registration) {
+                        resultDiv.innerHTML = '<span class="status-indicator success"></span>Service Worker: Active<br>Scope: ' + registration.scope;
+                    } else {
+                        resultDiv.innerHTML = '<span class="status-indicator warning"></span>Service Worker: Not registered';
+                    }
+                });
+            } else {
+                resultDiv.innerHTML = '<span class="status-indicator error"></span>Service Worker: Not supported';
+            }
+        }
+
+        function testManifest() {
+            const resultDiv = document.getElementById('pwa-results');
+            resultDiv.style.display = 'block';
+            
+            fetch('/manifest.json')
+                .then(response => response.json())
+                .then(manifest => {
+                    resultDiv.innerHTML = '<span class="status-indicator success"></span>Manifest: Loaded<br>App Name: ' + manifest.name;
+                })
+                .catch(() => {
+                    resultDiv.innerHTML = '<span class="status-indicator error"></span>Manifest: Failed to load';
+                });
+        }
+
+        function testInstallPrompt() {
+            const resultDiv = document.getElementById('pwa-results');
+            resultDiv.style.display = 'block';
+            
+            if (window.midasPWA && window.midasPWA.deferredPrompt) {
+                resultDiv.innerHTML = '<span class="status-indicator success"></span>Install Prompt: Available';
+                window.midasPWA.installApp();
+            } else {
+                resultDiv.innerHTML = '<span class="status-indicator warning"></span>Install Prompt: Not available (already installed or not supported)';
+            }
+        }
+
+        function testOfflineMode() {
+            const resultDiv = document.getElementById('pwa-results');
+            resultDiv.style.display = 'block';
+            
+            if (navigator.onLine) {
+                resultDiv.innerHTML = '<span class="status-indicator success"></span>Connection: Online<br>Offline functionality ready';
+            } else {
+                resultDiv.innerHTML = '<span class="status-indicator warning"></span>Connection: Offline mode active';
+            }
+        }
+
+        function testSearchSuggestions() {
+            const resultDiv = document.getElementById('search-results');
+            const searchInput = document.getElementById('search-input');
+            
+            resultDiv.style.display = 'block';
+            searchInput.value = 'ser';
+            searchInput.focus();
+            
+            // Trigger input event
+            const event = new Event('input', { bubbles: true });
+            searchInput.dispatchEvent(event);
+            
+            resultDiv.innerHTML = '<span class="status-indicator success"></span>Search suggestions should appear above';
+        }
+
+        function testFuzzySearch() {
+            const resultDiv = document.getElementById('search-results');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<span class="status-indicator success"></span>Testing fuzzy search with "serun" (typo for serum)';
+            
+            setTimeout(() => {
+                window.location.href = 'search-results.html?query=serun';
+            }, 1000);
+        }
+
+        function testSearchHistory() {
+            const resultDiv = document.getElementById('search-results');
+            const history = JSON.parse(localStorage.getItem('midasBeautySearchHistory') || '[]');
+            
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<span class="status-indicator success"></span>Search History: ' + 
+                (history.length > 0 ? history.join(', ') : 'Empty');
+        }
+
+        function testAnimations() {
+            const resultDiv = document.getElementById('design-results');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<span class="status-indicator success"></span>Hover over elements to see smooth animations';
+        }
+
+        function testTypography() {
+            const resultDiv = document.getElementById('design-results');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<span class="status-indicator success"></span>Typography: Playfair Display (headings) + Inter (body)';
+        }
+
+        function testColorScheme() {
+            const resultDiv = document.getElementById('design-results');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<span class="status-indicator success"></span>Colors: Gold (#d4af37), Deep Black (#1a1a1a), Rich White (#fefefe)';
+        }
+
+        function testLoadTime() {
+            const resultDiv = document.getElementById('performance-results');
+            resultDiv.style.display = 'block';
+            
+            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+            resultDiv.innerHTML = '<span class="status-indicator success"></span>Page Load Time: ' + loadTime + 'ms';
+        }
+
+        function testCaching() {
+            const resultDiv = document.getElementById('performance-results');
+            resultDiv.style.display = 'block';
+            
+            if ('caches' in window) {
+                caches.keys().then(cacheNames => {
+                    resultDiv.innerHTML = '<span class="status-indicator success"></span>Caches: ' + cacheNames.length + ' active';
+                });
+            } else {
+                resultDiv.innerHTML = '<span class="status-indicator error"></span>Caching: Not supported';
+            }
+        }
+
+        function testResponsive() {
+            const resultDiv = document.getElementById('performance-results');
+            resultDiv.style.display = 'block';
+            
+            const width = window.innerWidth;
+            let device = 'Desktop';
+            if (width <= 768) device = 'Mobile';
+            else if (width <= 1024) device = 'Tablet';
+            
+            resultDiv.innerHTML = '<span class="status-indicator success"></span>Viewport: ' + width + 'px (' + device + ')';
+        }
+    </script>
+</body>
+</html>

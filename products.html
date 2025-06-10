@@ -2,10 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Products - Midas Beauty</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="Explore our premium collection of beauty products including skincare, makeup, and haircare essentials.">
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#d4af37">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Icons -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icons/icon-192x192.png">
+
+    <!-- Stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/performance-enhancements.css">
+    <link rel="stylesheet" href="css/customer-engagement.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -75,103 +90,121 @@
 
     <section class="products-content">
         <div class="container">
-            <div class="product-categories">
-                <button class="category-btn active" data-category="all">All Products</button>
-                <button class="category-btn" data-category="skincare">Skincare</button>
-                <button class="category-btn" data-category="makeup">Makeup</button>
-                <button class="category-btn" data-category="haircare">Haircare</button>
+            <!-- Enhanced Product Filters -->
+            <div class="product-filters" data-aos="fade-up">
+                <div class="filter-header">
+                    <h3>Filter Products</h3>
+                    <button class="filter-toggle" onclick="toggleFilters()">
+                        <i class="fas fa-filter"></i>
+                        Filters
+                    </button>
+                </div>
+
+                <div class="filter-content">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label>Category</label>
+                            <select id="category-filter">
+                                <option value="all">All Categories</option>
+                                <option value="skincare">Skincare</option>
+                                <option value="makeup">Makeup</option>
+                                <option value="haircare">Haircare</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Brand</label>
+                            <select id="brand-filter">
+                                <option value="all">All Brands</option>
+                                <option value="midas-beauty">Midas Beauty</option>
+                                <option value="radiant-glow">Radiant Glow</option>
+                                <option value="velvet-luxe">Velvet Luxe</option>
+                                <option value="pure-essence">Pure Essence</option>
+                                <option value="golden-hour">Golden Hour</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Price Range</label>
+                            <select id="price-filter">
+                                <option value="all">All Prices</option>
+                                <option value="0-25">$0 - $25</option>
+                                <option value="25-50">$25 - $50</option>
+                                <option value="50-100">$50 - $100</option>
+                                <option value="100+">$100+</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Sort By</label>
+                            <select id="sort-filter">
+                                <option value="featured">Featured</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="rating">Highest Rated</option>
+                                <option value="newest">Newest</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button class="btn btn-secondary" onclick="clearFilters()">Clear All</button>
+                        <button class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
+                    </div>
+                </div>
             </div>
 
-            <div class="product-grid">
-                <!-- Skincare Products -->
-                <div class="product-card" data-category="skincare">
-                    <a href="product-details/radiance-serum.html" class="product-link">
-                        <img src="images/products/radiance-serum.jpg" alt="Radiance Serum">
-                    </a>
-                    <h3><a href="product-details/radiance-serum.html">Radiance Serum</a></h3>
-                    <p class="price">$49.99</p>
-                    <p class="description">Our premium brightening serum combines 20% Vitamin C with hyaluronic acid to boost collagen production, reduce fine lines, and deliver intense hydration. This powerful formula helps fade dark spots and evens skin tone for a radiant, youthful complexion. Suitable for all skin types and dermatologist tested.</p>
-                    <div class="product-buttons">
-                        <a href="#" class="btn add-to-cart-btn">Add to Cart</a>
-                        <a href="product-details/radiance-serum.html" class="btn view-details-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="product-card" data-category="skincare">
-                    <a href="product-details/hydrating-moisturizer.html" class="product-link">
-                        <img src="images/products/hydrating-moisturizer.jpg" alt="Hydrating Moisturizer">
-                    </a>
-                    <h3><a href="product-details/hydrating-moisturizer.html">Hydrating Moisturizer</a></h3>
-                    <p class="price">$39.99</p>
-                    <p class="description">This luxurious moisturizer features a blend of ceramides, peptides, and natural oils that lock in moisture for up to 72 hours. The non-greasy formula absorbs quickly, strengthens the skin barrier, and provides antioxidant protection against environmental stressors. Perfect for dry, normal, and combination skin types.</p>
-                    <div class="product-buttons">
-                        <a href="#" class="btn add-to-cart-btn">Add to Cart</a>
-                        <a href="product-details/hydrating-moisturizer.html" class="btn view-details-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="product-card" data-category="skincare">
-                    <a href="product-details/gentle-cleanser.html" class="product-link">
-                        <img src="images/products/gentle-cleanser.jpg" alt="Gentle Cleanser">
-                    </a>
-                    <h3><a href="product-details/gentle-cleanser.html">Gentle Cleanser</a></h3>
-                    <p class="price">$29.99</p>
-                    <p class="description">Our sulfate-free cleanser effectively removes makeup, dirt, and impurities without disrupting your skin's natural pH balance. Enriched with aloe vera, chamomile, and cucumber extract, this gentle formula soothes and calms sensitive skin while maintaining essential moisture. Fragrance-free and allergy-tested for even the most sensitive skin types.</p>
-                    <div class="product-buttons">
-                        <a href="#" class="btn add-to-cart-btn">Add to Cart</a>
-                        <a href="product-details/gentle-cleanser.html" class="btn view-details-btn">View Details</a>
-                    </div>
-                </div>
+            <!-- Product Categories (Quick Filters) -->
+            <div class="product-categories" data-aos="fade-up" data-aos-delay="100">
+                <button class="category-btn active" data-category="all">
+                    <i class="fas fa-th"></i>
+                    All Products
+                    <span class="count" id="count-all">80</span>
+                </button>
+                <button class="category-btn" data-category="skincare">
+                    <i class="fas fa-leaf"></i>
+                    Skincare
+                    <span class="count" id="count-skincare">35</span>
+                </button>
+                <button class="category-btn" data-category="makeup">
+                    <i class="fas fa-palette"></i>
+                    Makeup
+                    <span class="count" id="count-makeup">30</span>
+                </button>
+                <button class="category-btn" data-category="haircare">
+                    <i class="fas fa-cut"></i>
+                    Haircare
+                    <span class="count" id="count-haircare">15</span>
+                </button>
+            </div>
 
-                <!-- Makeup Products -->
-                <div class="product-card" data-category="makeup">
-                    <a href="product-details/liquid-foundation.html" class="product-link">
-                        <img src="images/products/liquid-foundation.jpg" alt="Liquid Foundation">
-                    </a>
-                    <h3><a href="product-details/liquid-foundation.html">Liquid Foundation</a></h3>
-                    <p class="price">$45.99</p>
-                    <p class="description">This buildable, medium-to-full coverage foundation features a revolutionary formula that adapts to your skin tone and texture. Infused with hyaluronic acid and vitamin E, it provides 24-hour hydration while minimizing the appearance of pores and imperfections. Available in 40 inclusive shades with a natural, skin-like finish that resists creasing and transfer.</p>
-                    <div class="product-buttons">
-                        <a href="#" class="btn add-to-cart-btn">Add to Cart</a>
-                        <a href="product-details/liquid-foundation.html" class="btn view-details-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="product-card" data-category="makeup">
-                    <a href="product-details/volumizing-mascara.html" class="product-link">
-                        <img src="images/products/volumizing-mascara.jpg" alt="Volumizing Mascara">
-                    </a>
-                    <h3><a href="product-details/volumizing-mascara.html">Volumizing Mascara</a></h3>
-                    <p class="price">$24.99</p>
-                    <p class="description">Our innovative mascara features a unique hourglass brush that coats each lash from root to tip, adding dramatic volume and length without clumping. The smudge-proof, flake-resistant formula contains lash-conditioning peptides and biotin to strengthen and nourish lashes over time. Ophthalmologist-tested and suitable for sensitive eyes and contact lens wearers.</p>
-                    <div class="product-buttons">
-                        <a href="#" class="btn add-to-cart-btn">Add to Cart</a>
-                        <a href="product-details/volumizing-mascara.html" class="btn view-details-btn">View Details</a>
-                    </div>
-                </div>
+            <!-- Products Loading State -->
+            <div class="products-loading" id="products-loading">
+                <div class="loading-spinner"></div>
+                <p>Loading luxury products...</p>
+            </div>
 
-                <!-- Haircare Products -->
-                <div class="product-card" data-category="haircare">
-                    <a href="product-details/repair-shampoo.html" class="product-link">
-                        <img src="images/products/repair-shampoo.jpg" alt="Repair Shampoo">
-                    </a>
-                    <h3><a href="product-details/repair-shampoo.html">Repair Shampoo</a></h3>
-                    <p class="price">$32.99</p>
-                    <p class="description">This professional-grade repair shampoo is formulated with keratin, argan oil, and our exclusive bond-building complex to restore damaged hair from within. It gently cleanses while strengthening hair fibers, preventing breakage, and protecting against future damage. The sulfate-free formula is color-safe and ideal for chemically treated, heat-styled, or naturally dry hair.</p>
-                    <div class="product-buttons">
-                        <a href="#" class="btn add-to-cart-btn">Add to Cart</a>
-                        <a href="product-details/repair-shampoo.html" class="btn view-details-btn">View Details</a>
-                    </div>
+            <!-- Dynamic Product Grid -->
+            <div class="product-grid" id="products-grid" data-aos="fade-up" data-aos-delay="200">
+                <!-- Products will be dynamically loaded here by main.js -->
+            </div>
+
+            <!-- No Products Message -->
+            <div class="no-products" id="no-products" style="display: none;">
+                <div class="no-products-content">
+                    <i class="fas fa-search"></i>
+                    <h3>No products found</h3>
+                    <p>Try adjusting your filters or search criteria</p>
+                    <button class="btn btn-primary" onclick="clearFilters()">Clear Filters</button>
                 </div>
-                <div class="product-card" data-category="haircare">
-                    <a href="product-details/hydrating-conditioner.html" class="product-link">
-                        <img src="images/products/hydrating-conditioner.jpg" alt="Hydrating Conditioner">
-                    </a>
-                    <h3><a href="product-details/hydrating-conditioner.html">Hydrating Conditioner</a></h3>
-                    <p class="price">$32.99</p>
-                    <p class="description">Our intensive hydrating conditioner combines shea butter, coconut oil, and silk proteins to transform dry, damaged hair into silky, manageable locks. The deep-penetrating formula repairs the hair cuticle, eliminates frizz, and enhances shine without weighing hair down. Use weekly as a 10-minute treatment mask for extra hydration and repair.</p>
-                    <div class="product-buttons">
-                        <a href="#" class="btn add-to-cart-btn">Add to Cart</a>
-                        <a href="product-details/hydrating-conditioner.html" class="btn view-details-btn">View Details</a>
-                    </div>
-                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-section" id="load-more-section" style="display: none;">
+                <button class="btn btn-outline load-more-btn" onclick="loadMoreProducts()">
+                    <i class="fas fa-plus"></i>
+                    Load More Products
+                </button>
             </div>
         </div>
     </section>
@@ -204,8 +237,65 @@
         </div>
     </footer>
 
+    <!-- Load product database first -->
+    <script src="js/products-database.js"></script>
+    <script src="js/brands-categories-system.js"></script>
+
+    <!-- Load main functionality -->
     <script src="js/main.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
     <script src="js/search.js"></script>
+    <script src="js/pwa.js"></script>
+
+    <!-- Load customer engagement features -->
+    <script src="js/chatbot.js"></script>
+    <script src="js/whatsapp-integration.js"></script>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+    <!-- Product page specific functionality -->
+    <script>
+        // Product page specific functions
+        function toggleFilters() {
+            const filterContent = document.querySelector('.filter-content');
+            filterContent.classList.toggle('active');
+        }
+
+        function clearFilters() {
+            document.getElementById('category-filter').value = 'all';
+            document.getElementById('brand-filter').value = 'all';
+            document.getElementById('price-filter').value = 'all';
+            document.getElementById('sort-filter').value = 'featured';
+
+            // Reset category buttons
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('[data-category="all"]').classList.add('active');
+
+            // Reload products
+            if (window.midasMain) {
+                midasMain.renderAllProducts();
+            }
+        }
+
+        function applyFilters() {
+            const category = document.getElementById('category-filter').value;
+            const brand = document.getElementById('brand-filter').value;
+            const price = document.getElementById('price-filter').value;
+            const sort = document.getElementById('sort-filter').value;
+
+            // Apply filters through main system
+            if (window.midasMain) {
+                midasMain.applyAdvancedFilters({ category, brand, price, sort });
+            }
+        }
+
+        function loadMoreProducts() {
+            if (window.midasMain) {
+                midasMain.loadMoreProducts();
+            }
+        }
+    </script>
 </body>
 </html>

@@ -2,11 +2,215 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Midas Beauty</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Midas Beauty - Premium Beauty Products</title>
+    <meta name="description" content="Discover premium beauty products with our luxury collection of skincare, makeup, and haircare essentials. Experience the golden touch of beauty.">
+    <meta name="keywords" content="beauty, skincare, makeup, haircare, premium, luxury, cosmetics">
+    <meta name="author" content="Midas Beauty">
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#d4af37">
+    <meta name="msapplication-TileColor" content="#d4af37">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Midas Beauty">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Midas Beauty">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Icons -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/icons/icon-16x16.png">
+
+    <!-- Critical CSS - Inline for performance -->
+    <style>
+        /* Critical above-the-fold styles */
+        :root {
+            --primary-gold: #d4af37;
+            --secondary-gold: #f4e4bc;
+            --accent-gold: #b8860b;
+            --deep-black: #1a1a1a;
+            --charcoal: #2c2c2c;
+            --rich-white: #fefefe;
+            --pearl-white: #f8f8f8;
+            --sophisticated-gray: #6c6c6c;
+            --light-gray: #e8e8e8;
+            --shadow-color: rgba(26, 26, 26, 0.15);
+            --gold-shadow: rgba(212, 175, 55, 0.25);
+            --font-primary: 'Playfair Display', serif;
+            --font-secondary: 'Inter', sans-serif;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-xxl: 4rem;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-elegant: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            line-height: 1.7;
+            color: var(--deep-black);
+            background: var(--rich-white);
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        /* Critical header styles */
+        header {
+            background: linear-gradient(135deg, var(--rich-white) 0%, var(--pearl-white) 100%);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px var(--shadow-color);
+            padding: var(--spacing-lg) 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .logo h1 {
+            font-family: var(--font-primary);
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition-elegant);
+        }
+
+        /* Critical hero styles */
+        .hero {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.7), rgba(212, 175, 55, 0.1)), url('images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--rich-white);
+            text-align: center;
+            padding: var(--spacing-xxl) 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h2 {
+            font-family: var(--font-primary);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            margin-bottom: var(--spacing-lg);
+            background: linear-gradient(135deg, var(--rich-white), var(--secondary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading spinner for performance */
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--light-gray);
+            border-radius: 50%;
+            border-top-color: var(--primary-gold);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"></noscript>
+
+    <link rel="preload" href="css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/style.css"></noscript>
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
+
+    <!-- Performance enhancements CSS -->
+    <link rel="preload" href="css/performance-enhancements.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/performance-enhancements.css"></noscript>
+
+    <!-- Customer engagement CSS -->
+    <link rel="preload" href="css/customer-engagement.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/customer-engagement.css"></noscript>
+
+    <!-- E-commerce management system CSS -->
+    <link rel="preload" href="css/inventory-system.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/inventory-system.css"></noscript>
+    <link rel="preload" href="css/customer-dashboard.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/customer-dashboard.css"></noscript>
+    <link rel="preload" href="css/admin-dashboard.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/admin-dashboard.css"></noscript>
+    <link rel="preload" href="css/product-recommendations.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/product-recommendations.css"></noscript>
+
+    <!-- Header redesign CSS -->
+    <link rel="preload" href="css/header-redesign.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/header-redesign.css"></noscript>
+
+    <!-- Auth0 SPA SDK -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.1/auth0-spa-js.production.js"></script>
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Midas Beauty - Premium Beauty Products">
+    <meta property="og:description" content="Discover premium beauty products with our luxury collection of skincare, makeup, and haircare essentials.">
+    <meta property="og:image" content="images/hero-bg.jpg">
+    <meta property="og:url" content="https://midasbeauty.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Midas Beauty - Premium Beauty Products">
+    <meta name="twitter:description" content="Discover premium beauty products with our luxury collection.">
+    <meta name="twitter:image" content="images/hero-bg.jpg">
 </head>
 <body>
     <header>
@@ -17,32 +221,133 @@
                 </div>
                 <div class="search-container">
                     <form id="search-form" action="search-results.html" method="get">
-                        <input type="text" id="search-input" name="query" placeholder="Search products...">
+                        <input type="text" id="search-input" name="query" placeholder="Search luxury beauty products...">
                         <button type="submit" id="search-button">
                             <i class="fas fa-search"></i>
                         </button>
                     </form>
+                    <div id="search-suggestions" class="search-suggestions"></div>
                 </div>
                 <div class="header-icons">
                     <div class="user-account">
-                        <a href="login.html" id="account-link" title="Login / Register">
+                        <a href="#" id="account-link" title="My Account">
                             <i class="fas fa-user"></i>
                         </a>
                     </div>
+                    <div class="wishlist-icon">
+                        <a href="#" id="wishlist-toggle" title="Wishlist">
+                            <i class="fas fa-heart"></i>
+                            <span id="wishlist-count" class="wishlist-count">0</span>
+                        </a>
+                    </div>
                     <div class="cart-icon">
-                        <a href="#" id="cart-toggle">
+                        <a href="#" id="cart-toggle" title="Shopping Cart">
                             <i class="fas fa-shopping-cart"></i>
-                            <span id="cart-count">0</span>
+                            <span id="cart-count" class="cart-count">0</span>
                         </a>
                     </div>
                 </div>
+
+                <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+            <nav class="main-navigation" id="main-navigation">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="products.html" class="nav-link dropdown-toggle">
+                            Products
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-section">
+                                <h4>By Category</h4>
+                                <a href="products.html?category=skincare" class="dropdown-link">
+                                    <i class="fas fa-leaf"></i>
+                                    Skincare
+                                </a>
+                                <a href="products.html?category=makeup" class="dropdown-link">
+                                    <i class="fas fa-palette"></i>
+                                    Makeup
+                                </a>
+                                <a href="products.html?category=haircare" class="dropdown-link">
+                                    <i class="fas fa-cut"></i>
+                                    Haircare
+                                </a>
+                                <a href="products.html?category=fragrance" class="dropdown-link">
+                                    <i class="fas fa-spray-can"></i>
+                                    Fragrance
+                                </a>
+                            </div>
+                            <div class="dropdown-section">
+                                <h4>Collections</h4>
+                                <a href="products.html?filter=bestsellers" class="dropdown-link">
+                                    <i class="fas fa-star"></i>
+                                    Best Sellers
+                                </a>
+                                <a href="products.html?filter=new" class="dropdown-link">
+                                    <i class="fas fa-sparkles"></i>
+                                    New Arrivals
+                                </a>
+                                <a href="products.html?filter=luxury" class="dropdown-link">
+                                    <i class="fas fa-crown"></i>
+                                    Luxury Collection
+                                </a>
+                                <a href="products.html?filter=sale" class="dropdown-link">
+                                    <i class="fas fa-tag"></i>
+                                    Sale Items
+                                </a>
+                            </div>
+                            <div class="dropdown-section featured">
+                                <h4>Featured</h4>
+                                <div class="featured-product">
+                                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=80&h=80&fit=crop" alt="Featured Product" loading="lazy">
+                                    <div class="featured-info">
+                                        <h5>24K Gold Serum</h5>
+                                        <span class="price">$89.99</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="brands.html" class="nav-link dropdown-toggle">
+                            Brands
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-section">
+                                <h4>Premium Brands</h4>
+                                <a href="brands/midas-beauty.html" class="dropdown-link">
+                                    <i class="fas fa-gem"></i>
+                                    Midas Beauty
+                                </a>
+                                <a href="brands/radiant-glow.html" class="dropdown-link">
+                                    <i class="fas fa-sun"></i>
+                                    Radiant Glow
+                                </a>
+                                <a href="brands/velvet-luxe.html" class="dropdown-link">
+                                    <i class="fas fa-heart"></i>
+                                    Velvet Luxe
+                                </a>
+                                <a href="brands.html" class="dropdown-link view-all">
+                                    View All Brands
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -67,88 +372,454 @@
         </div>
     </div>
 
-    <section class="hero">
+    <section class="hero parallax-element">
         <div class="container">
-            <h2>Transform Your Beauty Routine</h2>
-            <p>Discover premium beauty products that bring out your natural glow</p>
-            <a href="products.html" class="btn">Shop Now</a>
+            <div class="hero-content" data-aos="fade-up">
+                <h2>Transform Your Beauty Routine</h2>
+                <p>Discover premium beauty products from 10 luxury brands that bring out your natural glow</p>
+                <div class="hero-actions">
+                    <a href="products.html" class="btn btn-primary">Shop Now</a>
+                    <a href="brands.html" class="btn btn-secondary">Explore Brands</a>
+                </div>
+
+                <!-- Hero Products Preview -->
+                <div class="hero-products" id="hero-products">
+                    <!-- Dynamic hero products will be loaded here -->
+                </div>
+            </div>
+
+
         </div>
     </section>
 
-    <section class="featured-products">
+    <!-- Dynamic Featured Products Section -->
+    <div id="featured-products">
+        <!-- Featured products carousel will be dynamically loaded here -->
+    </div>
+
+    <!-- Brand Showcase Section -->
+    <section class="brand-showcase" data-aos="fade-up">
         <div class="container">
-            <h2>Featured Products</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="images/products/radiance-serum.jpg" alt="Radiance Serum">
-                    <h3>Radiance Serum</h3>
-                    <p class="price">$49.99</p>
-                    <p class="description">Our premium brightening serum with Vitamin C and hyaluronic acid.</p>
-                    <a href="#" class="btn">Add to Cart</a>
+            <div class="section-header">
+                <h2>Luxury Beauty Brands</h2>
+                <p>Discover our curated collection of premium beauty brands</p>
+            </div>
+            <div class="brand-grid">
+                <div class="brand-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="brand-logo">
+                        <img src="images/brands/midas-beauty-logo.jpg" alt="Midas Beauty">
+                    </div>
+                    <h3>Midas Beauty</h3>
+                    <p>Luxury skincare with 24K gold</p>
+                    <a href="brands/midas-beauty.html" class="brand-link">Explore Collection</a>
                 </div>
-                <div class="product-card">
-                    <img src="images/products/hydrating-moisturizer.jpg" alt="Hydrating Moisturizer">
-                    <h3>Hydrating Moisturizer</h3>
-                    <p class="price">$39.99</p>
-                    <p class="description">Luxurious moisturizer with ceramides and natural oils.</p>
-                    <a href="#" class="btn">Add to Cart</a>
+                <div class="brand-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="brand-logo">
+                        <img src="images/brands/radiant-glow-logo.jpg" alt="Radiant Glow">
+                    </div>
+                    <h3>Radiant Glow</h3>
+                    <p>Natural radiance enhancers</p>
+                    <a href="brands/radiant-glow.html" class="brand-link">Explore Collection</a>
                 </div>
-                <div class="product-card">
-                    <img src="images/products/gentle-cleanser.jpg" alt="Gentle Cleanser">
-                    <h3>Gentle Cleanser</h3>
-                    <p class="price">$29.99</p>
-                    <p class="description">Sulfate-free cleanser that removes impurities without stripping skin.</p>
-                    <a href="#" class="btn">Add to Cart</a>
+                <div class="brand-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="brand-logo">
+                        <img src="images/brands/velvet-luxe-logo.jpg" alt="Velvet Luxe">
+                    </div>
+                    <h3>Velvet Luxe</h3>
+                    <p>Premium makeup essentials</p>
+                    <a href="brands/velvet-luxe.html" class="brand-link">Explore Collection</a>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 2rem;">
+                <a href="brands.html" class="btn btn-outline">View All Brands</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Customers Say</h2>
+                <p>Real reviews from our luxury beauty community</p>
+            </div>
+            <div class="testimonial-carousel">
+                <div class="testimonial-grid">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"The 24K Gold Radiance Serum has completely transformed my skincare routine! After just 2 weeks, my skin looks more radiant and feels incredibly smooth. The luxury packaging makes it feel like a spa treatment at home."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face" alt="Sarah Johnson" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <span>New York, NY</span>
+                                <div class="verified-purchase">
+                                    <i class="fas fa-check-circle"></i>
+                                    Verified Purchase: 24K Gold Radiance Serum
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"I'm absolutely obsessed with the Velvet Luxe Foundation! The coverage is flawless yet natural, and it lasts all day without feeling heavy. The shade matching was perfect, and the finish is so luxurious."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" alt="Michael Torres" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <h4>Michael Torres</h4>
+                                <span>Beauty Enthusiast, Los Angeles</span>
+                                <div class="verified-purchase">
+                                    <i class="fas fa-check-circle"></i>
+                                    Verified Purchase: Velvet Luxe Foundation
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"The Hydrating Moisturizer is a game-changer! My dry skin has never felt so nourished. The texture is rich but not greasy, and the subtle golden glow it gives is absolutely divine. Worth every penny!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face" alt="Emma Rodriguez" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <h4>Emma Rodriguez</h4>
+                                <span>Skincare Specialist, Miami</span>
+                                <div class="verified-purchase">
+                                    <i class="fas fa-check-circle"></i>
+                                    Verified Purchase: Hydrating Moisturizer
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"The Volumizing Mascara gives me the most incredible lashes! No clumping, amazing length, and it stays put all day. The wand design is perfect for reaching every lash. This is now my holy grail mascara!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face" alt="James Wilson" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <h4>James Wilson</h4>
+                                <span>Makeup Artist, Chicago</span>
+                                <div class="verified-purchase">
+                                    <i class="fas fa-check-circle"></i>
+                                    Verified Purchase: Volumizing Mascara
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"I've tried many luxury beauty brands, but Midas Beauty stands out for its exceptional quality and results. The Repair Shampoo has restored my damaged hair to its former glory. Highly recommend!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=60&h=60&fit=crop&crop=face" alt="Lisa Chen" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <h4>Lisa Chen</h4>
+                                <span>Hair Stylist, San Francisco</span>
+                                <div class="verified-purchase">
+                                    <i class="fas fa-check-circle"></i>
+                                    Verified Purchase: Repair Shampoo
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="600">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"The customer service is as luxurious as the products! Fast shipping, beautiful packaging, and the products exceeded my expectations. The Gentle Cleanser is perfect for my sensitive skin."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&crop=face" alt="David Kim" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <h4>David Kim</h4>
+                                <span>Dermatologist, Seattle</span>
+                                <div class="verified-purchase">
+                                    <i class="fas fa-check-circle"></i>
+                                    Verified Purchase: Gentle Cleanser
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-summary">
+                <div class="summary-stats">
+                    <div class="stat">
+                        <span class="stat-number">4.9</span>
+                        <div class="stat-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="stat-label">Average Rating</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">2,847</span>
+                        <span class="stat-label">Happy Customers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Would Recommend</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="testimonials">
-        <div class="container">
-            <h2>What Our Customers Say</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial">
-                    <p>"I've been using Midas Beauty products for 3 months and my skin has never looked better!"</p>
-                    <cite>- Sarah J.</cite>
-                </div>
-                <div class="testimonial">
-                    <p>"The quality of these products is unmatched. Worth every penny!"</p>
-                    <cite>- Michael T.</cite>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
+    <footer class="luxury-footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Midas Beauty</h3>
-                    <p>Premium beauty products for the modern individual.</p>
+                <div class="footer-section brand-section">
+                    <div class="footer-logo">
+                        <h3>Midas Beauty</h3>
+                        <div class="logo-tagline">Where Luxury Meets Beauty</div>
+                    </div>
+                    <p>Discover the finest collection of premium beauty products crafted for the discerning individual who appreciates luxury, quality, and exceptional results.</p>
+                    <div class="social-media">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="https://instagram.com/midasbeauty" target="_blank" rel="noopener" aria-label="Follow us on Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://facebook.com/midasbeauty" target="_blank" rel="noopener" aria-label="Follow us on Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://twitter.com/midasbeauty" target="_blank" rel="noopener" aria-label="Follow us on Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://youtube.com/midasbeauty" target="_blank" rel="noopener" aria-label="Subscribe to our YouTube channel">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://tiktok.com/@midasbeauty" target="_blank" rel="noopener" aria-label="Follow us on TikTok">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="footer-section">
-                    <h3>Quick Links</h3>
+                    <h3>Products</h3>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="products.html">Products</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="products.html?category=skincare">Skincare</a></li>
+                        <li><a href="products.html?category=makeup">Makeup</a></li>
+                        <li><a href="products.html?category=haircare">Haircare</a></li>
+                        <li><a href="products.html?category=fragrance">Fragrance</a></li>
+                        <li><a href="products.html?filter=bestsellers">Best Sellers</a></li>
+                        <li><a href="products.html?filter=new">New Arrivals</a></li>
+                        <li><a href="brands.html">All Brands</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-section">
-                    <h3>Contact Us</h3>
-                    <p>Email: info@midasbeauty.com</p>
-                    <p>Phone: (555) 123-4567</p>
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="returns.html">Returns & Exchanges</a></li>
+                        <li><a href="size-guide.html">Size Guide</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="track-order.html">Track Your Order</a></li>
+                        <li><a href="gift-cards.html">Gift Cards</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="sustainability.html">Sustainability</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="press.html">Press</a></li>
+                        <li><a href="affiliate.html">Affiliate Program</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section newsletter-section">
+                    <h3>Stay Connected</h3>
+                    <p>Subscribe to our newsletter for exclusive offers, beauty tips, and new product launches.</p>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" placeholder="Enter your email" required aria-label="Email address for newsletter">
+                            <button type="submit" class="newsletter-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div class="newsletter-benefits">
+                            <div class="benefit">
+                                <i class="fas fa-gift"></i>
+                                <span>Exclusive Offers</span>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-star"></i>
+                                <span>Beauty Tips</span>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-bell"></i>
+                                <span>New Arrivals</span>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="contact-info">
+                        <h4>Contact Information</h4>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@midasbeauty.com">info@midasbeauty.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Fri: 9AM-6PM EST</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>New York, NY</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2023 Midas Beauty. All rights reserved.</p>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; 2024 Midas Beauty. All rights reserved.</p>
+                    </div>
+                    <div class="payment-methods">
+                        <span>We Accept:</span>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa" title="Visa"></i>
+                            <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                            <i class="fab fa-cc-amex" title="American Express"></i>
+                            <i class="fab fa-cc-paypal" title="PayPal"></i>
+                            <i class="fab fa-apple-pay" title="Apple Pay"></i>
+                            <i class="fab fa-google-pay" title="Google Pay"></i>
+                        </div>
+                    </div>
+                    <div class="security-badges">
+                        <div class="badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secure Shopping</span>
+                        </div>
+                        <div class="badge">
+                            <i class="fas fa-truck"></i>
+                            <span>Free Shipping $50+</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- Load performance optimization first -->
+    <script src="js/performance.js"></script>
+
+    <!-- Load product database -->
+    <script src="js/products-database.js"></script>
+    <script src="js/brands-categories-system.js"></script>
+
+    <!-- Load main functionality -->
     <script src="js/main.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/pwa.js"></script>
+
+    <!-- Load luxury animations (deferred for performance) -->
+    <script src="js/luxury-animations.js" defer></script>
+
+    <!-- Load customer engagement features -->
+    <script src="js/chatbot.js" defer></script>
+    <script src="js/whatsapp-integration.js" defer></script>
+
+    <!-- Load enhanced navigation -->
+    <script src="js/enhanced-navigation.js" defer></script>
+
+    <!-- Load e-commerce management systems -->
+    <script src="js/inventory-management.js" defer></script>
+    <script src="js/order-management.js" defer></script>
+    <script src="js/customer-dashboard.js" defer></script>
+    <script src="js/admin-dashboard.js" defer></script>
+    <script src="js/product-recommendations.js" defer></script>
+
+    <!-- Header functionality script -->
+    <script src="js/header-functionality.js" defer></script>
+
+    <!-- Auth0 integration scripts -->
+    <script src="js/auth0-integration.js" defer></script>
+    <script src="js/auth0-adapter.js" defer></script>
+
+    <!-- Product database scripts -->
+    <script src="js/product-database.js" defer></script>
+    <script src="js/product-catalog-extended.js" defer></script>
+    <script src="js/product-database-manager.js" defer></script>
+
+    <!-- Font Awesome for icons (loaded asynchronously) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" defer></script>
 </body>
 </html>

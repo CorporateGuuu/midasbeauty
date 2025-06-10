@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netlify Deployment Preparation - MidasBeauty</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #00ad9f, #0066cc);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .netlify-logo {
+            font-size: 3rem;
+        }
+        
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #00ad9f;
+        }
+        
+        .section h2 {
+            color: #1a1a1a;
+            margin-top: 0;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .deployment-method {
+            background: linear-gradient(135deg, #e8f5e8, #d4edda);
+            border: 2px solid #28a745;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .deployment-method:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.2);
+        }
+        
+        .deployment-method.selected {
+            border-color: #00ad9f;
+            background: linear-gradient(135deg, #e8f8f7, #d1f2ef);
+        }
+        
+        .method-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #155724;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .method-description {
+            color: #155724;
+            line-height: 1.5;
+        }
+        
+        .method-pros {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #0c5460;
+        }
+        
+        .file-checklist {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .file-category {
+            margin-bottom: 20px;
+        }
+        
+        .file-category h4 {
+            color: #00ad9f;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .file-item:last-child {
+            border-bottom: none;
+        }
+        
+        .file-checkbox {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        .file-name {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #1a1a1a;
+            flex: 1;
+        }
+        
+        .file-status {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .status-ready {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-missing {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .deployment-steps {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            background: #00ad9f;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+        
+        .step-description {
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .netlify-url-input {
+            background: white;
+            border: 2px solid #00ad9f;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .netlify-url-input label {
+            display: block;
+            font-weight: bold;
+            color: #00ad9f;
+            margin-bottom: 10px;
+        }
+        
+        .netlify-url-input input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        .netlify-url-input input:focus {
+            outline: none;
+            border-color: #00ad9f;
+            box-shadow: 0 0 0 2px rgba(0, 173, 159, 0.2);
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .action-btn {
+            background: linear-gradient(135deg, #00ad9f, #0066cc);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 173, 159, 0.3);
+        }
+        
+        .action-btn.secondary {
+            background: linear-gradient(135deg, #6c757d, #495057);
+        }
+        
+        .verification-section {
+            background: linear-gradient(135deg, #d1ecf1, #bee5eb);
+            border: 2px solid #17a2b8;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .verification-section h3 {
+            color: #0c5460;
+            margin-top: 0;
+        }
+        
+        .verification-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .verification-list li {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            color: #0c5460;
+        }
+        
+        .verification-list li::before {
+            content: '🔍';
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .success-message {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border: 2px solid #28a745;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .success-message h3 {
+            color: #155724;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        
+        .progress-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #00ad9f, #0066cc);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #00ad9f;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 2rem; flex-direction: column; }
+            .action-buttons { grid-template-columns: 1fr; }
+            .step { flex-direction: column; }
+            .step-number { margin-bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>
+            <span class="netlify-logo">🌐</span>
+            Netlify Deployment
+            <span style="background: linear-gradient(45deg, #d4af37, #f4e4a6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">MidasBeauty</span>
+        </h1>
+        <p>Deploy your comprehensive e-commerce management system to Netlify</p>
+    </div>
+
+    <div class="section">
+        <h2><span>🎯</span> Deployment Method Selection</h2>
+        
+        <div class="deployment-method" onclick="selectMethod('drag-drop')">
+            <div class="method-title">
+                <span>📁</span> Drag & Drop Deployment (Recommended)
+            </div>
+            <div class="method-description">
+                Upload your files directly to Netlify dashboard. Perfect for one-time deployment or quick updates.
+            </div>
+            <div class="method-pros">
+                ✅ Easiest method • ✅ No technical setup • ✅ Instant deployment • ✅ Perfect for beginners
+            </div>
+        </div>
+        
+        <div class="deployment-method" onclick="selectMethod('git-integration')">
+            <div class="method-title">
+                <span>🔗</span> Git Integration (Best for Updates)
+            </div>
+            <div class="method-description">
+                Connect your GitHub repository to Netlify for automatic deployments when you make changes.
+            </div>
+            <div class="method-pros">
+                ✅ Automatic updates • ✅ Version control • ✅ Rollback capability • ✅ Team collaboration
+            </div>
+        </div>
+        
+        <div class="deployment-method" onclick="selectMethod('cli-deployment')">
+            <div class="method-title">
+                <span>⌨️</span> CLI Deployment (Advanced)
+            </div>
+            <div class="method-description">
+                Use Netlify CLI for command-line deployment. Great for developers comfortable with terminal.
+            </div>
+            <div class="method-pros">
+                ✅ Developer workflow • ✅ Scripted deployments • ✅ Advanced features • ✅ CI/CD integration
+            </div>
+        </div>
+    </div>
+
+    <div class="netlify-url-input">
+        <label for="netlify-url">Your Netlify Site URL:</label>
+        <input type="url" id="netlify-url" placeholder="https://your-site-name.netlify.app" 
+               onchange="updateNetlifyUrl(this.value)">
+        <small style="color: #666; margin-top: 5px; display: block;">
+            Enter your Netlify site URL to customize the verification links below
+        </small>
+    </div>
+
+    <div class="section">
+        <h2><span>📋</span> Pre-Deployment File Checklist</h2>
+        
+        <div class="file-checklist">
+            <div class="file-category">
+                <h4>JavaScript Files (8 files) → Upload to /js/ folder</h4>
+                <div class="file-item">
+                    <input type="checkbox" class="file-checkbox" id="file-inventory-js">
+                    <span class="file-name">inventory-management.js</span>
+                    <span class="file-status status-ready">Ready</span>
+                </div>
+                <div class="file-item">
+                    <input type="checkbox" class="file-checkbox" id="file-order-js">
+                    <span class="file-name">order-management.js</span>
+                    <span class="file-status status-ready">Ready</span>
+                </div>
+                <div class="file-item">
+                    <input type="checkbox" class="file-checkbox" id="file-customer-js">
+                    <span class="file-name">customer-dashboard.js</span>
+                    <span class="file-status status-ready">Ready</span>
+                </div>
+                <div class="file-item">
+                    <input type="checkbox" class="file-checkbox" id="file-admin-js">
+                    <span class="file-name">admin-dashboard.js</span>
+                    <span class="file-status status-ready">Ready</span>
+                </div>
+                <div class="file-item">
+                    <input type="checkbox" class="file-checkbox" id="file-recommendations-js">
+                    <span class="file-name">product-recommendations.js</span>
+                    <span class="file-status status-ready">Ready</span>
+                </div>
+                <div class="file-item">
+                    <input type="checkbox" class="file-checkbox" id="file-navigation-js">
+                    <span class="file-name">enhanced-navigation.js</span>
+                    <span class="file-status status-ready">Ready</span>
+                </div>
+                <div class="file-item">
+                    <input type="checkbox" class="file-checkbox" id="file-chatbot-js">
+                    <span class="file-name">chatbot.js</span>
+                    <span class="file-status status-ready">Ready</span>
+                </div>
+                <div class="file-item">
+                    <input type="checkbox" class="file-checkbox" id="file-whatsapp-js">
+                    <span class="file-name">whatsapp-integration.js</span>
+                    <span class="file-status status-ready">Ready</span>
+                </div>
+            </div>
+            
+            <div class="file-category">
+                <h4>CSS Files (5 files) → Upload to /css/ folder</h4>
+                <div class="file-item">
+                    <input type="checkbox" class="file-checkbox" id="file-inventory-css">
+                    <span class="file-name">inventory-system.css</span>
+                    <span class="file-status status-ready">Ready</span>
+                </div>
+                <div class="file-item">
+                    <input type="checkbox" class="file-checkbox" id="file-customer-css">
+                    <span class="file-name">customer-dashboard.css</span>
+                    <span class="file-status status-ready">Ready</span>
+                </div>
+                <div class="file-item">
+                    <input type="checkbox" class="file-checkbox" id="file-admin-css">
+                    <span class="file-name">admin-dashboard.css</span>
+                    <span class="file-status status-ready">Ready</span>
+                </div>
+                <div class="file-item">
+                    <input type="checkbox" class="file-checkbox" id="file-recommendations-css">
+                    <span class="file-name">product-recommendations.css</span>
+                    <span class="file-status status-ready">Ready</span>
+                </div>
+                <div class="file-item">
+                    <input type="checkbox" class="file-checkbox" id="file-engagement-css">
+                    <span class="file-name">customer-engagement.css</span>
+                    <span class="file-status status-ready">Ready</span>
+                </div>
+            </div>
+            
+            <div class="file-category">
+                <h4>Updated HTML File → Replace existing</h4>
+                <div class="file-item">
+                    <input type="checkbox" class="file-checkbox" id="file-index-html">
+                    <span class="file-name">index.html (updated with new includes)</span>
+                    <span class="file-status status-ready">Ready</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-text" id="progress-text">0% Complete - Check off files as you prepare them</div>
+    </div>
+
+    <div class="section" id="deployment-instructions" style="display: none;">
+        <h2><span>🚀</span> Deployment Instructions</h2>
+        <div id="deployment-steps"></div>
+    </div>
+
+    <div class="verification-section">
+        <h3>🧪 Post-Deployment Verification</h3>
+        <p>After deployment, test these URLs and features:</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+            <div>
+                <h4>File Accessibility Tests:</h4>
+                <ul class="verification-list">
+                    <li id="test-js-url">Test JavaScript files loading</li>
+                    <li id="test-css-url">Test CSS files loading</li>
+                    <li id="test-main-url">Test main website</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4>Feature Functionality Tests:</h4>
+                <ul class="verification-list">
+                    <li>Stock indicators on product pages</li>
+                    <li>Login/Register modal functionality</li>
+                    <li>Customer dashboard access</li>
+                    <li>Admin dashboard (key: midas_admin_2024)</li>
+                    <li>Product recommendations display</li>
+                    <li>Mobile responsiveness</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button class="action-btn" onclick="openNetlifyDashboard()">
+            <span>🌐</span> Open Netlify Dashboard
+        </button>
+        <button class="action-btn secondary" onclick="downloadDeploymentGuide()">
+            <span>📖</span> Download Full Guide
+        </button>
+        <button class="action-btn" onclick="testDeployment()" id="test-deployment-btn" disabled>
+            <span>🧪</span> Test Deployment
+        </button>
+        <button class="action-btn secondary" onclick="showTroubleshooting()">
+            <span>🔧</span> Troubleshooting
+        </button>
+    </div>
+
+    <div class="success-message" id="success-message" style="display: none;">
+        <h3>🎉 Deployment Successful!</h3>
+        <p>Your MidasBeauty e-commerce management system is now live on Netlify!</p>
+        <p><strong>Your website now features:</strong></p>
+        <ul style="text-align: left; display: inline-block;">
+            <li>✅ Real-time inventory tracking with stock indicators</li>
+            <li>✅ Complete customer authentication system</li>
+            <li>✅ Comprehensive customer dashboard</li>
+            <li>✅ Powerful admin management interface</li>
+            <li>✅ Smart product recommendations</li>
+            <li>✅ Enhanced navigation and user experience</li>
+        </ul>
+    </div>
+
+    <script>
+        let selectedMethod = '';
+        let netlifyUrl = '';
+        let checkedFiles = 0;
+        const totalFiles = 14;
+
+        function selectMethod(method) {
+            selectedMethod = method;
+            
+            // Update UI
+            document.querySelectorAll('.deployment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            // Show deployment instructions
+            showDeploymentInstructions(method);
+        }
+
+        function showDeploymentInstructions(method) {
+            const instructionsDiv = document.getElementById('deployment-instructions');
+            const stepsDiv = document.getElementById('deployment-steps');
+            
+            let instructions = '';
+            
+            switch(method) {
+                case 'drag-drop':
+                    instructions = `
+                        <div class="deployment-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <div class="step-title">Prepare Deployment Folder</div>
+                                    <div class="step-description">Create a folder called 'midasbeauty-netlify' and organize all your files with the correct folder structure (js/, css/, index.html).</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <div class="step-title">Access Netlify Dashboard</div>
+                                    <div class="step-description">Login to your Netlify account and go to your MidasBeauty site dashboard.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <div class="step-title">Deploy via Drag & Drop</div>
+                                    <div class="step-description">Click the "Deploys" tab, then drag your entire project folder to the deploy area. Netlify will automatically deploy your site.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <div class="step-title">Wait for Deployment</div>
+                                    <div class="step-description">Deployment usually takes 1-2 minutes. You'll see a green "Published" status when complete.</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'git-integration':
+                    instructions = `
+                        <div class="deployment-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <div class="step-title">Create GitHub Repository</div>
+                                    <div class="step-description">Create a new repository on GitHub and upload all your MidasBeauty files.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <div class="step-title">Connect to Netlify</div>
+                                    <div class="step-description">In Netlify, click "New site from Git" and connect your GitHub repository.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <div class="step-title">Configure Build Settings</div>
+                                    <div class="step-description">Set publish directory to "/" (root) and leave build command empty for static site.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <div class="step-title">Automatic Deployments</div>
+                                    <div class="step-description">Every time you push changes to GitHub, Netlify will automatically redeploy your site.</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'cli-deployment':
+                    instructions = `
+                        <div class="deployment-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <div class="step-title">Install Netlify CLI</div>
+                                    <div class="step-description">Run: <code>npm install -g netlify-cli</code></div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <div class="step-title">Login to Netlify</div>
+                                    <div class="step-description">Run: <code>netlify login</code></div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <div class="step-title">Deploy to Production</div>
+                                    <div class="step-description">Run: <code>netlify deploy --prod --dir .</code></div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            stepsDiv.innerHTML = instructions;
+            instructionsDiv.style.display = 'block';
+        }
+
+        function updateNetlifyUrl(url) {
+            netlifyUrl = url;
+            
+            // Update test URLs
+            if (url) {
+                document.getElementById('test-js-url').innerHTML = 
+                    `<a href="${url}/js/inventory-management.js" target="_blank">Test JavaScript files loading</a>`;
+                document.getElementById('test-css-url').innerHTML = 
+                    `<a href="${url}/css/customer-dashboard.css" target="_blank">Test CSS files loading</a>`;
+                document.getElementById('test-main-url').innerHTML = 
+                    `<a href="${url}" target="_blank">Test main website</a>`;
+                    
+                document.getElementById('test-deployment-btn').disabled = false;
+            }
+        }
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.file-checkbox');
+            checkedFiles = Array.from(checkboxes).filter(cb => cb.checked).length;
+            
+            const percentage = Math.round((checkedFiles / totalFiles) * 100);
+            document.getElementById('progress-fill').style.width = percentage + '%';
+            document.getElementById('progress-text').textContent = 
+                `${percentage}% Complete - ${checkedFiles}/${totalFiles} files prepared`;
+                
+            if (percentage === 100) {
+                document.getElementById('progress-text').textContent = 
+                    '🎉 All files ready for deployment!';
+                document.getElementById('progress-text').style.color = '#28a745';
+            }
+        }
+
+        function openNetlifyDashboard() {
+            window.open('https://app.netlify.com', '_blank');
+        }
+
+        function downloadDeploymentGuide() {
+            // Create a link to download the deployment guide
+            const link = document.createElement('a');
+            link.href = 'NETLIFY_DEPLOYMENT_GUIDE.md';
+            link.download = 'NETLIFY_DEPLOYMENT_GUIDE.md';
+            link.click();
+        }
+
+        function testDeployment() {
+            if (!netlifyUrl) {
+                alert('Please enter your Netlify URL first');
+                return;
+            }
+            
+            // Open test page
+            window.open('test-deployment.html', '_blank');
+            
+            // Show success message after a delay
+            setTimeout(() => {
+                document.getElementById('success-message').style.display = 'block';
+                document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
+            }, 2000);
+        }
+
+        function showTroubleshooting() {
+            alert(`Common Issues & Solutions:
+
+1. Files Not Found (404):
+   - Check folder structure (js/, css/)
+   - Verify file names are correct
+   - Ensure all files uploaded
+
+2. JavaScript Errors:
+   - Check browser console
+   - Verify all dependencies included
+   - Test file URLs directly
+
+3. Features Not Working:
+   - Clear browser cache
+   - Check localStorage enabled
+   - Test on different browsers
+
+4. Deployment Failed:
+   - Check Netlify deploy logs
+   - Verify file sizes under limits
+   - Contact Netlify support if needed`);
+        }
+
+        // Add event listeners to checkboxes
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.file-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+        });
+    </script>
+</body>
+</html>

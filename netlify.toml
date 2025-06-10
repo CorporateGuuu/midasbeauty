@@ -1,9 +1,83 @@
+# Netlify Configuration for MidasBeauty E-Commerce System
+# Optimized for performance, security, and e-commerce functionality
+
 [build]
   publish = "."
   command = ""
 
-# Redirect rule for SPA (Single Page Application)
+# Environment variables for production
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_VERSION = "9"
+
+# Headers for security and performance
+[[headers]]
+  # Apply to all files
+  for = "/*"
+  [headers.values]
+    # Security headers for e-commerce
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Content Security Policy for enhanced security
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https:; media-src 'self'; object-src 'none';"
+
+[[headers]]
+  # Cache JavaScript files for optimal performance
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  # Cache CSS files for optimal performance
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  # Cache images for 1 month
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# Redirects for e-commerce functionality
+[[redirects]]
+  # Handle admin dashboard routing
+  from = "/admin/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  # Handle customer dashboard routing
+  from = "/dashboard/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  # Handle product pages routing
+  from = "/products/*"
+  to = "/index.html"
+  status = 200
+
+# SPA fallback (keep this last)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Performance optimizations
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = false
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true

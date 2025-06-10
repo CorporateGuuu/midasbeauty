@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Icon Generator for Midas Beauty PWA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .icon-generator {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .icon-preview {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+        }
+        .icon-canvas {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 5px;
+        }
+        .download-btn {
+            background: #d4af37;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .download-btn:hover {
+            background: #b8860b;
+        }
+        .generate-all {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        .generate-all:hover {
+            background: #2c2c2c;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon-generator">
+        <h1>Midas Beauty PWA Icon Generator</h1>
+        <p>This tool generates all required PWA icons for the Midas Beauty app.</p>
+        
+        <button class="generate-all" onclick="generateAllIcons()">Generate All Icons</button>
+        
+        <div id="icon-container"></div>
+    </div>
+
+    <script>
+        const iconSizes = [
+            { size: 16, name: 'icon-16x16.png', purpose: 'any' },
+            { size: 32, name: 'icon-32x32.png', purpose: 'any' },
+            { size: 72, name: 'icon-72x72.png', purpose: 'any' },
+            { size: 96, name: 'icon-96x96.png', purpose: 'any' },
+            { size: 128, name: 'icon-128x128.png', purpose: 'any' },
+            { size: 144, name: 'icon-144x144.png', purpose: 'any' },
+            { size: 152, name: 'icon-152x152.png', purpose: 'any' },
+            { size: 180, name: 'icon-180x180.png', purpose: 'any' },
+            { size: 192, name: 'icon-192x192.png', purpose: 'any maskable' },
+            { size: 256, name: 'icon-256x256.png', purpose: 'any' },
+            { size: 384, name: 'icon-384x384.png', purpose: 'any' },
+            { size: 512, name: 'icon-512x512.png', purpose: 'any maskable' }
+        ];
+
+        function createIcon(size, isMaskable = false) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+
+            // Calculate safe area for maskable icons (80% of total size)
+            const safeArea = isMaskable ? size * 0.8 : size;
+            const offset = isMaskable ? size * 0.1 : 0;
+
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#d4af37');
+            gradient.addColorStop(0.3, '#f4e4bc');
+            gradient.addColorStop(0.7, '#d4af37');
+            gradient.addColorStop(1, '#b8860b');
+            ctx.fillStyle = gradient;
+
+            if (isMaskable) {
+                // Full background for maskable icons
+                ctx.fillRect(0, 0, size, size);
+            } else {
+                // Rounded background for regular icons
+                ctx.beginPath();
+                const radius = size * 0.15;
+                ctx.roundRect(0, 0, size, size, radius);
+                ctx.fill();
+            }
+
+            // Add subtle texture pattern
+            ctx.globalCompositeOperation = 'overlay';
+            const patternSize = Math.max(1, size / 60);
+            for (let x = 0; x < size; x += patternSize * 3) {
+                for (let y = 0; y < size; y += patternSize * 3) {
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+                    ctx.fillRect(x, y, patternSize, patternSize);
+                }
+            }
+            ctx.globalCompositeOperation = 'source-over';
+
+            // Main "M" letter with luxury styling
+            const fontSize = safeArea * 0.5;
+            ctx.fillStyle = '#1a1a1a';
+            ctx.font = `bold ${fontSize}px serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            // Add text shadow for depth
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+            ctx.shadowBlur = size * 0.02;
+            ctx.shadowOffsetX = size * 0.01;
+            ctx.shadowOffsetY = size * 0.01;
+
+            ctx.fillText('M', size / 2, size / 2);
+
+            // Add highlight effect
+            ctx.shadowColor = 'transparent';
+            ctx.fillStyle = '#fefefe';
+            ctx.globalAlpha = 0.4;
+            ctx.fillText('M', size / 2 - 1, size / 2 - 1);
+            ctx.globalAlpha = 1;
+
+            // Add crown/luxury element for larger icons
+            if (size >= 144 && !isMaskable) {
+                const crownSize = safeArea * 0.12;
+                const crownY = size / 2 - safeArea * 0.28;
+
+                ctx.fillStyle = '#1a1a1a';
+                ctx.beginPath();
+                // Elegant crown shape
+                ctx.moveTo(size / 2 - crownSize, crownY + crownSize/3);
+                ctx.lineTo(size / 2 - crownSize/2, crownY - crownSize/3);
+                ctx.lineTo(size / 2 - crownSize/4, crownY);
+                ctx.lineTo(size / 2, crownY - crownSize/2);
+                ctx.lineTo(size / 2 + crownSize/4, crownY);
+                ctx.lineTo(size / 2 + crownSize/2, crownY - crownSize/3);
+                ctx.lineTo(size / 2 + crownSize, crownY + crownSize/3);
+                ctx.lineTo(size / 2 + crownSize, crownY + crownSize/2);
+                ctx.lineTo(size / 2 - crownSize, crownY + crownSize/2);
+                ctx.closePath();
+                ctx.fill();
+
+                // Add crown gems
+                ctx.fillStyle = '#d4af37';
+                ctx.beginPath();
+                ctx.arc(size / 2, crownY - crownSize/4, crownSize/8, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+
+            return canvas;
+        }
+
+        function downloadIcon(canvas, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        function generateAllIcons() {
+            const container = document.getElementById('icon-container');
+            container.innerHTML = '';
+
+            iconSizes.forEach(({ size, name, purpose }) => {
+                const isMaskable = purpose.includes('maskable');
+                const canvas = createIcon(size, isMaskable);
+
+                const preview = document.createElement('div');
+                preview.className = 'icon-preview';
+
+                const canvasClone = canvas.cloneNode(true);
+                canvasClone.className = 'icon-canvas';
+                canvasClone.style.width = '100px';
+                canvasClone.style.height = '100px';
+
+                const label = document.createElement('div');
+                label.innerHTML = `
+                    <strong>${size}x${size}</strong><br>
+                    <small style="color: #666;">${name}</small><br>
+                    <em style="color: ${isMaskable ? '#d4af37' : '#999'}; font-size: 10px;">
+                        ${purpose}
+                    </em>
+                `;
+                label.style.fontSize = '12px';
+                label.style.textAlign = 'center';
+                label.style.marginTop = '8px';
+
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'download-btn';
+                downloadBtn.textContent = 'Download';
+                downloadBtn.onclick = () => downloadIcon(canvas, name);
+
+                preview.appendChild(canvasClone);
+                preview.appendChild(label);
+                preview.appendChild(downloadBtn);
+                container.appendChild(preview);
+            });
+
+            // Show generation status
+            const statusDiv = document.createElement('div');
+            statusDiv.style.cssText = `
+                background: #d4edda;
+                color: #155724;
+                padding: 15px;
+                border-radius: 8px;
+                margin: 20px 0;
+                text-align: center;
+                font-weight: 600;
+            `;
+            statusDiv.innerHTML = `
+                ✅ Generated ${iconSizes.length} PWA icons with luxury Midas Beauty branding!<br>
+                <small>Icons include proper maskable areas for Android adaptive icons</small>
+            `;
+            container.insertBefore(statusDiv, container.firstChild);
+
+            // Auto-download all icons after a delay
+            setTimeout(() => {
+                iconSizes.forEach(({ size, name, purpose }) => {
+                    const isMaskable = purpose.includes('maskable');
+                    const canvas = createIcon(size, isMaskable);
+                    downloadIcon(canvas, name);
+                });
+            }, 2000);
+        }
+
+        // Polyfill for roundRect if not available
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
+                this.beginPath();
+                this.moveTo(x + radius, y);
+                this.lineTo(x + width - radius, y);
+                this.quadraticCurveTo(x + width, y, x + width, y + radius);
+                this.lineTo(x + width, y + height - radius);
+                this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                this.lineTo(x + radius, y + height);
+                this.quadraticCurveTo(x, y + height, x, y + height - radius);
+                this.lineTo(x, y + radius);
+                this.quadraticCurveTo(x, y, x + radius, y);
+                this.closePath();
+            };
+        }
+    </script>
+</body>
+</html>

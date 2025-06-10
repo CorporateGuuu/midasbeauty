@@ -9,17 +9,17 @@ class ShoppingCart {
     }
 
     init() {
-        // Load cart from localStorage if available
-        const savedCart = localStorage.getItem('midasBeautyCart');
-        if (savedCart) {
-            const cartData = JSON.parse(savedCart);
-            this.items = cartData.items || [];
-            this.total = cartData.total || 0;
-            this.count = cartData.count || 0;
-        }
+        // Load cart with recovery mechanism
+        this.loadCartWithRecovery();
 
         // Initialize cart UI
         this.updateCartUI();
+
+        // Setup cart persistence monitoring
+        this.setupPersistenceMonitoring();
+
+        // Setup cart recovery notifications
+        this.setupCartRecovery();
 
         // Add event listeners
         document.addEventListener('DOMContentLoaded', () => {
@@ -167,12 +167,69 @@ class ShoppingCart {
     }
 
     saveCart() {
-        // Save cart to localStorage
-        localStorage.setItem('midasBeautyCart', JSON.stringify({
+        // Enhanced cart persistence with metadata
+        const cartData = {
             items: this.items,
             total: this.total,
-            count: this.count
-        }));
+            count: this.count,
+            lastUpdated: new Date().toISOString(),
+            sessionId: this.getSessionId(),
+            version: '2.0'
+        };
+
+        // Save to localStorage
+        localStorage.setItem('midasBeautyCart', JSON.stringify(cartData));
+
+        // Save to sessionStorage as backup
+        sessionStorage.setItem('midasBeautyCartBackup', JSON.stringify(cartData));
+
+        // Trigger background sync for PWA
+        this.triggerBackgroundSync();
+
+        // Update cart analytics
+        this.updateCartAnalytics();
+    }
+
+    getSessionId() {
+        let sessionId = sessionStorage.getItem('midasBeautySessionId');
+        if (!sessionId) {
+            sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            sessionStorage.setItem('midasBeautySessionId', sessionId);
+        }
+        return sessionId;
+    }
+
+    triggerBackgroundSync() {
+        // Register background sync for cart data
+        if ('serviceWorker' in navigator && 'sync' in window.ServiceWorkerRegistration.prototype) {
+            navigator.serviceWorker.ready.then(registration => {
+                return registration.sync.register('cart-sync');
+            }).catch(error => {
+                console.log('Background sync registration failed:', error);
+            });
+        }
+    }
+
+    updateCartAnalytics() {
+        // Track cart events for analytics
+        const analyticsData = {
+            event: 'cart_updated',
+            itemCount: this.count,
+            totalValue: this.total,
+            timestamp: new Date().toISOString(),
+            sessionId: this.getSessionId()
+        };
+
+        // Store analytics data
+        const existingAnalytics = JSON.parse(localStorage.getItem('midasBeautyAnalytics') || '[]');
+        existingAnalytics.push(analyticsData);
+
+        // Keep only last 100 events
+        if (existingAnalytics.length > 100) {
+            existingAnalytics.splice(0, existingAnalytics.length - 100);
+        }
+
+        localStorage.setItem('midasBeautyAnalytics', JSON.stringify(existingAnalytics));
     }
 
     clearCart() {
@@ -280,6 +337,119 @@ class ShoppingCart {
                 document.body.removeChild(notification);
             }, 300);
         }, 3000);
+    }
+
+    loadCartWithRecovery() {
+        try {
+            // Try to load from localStorage first
+            const savedCart = localStorage.getItem('midasBeautyCart');
+            if (savedCart) {
+                const cartData = JSON.parse(savedCart);
+                this.items = cartData.items || [];
+                this.total = cartData.total || 0;
+                this.count = cartData.count || 0;
+                return;
+            }
+
+            // Fallback to sessionStorage backup
+            const backupCart = sessionStorage.getItem('midasBeautyCartBackup');
+            if (backupCart) {
+                const cartData = JSON.parse(backupCart);
+                this.items = cartData.items || [];
+                this.total = cartData.total || 0;
+                this.count = cartData.count || 0;
+
+                // Restore to localStorage
+                this.saveCart();
+                this.showNotification('Cart recovered from backup', 'info');
+                return;
+            }
+
+        } catch (error) {
+            console.error('Error loading cart:', error);
+            this.items = [];
+            this.total = 0;
+            this.count = 0;
+        }
+    }
+
+    setupPersistenceMonitoring() {
+        // Monitor for storage events (cart changes in other tabs)
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'midasBeautyCart' && e.newValue) {
+                try {
+                    const cartData = JSON.parse(e.newValue);
+                    this.items = cartData.items || [];
+                    this.total = cartData.total || 0;
+                    this.count = cartData.count || 0;
+                    this.updateCartUI();
+                    this.showNotification('Cart synchronized across tabs', 'info');
+                } catch (error) {
+                    console.error('Error syncing cart:', error);
+                }
+            }
+        });
+
+        // Auto-save cart periodically
+        setInterval(() => {
+            if (this.items.length > 0) {
+                this.saveCart();
+            }
+        }, 30000); // Save every 30 seconds
+    }
+
+    setupCartRecovery() {
+        // Check for abandoned cart recovery
+        const lastCartUpdate = localStorage.getItem('midasBeautyCartLastUpdate');
+        const now = new Date().getTime();
+        const oneDay = 24 * 60 * 60 * 1000;
+
+        if (lastCartUpdate && (now - parseInt(lastCartUpdate)) > oneDay && this.items.length > 0) {
+            this.showCartRecoveryNotification();
+        }
+
+        // Update last cart update timestamp
+        localStorage.setItem('midasBeautyCartLastUpdate', now.toString());
+    }
+
+    showCartRecoveryNotification() {
+        const notification = document.createElement('div');
+        notification.className = 'cart-recovery-notification';
+        notification.innerHTML = `
+            <div class="recovery-content">
+                <h4>Welcome back!</h4>
+                <p>You have ${this.count} item(s) waiting in your cart.</p>
+                <div class="recovery-actions">
+                    <button class="btn btn-primary" onclick="this.parentElement.parentElement.parentElement.remove()">
+                        Continue Shopping
+                    </button>
+                    <button class="btn btn-secondary" onclick="cart.clearCart(); this.parentElement.parentElement.parentElement.remove();">
+                        Clear Cart
+                    </button>
+                </div>
+            </div>
+            <button class="close-recovery" onclick="this.parentElement.remove()">×</button>
+        `;
+
+        document.body.appendChild(notification);
+
+        // Auto-remove after 10 seconds
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 10000);
+    }
+
+    // Enhanced cart methods
+    getCartSummary() {
+        return {
+            items: this.items,
+            count: this.count,
+            total: this.total,
+            lastUpdated: new Date().toISOString(),
+            sessionId: this.getSessionId()
+        };
     }
 }
 

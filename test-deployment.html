@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MidasBeauty Deployment Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            margin: 0;
+            background: linear-gradient(45deg, #d4af37, #f4e4a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .test-section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #d4af37;
+        }
+        
+        .test-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .test-name {
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+        
+        .test-status {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-pass {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-fail {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .test-btn {
+            background: linear-gradient(135deg, #d4af37, #f4e4a6);
+            color: #1a1a1a;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+        
+        .test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .run-all-btn {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px 0;
+            width: 100%;
+        }
+        
+        .results {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .console-output {
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+        
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .summary-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #d4af37;
+        }
+        
+        .summary-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧪 MidasBeauty Deployment Test Suite</h1>
+        <p>Verify that all e-commerce features are working correctly after deployment</p>
+    </div>
+
+    <div class="test-section">
+        <h2>📁 File Loading Tests</h2>
+        <div id="file-tests">
+            <div class="test-item">
+                <span class="test-name">inventory-management.js</span>
+                <span class="test-status status-pending" id="test-inventory-js">Pending</span>
+            </div>
+            <div class="test-item">
+                <span class="test-name">order-management.js</span>
+                <span class="test-status status-pending" id="test-order-js">Pending</span>
+            </div>
+            <div class="test-item">
+                <span class="test-name">customer-dashboard.js</span>
+                <span class="test-status status-pending" id="test-customer-js">Pending</span>
+            </div>
+            <div class="test-item">
+                <span class="test-name">admin-dashboard.js</span>
+                <span class="test-status status-pending" id="test-admin-js">Pending</span>
+            </div>
+            <div class="test-item">
+                <span class="test-name">product-recommendations.js</span>
+                <span class="test-status status-pending" id="test-recommendations-js">Pending</span>
+            </div>
+            <div class="test-item">
+                <span class="test-name">All CSS Files</span>
+                <span class="test-status status-pending" id="test-css-files">Pending</span>
+            </div>
+        </div>
+        <button class="test-btn" onclick="testFileLoading()">Test File Loading</button>
+    </div>
+
+    <div class="test-section">
+        <h2>⚙️ System Functionality Tests</h2>
+        <div id="functionality-tests">
+            <div class="test-item">
+                <span class="test-name">Inventory Manager Initialization</span>
+                <span class="test-status status-pending" id="test-inventory-init">Pending</span>
+            </div>
+            <div class="test-item">
+                <span class="test-name">Order Manager Initialization</span>
+                <span class="test-status status-pending" id="test-order-init">Pending</span>
+            </div>
+            <div class="test-item">
+                <span class="test-name">Customer Dashboard Initialization</span>
+                <span class="test-status status-pending" id="test-customer-init">Pending</span>
+            </div>
+            <div class="test-item">
+                <span class="test-name">Admin Dashboard Initialization</span>
+                <span class="test-status status-pending" id="test-admin-init">Pending</span>
+            </div>
+            <div class="test-item">
+                <span class="test-name">Product Recommendations Initialization</span>
+                <span class="test-status status-pending" id="test-recommendations-init">Pending</span>
+            </div>
+            <div class="test-item">
+                <span class="test-name">Enhanced Navigation Initialization</span>
+                <span class="test-status status-pending" id="test-navigation-init">Pending</span>
+            </div>
+        </div>
+        <button class="test-btn" onclick="testSystemFunctionality()">Test System Functionality</button>
+    </div>
+
+    <div class="test-section">
+        <h2>🎨 UI Component Tests</h2>
+        <div id="ui-tests">
+            <div class="test-item">
+                <span class="test-name">Login/Register Modals</span>
+                <span class="test-status status-pending" id="test-auth-modals">Pending</span>
+            </div>
+            <div class="test-item">
+                <span class="test-name">Customer Dashboard Modal</span>
+                <span class="test-status status-pending" id="test-customer-modal">Pending</span>
+            </div>
+            <div class="test-item">
+                <span class="test-name">Admin Dashboard Modal</span>
+                <span class="test-status status-pending" id="test-admin-modal">Pending</span>
+            </div>
+            <div class="test-item">
+                <span class="test-name">Stock Indicators</span>
+                <span class="test-status status-pending" id="test-stock-indicators">Pending</span>
+            </div>
+            <div class="test-item">
+                <span class="test-name">Product Recommendation Widgets</span>
+                <span class="test-status status-pending" id="test-recommendation-widgets">Pending</span>
+            </div>
+        </div>
+        <button class="test-btn" onclick="testUIComponents()">Test UI Components</button>
+    </div>
+
+    <button class="run-all-btn" onclick="runAllTests()">🚀 Run All Tests</button>
+
+    <div class="results" id="test-results" style="display: none;">
+        <h3>Test Results</h3>
+        <div class="summary" id="test-summary">
+            <div class="summary-card">
+                <div class="summary-number" id="total-tests">0</div>
+                <div class="summary-label">Total Tests</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number" id="passed-tests">0</div>
+                <div class="summary-label">Passed</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number" id="failed-tests">0</div>
+                <div class="summary-label">Failed</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number" id="success-rate">0%</div>
+                <div class="summary-label">Success Rate</div>
+            </div>
+        </div>
+        <div class="console-output" id="console-output"></div>
+    </div>
+
+    <script>
+        let testResults = {
+            total: 0,
+            passed: 0,
+            failed: 0,
+            logs: []
+        };
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logMessage = `[${timestamp}] ${message}`;
+            testResults.logs.push(logMessage);
+            
+            const consoleOutput = document.getElementById('console-output');
+            if (consoleOutput) {
+                consoleOutput.innerHTML += logMessage + '\n';
+                consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            }
+            
+            console.log(logMessage);
+        }
+
+        function updateTestStatus(testId, status) {
+            const element = document.getElementById(testId);
+            if (element) {
+                element.className = `test-status status-${status}`;
+                element.textContent = status === 'pass' ? 'PASS' : status === 'fail' ? 'FAIL' : 'Pending';
+            }
+            
+            if (status === 'pass') {
+                testResults.passed++;
+            } else if (status === 'fail') {
+                testResults.failed++;
+            }
+            testResults.total++;
+        }
+
+        function testFileLoading() {
+            log('Starting file loading tests...');
+            
+            // Test JavaScript files
+            const jsFiles = [
+                'inventory-management.js',
+                'order-management.js', 
+                'customer-dashboard.js',
+                'admin-dashboard.js',
+                'product-recommendations.js'
+            ];
+            
+            jsFiles.forEach(file => {
+                const script = document.createElement('script');
+                script.src = `js/${file}`;
+                script.onload = () => {
+                    log(`✓ ${file} loaded successfully`);
+                    updateTestStatus(`test-${file.replace('.js', '').replace('-', '-')}-js`, 'pass');
+                };
+                script.onerror = () => {
+                    log(`✗ ${file} failed to load`);
+                    updateTestStatus(`test-${file.replace('.js', '').replace('-', '-')}-js`, 'fail');
+                };
+                document.head.appendChild(script);
+            });
+            
+            // Test CSS files
+            const cssFiles = [
+                'inventory-system.css',
+                'customer-dashboard.css',
+                'admin-dashboard.css',
+                'product-recommendations.css',
+                'customer-engagement.css'
+            ];
+            
+            let cssLoaded = 0;
+            let cssTotal = cssFiles.length;
+            
+            cssFiles.forEach(file => {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = `css/${file}`;
+                link.onload = () => {
+                    cssLoaded++;
+                    log(`✓ ${file} loaded successfully`);
+                    if (cssLoaded === cssTotal) {
+                        updateTestStatus('test-css-files', 'pass');
+                    }
+                };
+                link.onerror = () => {
+                    log(`✗ ${file} failed to load`);
+                    updateTestStatus('test-css-files', 'fail');
+                };
+                document.head.appendChild(link);
+            });
+        }
+
+        function testSystemFunctionality() {
+            log('Starting system functionality tests...');
+            
+            // Test global objects
+            setTimeout(() => {
+                // Test Inventory Manager
+                if (window.inventoryManager) {
+                    log('✓ Inventory Manager initialized');
+                    updateTestStatus('test-inventory-init', 'pass');
+                } else {
+                    log('✗ Inventory Manager not found');
+                    updateTestStatus('test-inventory-init', 'fail');
+                }
+                
+                // Test Order Manager
+                if (window.orderManager) {
+                    log('✓ Order Manager initialized');
+                    updateTestStatus('test-order-init', 'pass');
+                } else {
+                    log('✗ Order Manager not found');
+                    updateTestStatus('test-order-init', 'fail');
+                }
+                
+                // Test Customer Dashboard
+                if (window.customerDashboard) {
+                    log('✓ Customer Dashboard initialized');
+                    updateTestStatus('test-customer-init', 'pass');
+                } else {
+                    log('✗ Customer Dashboard not found');
+                    updateTestStatus('test-customer-init', 'fail');
+                }
+                
+                // Test Admin Dashboard
+                if (window.adminDashboard) {
+                    log('✓ Admin Dashboard initialized');
+                    updateTestStatus('test-admin-init', 'pass');
+                } else {
+                    log('✗ Admin Dashboard not found');
+                    updateTestStatus('test-admin-init', 'fail');
+                }
+                
+                // Test Product Recommendations
+                if (window.productRecommendationEngine) {
+                    log('✓ Product Recommendation Engine initialized');
+                    updateTestStatus('test-recommendations-init', 'pass');
+                } else {
+                    log('✗ Product Recommendation Engine not found');
+                    updateTestStatus('test-recommendations-init', 'fail');
+                }
+                
+                // Test Enhanced Navigation
+                if (window.enhancedNavigation) {
+                    log('✓ Enhanced Navigation initialized');
+                    updateTestStatus('test-navigation-init', 'pass');
+                } else {
+                    log('✗ Enhanced Navigation not found');
+                    updateTestStatus('test-navigation-init', 'fail');
+                }
+            }, 2000);
+        }
+
+        function testUIComponents() {
+            log('Starting UI component tests...');
+            
+            setTimeout(() => {
+                // Test for modal elements
+                const loginModal = document.getElementById('login-modal');
+                const registerModal = document.getElementById('register-modal');
+                if (loginModal && registerModal) {
+                    log('✓ Auth modals found in DOM');
+                    updateTestStatus('test-auth-modals', 'pass');
+                } else {
+                    log('✗ Auth modals not found in DOM');
+                    updateTestStatus('test-auth-modals', 'fail');
+                }
+                
+                // Test for dashboard modal
+                const dashboardModal = document.getElementById('dashboard-modal');
+                if (dashboardModal) {
+                    log('✓ Customer dashboard modal found');
+                    updateTestStatus('test-customer-modal', 'pass');
+                } else {
+                    log('✗ Customer dashboard modal not found');
+                    updateTestStatus('test-customer-modal', 'fail');
+                }
+                
+                // Test for admin dashboard modal
+                const adminModal = document.getElementById('admin-dashboard-modal');
+                if (adminModal) {
+                    log('✓ Admin dashboard modal found');
+                    updateTestStatus('test-admin-modal', 'pass');
+                } else {
+                    log('✗ Admin dashboard modal not found');
+                    updateTestStatus('test-admin-modal', 'fail');
+                }
+                
+                // Test for stock indicators
+                const stockIndicators = document.querySelectorAll('.stock-indicator');
+                if (stockIndicators.length > 0) {
+                    log(`✓ Found ${stockIndicators.length} stock indicators`);
+                    updateTestStatus('test-stock-indicators', 'pass');
+                } else {
+                    log('✗ No stock indicators found');
+                    updateTestStatus('test-stock-indicators', 'fail');
+                }
+                
+                // Test for recommendation widgets
+                const recommendationWidgets = document.querySelectorAll('.recommendation-widget');
+                if (recommendationWidgets.length > 0) {
+                    log(`✓ Found ${recommendationWidgets.length} recommendation widgets`);
+                    updateTestStatus('test-recommendation-widgets', 'pass');
+                } else {
+                    log('✗ No recommendation widgets found');
+                    updateTestStatus('test-recommendation-widgets', 'fail');
+                }
+            }, 3000);
+        }
+
+        function runAllTests() {
+            log('=== Starting Complete Test Suite ===');
+            document.getElementById('test-results').style.display = 'block';
+            
+            // Reset results
+            testResults = { total: 0, passed: 0, failed: 0, logs: [] };
+            document.getElementById('console-output').innerHTML = '';
+            
+            // Run all tests
+            testFileLoading();
+            setTimeout(() => testSystemFunctionality(), 1000);
+            setTimeout(() => testUIComponents(), 2000);
+            
+            // Update summary after all tests
+            setTimeout(() => {
+                updateSummary();
+                log('=== Test Suite Complete ===');
+            }, 5000);
+        }
+
+        function updateSummary() {
+            document.getElementById('total-tests').textContent = testResults.total;
+            document.getElementById('passed-tests').textContent = testResults.passed;
+            document.getElementById('failed-tests').textContent = testResults.failed;
+            
+            const successRate = testResults.total > 0 ? 
+                Math.round((testResults.passed / testResults.total) * 100) : 0;
+            document.getElementById('success-rate').textContent = successRate + '%';
+            
+            // Update colors based on success rate
+            const successElement = document.getElementById('success-rate');
+            if (successRate >= 90) {
+                successElement.style.color = '#28a745';
+            } else if (successRate >= 70) {
+                successElement.style.color = '#ffc107';
+            } else {
+                successElement.style.color = '#dc3545';
+            }
+        }
+
+        // Auto-run basic tests when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            log('Deployment test page loaded');
+            log('Click "Run All Tests" to verify your deployment');
+        });
+    </script>
+</body>
+</html>

@@ -2,30 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>About Us - Midas Beauty</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="Discover the story behind Midas Beauty - our mission, values, and commitment to premium, sustainable beauty products for everyone.">
+    <meta name="keywords" content="about midas beauty, beauty brand story, sustainable cosmetics, premium skincare company">
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#d4af37">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Midas Beauty">
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Icons -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/icons/icon-16x16.png">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" as="style">
+
+    <!-- Stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="About Us - Midas Beauty">
+    <meta property="og:description" content="Discover the story behind Midas Beauty and our commitment to premium, sustainable beauty products.">
+    <meta property="og:image" content="images/about-founder.jpg">
+    <meta property="og:url" content="https://midasbeauty.com/about.html">
+    <meta property="og:type" content="website">
 </head>
 <body>
     <header>
         <div class="container">
-            <div class="logo">
-                <h1>Midas Beauty</h1>
+            <div class="header-top">
+                <div class="logo">
+                    <h1>Midas Beauty</h1>
+                </div>
+                <div class="search-container">
+                    <form id="search-form" action="search-results.html" method="get">
+                        <input type="text" id="search-input" name="query" placeholder="Search products...">
+                        <button type="submit" id="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="header-icons">
+                    <div class="user-account">
+                        <a href="login.html" id="account-link" title="Login / Register">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                    <div class="cart-icon">
+                        <a href="#" id="cart-toggle">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count">0</span>
+                        </a>
+                    </div>
+                </div>
             </div>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="products.html">Products</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li class="cart-icon">
-                        <a href="#" id="cart-toggle">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span id="cart-count">0</span>
-                        </a>
-                    </li>
                 </ul>
             </nav>
         </div>
@@ -53,30 +97,151 @@
     <section class="page-header">
         <div class="container">
             <h2>About Midas Beauty</h2>
+            <p>Discover the story behind our premium beauty products</p>
         </div>
     </section>
 
-    <section class="about-content">
+    <section class="about-intro">
         <div class="container">
             <div class="about-grid">
                 <div class="about-text">
-                    <h3>Our Story</h3>
-                    <p>Midas Beauty was founded in 2020 with a simple mission: to create premium beauty products that enhance natural beauty without harmful chemicals or animal testing.</p>
-                    <p>Our founder, Emma Johnson, spent years working in the beauty industry before deciding to create her own line of products that prioritized quality, sustainability, and effectiveness.</p>
-                    <p>Today, Midas Beauty is proud to offer a range of skincare and cosmetic products that have earned the trust and loyalty of customers worldwide.</p>
-
-                    <h3>Our Values</h3>
-                    <ul>
-                        <li><strong>Quality:</strong> We use only the finest ingredients in our formulations.</li>
-                        <li><strong>Sustainability:</strong> Our packaging is eco-friendly and our ingredients are responsibly sourced.</li>
-                        <li><strong>Cruelty-Free:</strong> We never test on animals and are proudly certified cruelty-free.</li>
-                        <li><strong>Inclusivity:</strong> Our products are designed for all skin types and tones.</li>
-                    </ul>
+                    <h2>Our Story</h2>
+                    <p>Founded in 2018, Midas Beauty was born from a simple belief: everyone deserves access to premium, effective beauty products that enhance their natural beauty without compromising on quality or ethics.</p>
+                    <p>Our journey began when our founder, Sarah Chen, struggled to find skincare products that worked for her sensitive skin while also being environmentally conscious. Frustrated by the lack of options, she decided to create her own line of products that would meet the highest standards of quality, efficacy, and sustainability.</p>
+                    <p>Today, Midas Beauty has grown into a trusted brand that serves thousands of customers worldwide, but we've never forgotten our roots. We remain committed to creating products that are not only effective but also safe, sustainable, and accessible to everyone.</p>
                 </div>
                 <div class="about-image">
-                    <img src="images/about-team.jpg" alt="Midas Beauty Team">
+                    <img src="images/about-founder.jpg" alt="Sarah Chen, Founder of Midas Beauty">
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="mission-values">
+        <div class="container">
+            <h2>Our Mission & Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>We're committed to protecting our planet through eco-friendly packaging, sustainable sourcing, and carbon-neutral shipping. Every product is designed with the environment in mind.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Inclusivity</h3>
+                    <p>Beauty has no boundaries. Our products are formulated for all skin types, tones, and concerns. We believe everyone deserves to feel confident and beautiful in their own skin.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>We invest heavily in research and development to bring you the latest breakthroughs in beauty science. Our formulations combine proven ingredients with cutting-edge technology.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Quality</h3>
+                    <p>Every product undergoes rigorous testing to ensure safety, efficacy, and consistency. We never compromise on quality, and we stand behind every product we create.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <h2>Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="images/team-sarah.jpg" alt="Sarah Chen">
+                    <h3>Sarah Chen</h3>
+                    <p class="role">Founder & CEO</p>
+                    <p>With over 15 years in the beauty industry, Sarah leads our vision of creating inclusive, sustainable beauty products that truly work.</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/team-michael.jpg" alt="Dr. Michael Rodriguez">
+                    <h3>Dr. Michael Rodriguez</h3>
+                    <p class="role">Chief Scientific Officer</p>
+                    <p>A renowned dermatologist and cosmetic chemist, Dr. Rodriguez oversees all product development and ensures our formulations meet the highest scientific standards.</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/team-emma.jpg" alt="Emma Thompson">
+                    <h3>Emma Thompson</h3>
+                    <p class="role">Head of Sustainability</p>
+                    <p>Emma leads our sustainability initiatives, ensuring that every aspect of our business operates with minimal environmental impact.</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/team-james.jpg" alt="James Park">
+                    <h3>James Park</h3>
+                    <p class="role">Creative Director</p>
+                    <p>James brings our brand vision to life through innovative design and marketing strategies that resonate with our diverse community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="achievements">
+        <div class="container">
+            <h2>Our Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement">
+                    <div class="achievement-number">500K+</div>
+                    <div class="achievement-text">Happy Customers</div>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-number">50+</div>
+                    <div class="achievement-text">Premium Products</div>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-number">25+</div>
+                    <div class="achievement-text">Countries Served</div>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-number">98%</div>
+                    <div class="achievement-text">Customer Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="certifications">
+        <div class="container">
+            <h2>Certifications & Awards</h2>
+            <div class="cert-grid">
+                <div class="cert-item">
+                    <i class="fas fa-award"></i>
+                    <h3>Cruelty-Free Certified</h3>
+                    <p>Leaping Bunny Program</p>
+                </div>
+                <div class="cert-item">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Organic Certified</h3>
+                    <p>USDA Organic Standards</p>
+                </div>
+                <div class="cert-item">
+                    <i class="fas fa-recycle"></i>
+                    <h3>Sustainable Packaging</h3>
+                    <p>FSC Certified Materials</p>
+                </div>
+                <div class="cert-item">
+                    <i class="fas fa-star"></i>
+                    <h3>Beauty Innovation Award</h3>
+                    <p>2023 Industry Excellence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Experience Midas Beauty?</h2>
+            <p>Join thousands of satisfied customers who have transformed their beauty routine with our premium products.</p>
+            <a href="products.html" class="btn">Shop Now</a>
         </div>
     </section>
 
@@ -86,6 +251,12 @@
                 <div class="footer-section">
                     <h3>Midas Beauty</h3>
                     <p>Premium beauty products for the modern individual.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -97,9 +268,19 @@
                     </ul>
                 </div>
                 <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#" onclick="showComingSoon()">FAQ</a></li>
+                        <li><a href="#" onclick="showComingSoon()">Shipping Info</a></li>
+                        <li><a href="#" onclick="showComingSoon()">Returns</a></li>
+                        <li><a href="#" onclick="showComingSoon()">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
                     <h3>Contact Us</h3>
-                    <p>Email: info@midasbeauty.com</p>
-                    <p>Phone: (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@midasbeauty.com</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Beauty Ave, Los Angeles, CA 90210</p>
                 </div>
             </div>
             <div class="copyright">
@@ -110,5 +291,7 @@
 
     <script src="js/main.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/pwa.js"></script>
 </body>
 </html>

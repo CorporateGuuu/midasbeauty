@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Functionality Test - Midas Beauty</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .test-section {
+            padding: 40px 0;
+            background: #f8f9fa;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .test-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-item h3 {
+            color: #f8c291;
+            margin-bottom: 10px;
+        }
+        .test-button {
+            background: #f8c291;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .test-button:hover {
+            background: #f39c12;
+        }
+        .test-results {
+            margin-top: 15px;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>Midas Beauty</h1>
+                </div>
+                <div class="search-container">
+                    <form id="search-form" action="search-results.html" method="get">
+                        <input type="text" id="search-input" name="query" placeholder="Test search functionality...">
+                        <button type="submit" id="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="header-icons">
+                    <div class="user-account">
+                        <a href="login.html" id="account-link" title="Login / Register">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                    <div class="cart-icon">
+                        <a href="#" id="cart-toggle">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="test-section">
+        <div class="test-container">
+            <h1>Search Functionality Test Page</h1>
+            <p>This page allows you to test the enhanced search functionality of the Midas Beauty website.</p>
+
+            <div class="test-item">
+                <h3>1. Search Suggestions Test</h3>
+                <p>Click in the search box above and start typing to test autocomplete suggestions.</p>
+                <button class="test-button" onclick="testSearchSuggestions()">Test Suggestions</button>
+                <div id="suggestions-result" class="test-results" style="display: none;"></div>
+            </div>
+
+            <div class="test-item">
+                <h3>2. Search Algorithm Test</h3>
+                <p>Test the enhanced search algorithm with various queries.</p>
+                <button class="test-button" onclick="testSearch('serum')">Search "serum"</button>
+                <button class="test-button" onclick="testSearch('vitamin c')">Search "vitamin c"</button>
+                <button class="test-button" onclick="testSearch('mascara')">Search "mascara"</button>
+                <button class="test-button" onclick="testSearch('xyz123')">Search "xyz123" (no results)</button>
+                <div id="search-result" class="test-results" style="display: none;"></div>
+            </div>
+
+            <div class="test-item">
+                <h3>3. Search History Test</h3>
+                <p>Test search history functionality.</p>
+                <button class="test-button" onclick="testSearchHistory()">View Search History</button>
+                <button class="test-button" onclick="clearSearchHistory()">Clear Search History</button>
+                <div id="history-result" class="test-results" style="display: none;"></div>
+            </div>
+
+            <div class="test-item">
+                <h3>4. Fuzzy Search Test</h3>
+                <p>Test fuzzy search with typos and similar words.</p>
+                <button class="test-button" onclick="testSearch('serun')">Search "serun" (typo)</button>
+                <button class="test-button" onclick="testSearch('moisturiser')">Search "moisturiser" (variant spelling)</button>
+                <button class="test-button" onclick="testSearch('foundaton')">Search "foundaton" (typo)</button>
+                <div id="fuzzy-result" class="test-results" style="display: none;"></div>
+            </div>
+
+            <div class="test-item">
+                <h3>5. Go to Search Results Page</h3>
+                <p>Test the full search experience on the dedicated search results page.</p>
+                <a href="search-results.html?query=serum" class="test-button">Search Results Page</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Midas Beauty</h3>
+                    <p>Premium beauty products for the modern individual.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@midasbeauty.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Midas Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
+    <script>
+        // Test functions for search functionality
+        function testSearchSuggestions() {
+            const searchInput = document.getElementById('search-input');
+            const resultDiv = document.getElementById('suggestions-result');
+            
+            searchInput.focus();
+            searchInput.value = 'ser';
+            
+            // Trigger input event
+            const event = new Event('input', { bubbles: true });
+            searchInput.dispatchEvent(event);
+            
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = 'Search suggestions should appear above the search box. Type "ser" to see suggestions for serum-related products.';
+        }
+
+        function testSearch(query) {
+            const resultDiv = document.getElementById('search-result');
+            
+            // Simulate search
+            const searchInput = document.getElementById('search-input');
+            searchInput.value = query;
+            
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `Testing search for: "${query}"<br>Check the browser console for detailed results or visit the search results page.`;
+            
+            // Log to console for debugging
+            console.log(`Testing search for: ${query}`);
+            
+            // Redirect to search results page
+            setTimeout(() => {
+                window.location.href = `search-results.html?query=${encodeURIComponent(query)}`;
+            }, 1000);
+        }
+
+        function testSearchHistory() {
+            const resultDiv = document.getElementById('history-result');
+            const history = JSON.parse(localStorage.getItem('midasBeautySearchHistory') || '[]');
+            
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `Search History:<br>${history.length > 0 ? history.join('<br>') : 'No search history found'}`;
+        }
+
+        function clearSearchHistory() {
+            localStorage.removeItem('midasBeautySearchHistory');
+            const resultDiv = document.getElementById('history-result');
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = 'Search history cleared!';
+        }
+    </script>
+</body>
+</html>

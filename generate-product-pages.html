@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page Generator - Midas Beauty</title>
+    <style>
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+            margin: 0;
+        }
+        .generator-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #d4af37, #f4e4bc);
+            color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .generate-btn {
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            color: #1a1a1a;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+        .progress-container {
+            margin: 20px 0;
+            display: none;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37, #f4e4bc);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .product-list {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #d4af37;
+        }
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        .product-details {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+        }
+        .download-link {
+            display: inline-block;
+            background: #1a1a1a;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+        .download-link:hover {
+            background: #333;
+        }
+        .status-message {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 600;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .category-section {
+            margin-bottom: 30px;
+        }
+        .category-title {
+            font-size: 1.5rem;
+            color: #d4af37;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="generator-container">
+        <h1>🏭 Midas Beauty Product Page Generator</h1>
+        
+        <div class="status-message info">
+            <strong>📋 Generator Ready:</strong> This tool will create individual product detail pages for all products in the Midas Beauty database.
+        </div>
+        
+        <div class="stats-grid" id="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="total-products">0</div>
+                <div>Total Products</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="total-categories">0</div>
+                <div>Categories</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="pages-generated">0</div>
+                <div>Pages Generated</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="success-rate">0%</div>
+                <div>Success Rate</div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <button class="generate-btn" onclick="generateAllPages()">
+                🚀 Generate All Product Pages
+            </button>
+            <button class="generate-btn" onclick="previewSamplePage()">
+                👁️ Preview Sample Page
+            </button>
+            <button class="generate-btn" onclick="downloadAllPages()">
+                📦 Download All Pages (ZIP)
+            </button>
+        </div>
+        
+        <div class="progress-container" id="progress-container">
+            <div style="margin-bottom: 10px; font-weight: 600;">Generating Pages...</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div id="progress-text" style="margin-top: 10px; text-align: center;">0 / 0 pages generated</div>
+        </div>
+        
+        <div id="results-container"></div>
+    </div>
+
+    <!-- Include the product database -->
+    <script src="js/products-database.js"></script>
+    
+    <script>
+        let generatedPages = [];
+        let productDatabase = null;
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof MIDAS_BEAUTY_PRODUCTS !== 'undefined') {
+                productDatabase = MIDAS_BEAUTY_PRODUCTS;
+                updateStats();
+                displayProductDatabase();
+            } else {
+                document.getElementById('results-container').innerHTML = `
+                    <div class="status-message" style="background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;">
+                        <strong>❌ Error:</strong> Product database not found. Please ensure js/products-database.js is loaded correctly.
+                    </div>
+                `;
+            }
+        });
+        
+        function updateStats() {
+            if (!productDatabase) return;
+            
+            document.getElementById('total-products').textContent = productDatabase.products.length;
+            document.getElementById('total-categories').textContent = Object.keys(productDatabase.categories).length;
+            document.getElementById('pages-generated').textContent = generatedPages.length;
+            
+            const successRate = productDatabase.products.length > 0 ? 
+                Math.round((generatedPages.length / productDatabase.products.length) * 100) : 0;
+            document.getElementById('success-rate').textContent = successRate + '%';
+        }
+        
+        function displayProductDatabase() {
+            if (!productDatabase) return;
+            
+            const container = document.getElementById('results-container');
+            let html = '<h2>📊 Product Database Overview</h2>';
+            
+            Object.entries(productDatabase.categories).forEach(([categoryKey, categoryData]) => {
+                const categoryProducts = productDatabase.products.filter(p => p.category === categoryKey);
+                
+                html += `
+                    <div class="category-section">
+                        <h3 class="category-title">${categoryData.name} (${categoryProducts.length} products)</h3>
+                        <div class="product-list">
+                            ${categoryProducts.slice(0, 6).map(product => `
+                                <div class="product-card">
+                                    <div class="product-name">${product.name}</div>
+                                    <div class="product-details">
+                                        <strong>Price:</strong> $${product.price.toFixed(2)}<br>
+                                        <strong>Category:</strong> ${categoryData.subcategories[product.subcategory] || product.subcategory}<br>
+                                        <strong>Rating:</strong> ⭐ ${product.rating} (${product.reviewCount} reviews)<br>
+                                        <strong>Stock:</strong> ${product.inStock ? '✅ In Stock' : '❌ Out of Stock'}
+                                    </div>
+                                </div>
+                            `).join('')}
+                            ${categoryProducts.length > 6 ? `
+                                <div class="product-card" style="display: flex; align-items: center; justify-content: center; background: #e9ecef;">
+                                    <div style="text-align: center; color: #666;">
+                                        <div style="font-size: 2rem; margin-bottom: 10px;">+${categoryProducts.length - 6}</div>
+                                        <div>More ${categoryData.name} Products</div>
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        function createSlug(name) {
+            return name.toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-')
+                .trim('-');
+        }
+        
+        async function generateAllPages() {
+            if (!productDatabase) return;
+            
+            const progressContainer = document.getElementById('progress-container');
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+            
+            progressContainer.style.display = 'block';
+            generatedPages = [];
+            
+            const totalProducts = productDatabase.products.length;
+            
+            for (let i = 0; i < totalProducts; i++) {
+                const product = productDatabase.products[i];
+                
+                try {
+                    const pageHTML = await generateProductPage(product);
+                    const slug = createSlug(product.name);
+                    
+                    generatedPages.push({
+                        filename: `${slug}.html`,
+                        content: pageHTML,
+                        product: product
+                    });
+                    
+                    // Update progress
+                    const progress = ((i + 1) / totalProducts) * 100;
+                    progressFill.style.width = progress + '%';
+                    progressText.textContent = `${i + 1} / ${totalProducts} pages generated`;
+                    
+                    // Small delay to show progress
+                    await new Promise(resolve => setTimeout(resolve, 50));
+                    
+                } catch (error) {
+                    console.error(`Error generating page for ${product.name}:`, error);
+                }
+            }
+            
+            updateStats();
+            showGenerationResults();
+            progressContainer.style.display = 'none';
+        }
+        
+        async function generateProductPage(product) {
+            // Fetch the template
+            const response = await fetch('product-detail-template.html');
+            let template = await response.text();
+            
+            // Replace meta information
+            template = template.replace(
+                /<title>.*?<\/title>/,
+                `<title>${product.seoTitle || `${product.name} | Midas Beauty`}</title>`
+            );
+            
+            template = template.replace(
+                /<meta name="description" content=".*?">/,
+                `<meta name="description" content="${product.metaDescription || product.description.substring(0, 160)}...">`
+            );
+            
+            template = template.replace(
+                /<meta name="keywords" content=".*?">/,
+                `<meta name="keywords" content="${product.tags.join(', ')}, midas beauty, premium beauty"`
+            );
+            
+            // Update Open Graph tags
+            template = template.replace(
+                /<meta property="og:title" content=".*?">/,
+                `<meta property="og:title" content="${product.name} | Midas Beauty">`
+            );
+            
+            template = template.replace(
+                /<meta property="og:description" content=".*?">/,
+                `<meta property="og:description" content="${product.metaDescription || product.description.substring(0, 160)}...">`
+            );
+            
+            template = template.replace(
+                /<meta property="og:image" content=".*?">/,
+                `<meta property="og:image" content="../${product.images.main}"`
+            );
+            
+            // Update structured data
+            const structuredData = {
+                "@context": "https://schema.org/",
+                "@type": "Product",
+                "name": product.name,
+                "brand": {
+                    "@type": "Brand",
+                    "name": product.brand
+                },
+                "description": product.description,
+                "image": product.images.gallery ? [product.images.main, ...product.images.gallery] : [product.images.main],
+                "sku": `MB-${product.id.toString().padStart(4, '0')}`,
+                "category": product.category,
+                "offers": {
+                    "@type": "Offer",
+                    "price": product.salePrice || product.price,
+                    "priceCurrency": product.currency,
+                    "availability": product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+                },
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": product.rating,
+                    "reviewCount": product.reviewCount
+                }
+            };
+            
+            template = template.replace(
+                /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
+                `<script type="application/ld+json">\n    ${JSON.stringify(structuredData, null, 4)}\n    </script>`
+            );
+            
+            return template;
+        }
+        
+        function showGenerationResults() {
+            const container = document.getElementById('results-container');
+            
+            let html = `
+                <div class="status-message success">
+                    <strong>🎉 Generation Complete!</strong> Successfully generated ${generatedPages.length} product pages.
+                </div>
+                
+                <h2>📄 Generated Pages</h2>
+                <div class="product-list">
+            `;
+            
+            generatedPages.forEach(page => {
+                html += `
+                    <div class="product-card">
+                        <div class="product-name">${page.product.name}</div>
+                        <div class="product-details">
+                            <strong>Filename:</strong> ${page.filename}<br>
+                            <strong>Size:</strong> ${Math.round(page.content.length / 1024)} KB<br>
+                            <strong>Category:</strong> ${page.product.category}<br>
+                            <strong>SEO Optimized:</strong> ✅ Yes
+                        </div>
+                        <a href="#" class="download-link" onclick="downloadPage('${page.filename}', \`${page.content.replace(/`/g, '\\`')}\`)">
+                            📥 Download Page
+                        </a>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+        }
+        
+        function downloadPage(filename, content) {
+            const blob = new Blob([content], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        function previewSamplePage() {
+            if (!productDatabase || productDatabase.products.length === 0) return;
+            
+            const sampleProduct = productDatabase.products[0];
+            generateProductPage(sampleProduct).then(pageHTML => {
+                const newWindow = window.open('', '_blank');
+                newWindow.document.write(pageHTML);
+                newWindow.document.close();
+            });
+        }
+        
+        async function downloadAllPages() {
+            if (generatedPages.length === 0) {
+                alert('Please generate pages first!');
+                return;
+            }
+            
+            // Note: This would require a ZIP library like JSZip
+            alert(`Ready to download ${generatedPages.length} pages! (ZIP functionality would require JSZip library)`);
+        }
+    </script>
+</body>
+</html>
